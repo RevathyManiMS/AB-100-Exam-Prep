@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Evaluate costs and benefits of AI solutions — AB-100 Exam Prep</title>
+<meta name="description" content="Build a defensible ROI case, decide build versus buy versus extend, and control the variable cost of generative AI." />
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="../assets/theme.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Exam Prep</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </a>
+    <a class="navlink" href="../index.html">Study guide</a>
+    <a class="navlink" href="../cram-sheet.html">Cram sheet</a>
+    <a class="navlink" href="../exam.html">Mock exam</a>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
+  </div>
+</header>
+<main class="wrap">
+  <div class="study-grid">
+    <article class="card pad">
+      <div class="eyebrow">Module 4 of 11</div>
+      <h1 style="font-size:27px;margin:6px 0 10px">Evaluate costs and benefits of AI solutions</h1>
+      <p class="lead">Build a defensible ROI case, decide build versus buy versus extend, and control the variable cost of generative AI.</p>
+      <p style="margin-top:14px">
+        <span class="pill">Exam questions Q31–Q40</span>
+        <span class="pill pill-muted">7 units on Learn</span>
+      </p>
+      <div style="margin-top:26px"><section class="block" id="overview"><h2>Why this module matters</h2><p>AI economics differ from traditional software economics in one crucial way: a large share of cost is <strong>variable and usage-driven</strong>. Licences are predictable; tokens, tool calls, and retrieval are not. Architecture decisions therefore have direct, ongoing financial consequences.</p><p>The exam tests whether you can construct an honest business case — including the costs teams habitually forget, and the discipline of comparing against a do-nothing baseline.</p><div class="note"><span class="lbl">The one big idea</span>ROI is net quantified benefit over total cost of ownership across a defined period — always compared against the cost of doing nothing.</div></section><section class="block" id="syllabus"><h2>What Microsoft Learn covers</h2><p class="lead">Units in this module, as published on Microsoft Learn:</p><ul><li>Introduction</li><li>Evaluate ROI criteria for AI-powered solutions</li><li>Create ROI analysis for a proposed AI solution</li><li>Analyze whether to build, buy, or extend AI components</li><li>Implement a model router to intelligently route requests to the most suitable model</li><li>Module assessment</li><li>Summary</li></ul><p><a class="btn btn-sm" href="https://learn.microsoft.com/en-us/training/modules/evaluate-costs-benefits-ai-powered-business-solution/" target="_blank" rel="noopener">Open module on Microsoft Learn →</a></p></section><section class="block" id="concepts"><h2>Key concepts and definitions</h2><table class="deftable"><tbody><tr><td>Total cost of ownership (TCO)</td><td>Build cost plus licensing, consumption, integration, monitoring, content maintenance, support, and change management, over the solution's life.</td></tr><tr><td>ROI</td><td>Net quantified benefit — time saved, revenue gained, cost avoided — relative to TCO over a defined period.</td></tr><tr><td>Hard benefit</td><td>Directly measurable in currency: reduced handling time, avoided headcount, lower error rework, retired licences.</td></tr><tr><td>Soft benefit</td><td>Real but harder to price: employee experience, reduced cognitive load, faster onboarding, improved consistency. Still belongs in the case, stated honestly.</td></tr><tr><td>Do-nothing baseline</td><td>The quantified cost of the status quo. Always include it — it is what the proposal is actually competing against.</td></tr><tr><td>Variable cost drivers</td><td>Request volume, input and output tokens, retrieval scope, tool and connector calls, and model choice.</td></tr><tr><td>Model router</td><td>Directs each request to the most suitable model, so cheap tasks do not pay frontier-model prices.</td></tr><tr><td>Build / buy / extend</td><td>Build for competitive differentiation not available off the shelf; buy for commodity capability; extend when a platform capability is close and configuration or a connector closes the gap.</td></tr><tr><td>Opportunity cost</td><td>The value forgone by spending scarce delivery capacity on this initiative rather than the next best one.</td></tr><tr><td>Staged funding</td><td>Releasing budget in tranches tied to value checkpoints, with go/no-go gates after pilot and after scaled rollout.</td></tr></tbody></table></section><section class="block" id="guidance"><h2>Design guidance</h2><h3>Costs teams routinely forget</h3><ul><li><strong>Ongoing operations</strong> — monitoring, evaluation runs, incident response. The single most under-estimated category.</li><li><strong>Content maintenance</strong> — someone must keep grounding sources accurate and current, forever.</li><li><strong>Change management and training</strong> — adoption does not happen by itself, and unadopted agents have infinite cost per unit of value.</li><li><strong>Re-evaluation after model updates</strong> — platform model changes force regression testing.</li></ul><h3>Making the pilot honest</h3><ul><li>Before extrapolating pilot savings enterprise-wide, confirm the pilot population, task mix, and measurement method are representative.</li><li>Model an <strong>adoption ramp</strong> rather than assuming instant full uptake.</li><li>State assumptions explicitly and show the case at conservative, expected, and optimistic adoption.</li></ul><h3>Reducing cost without losing quality</h3><ul><li>Right-size the model per task and route intelligently; do not send every request to the largest model.</li><li>Constrain retrieval scope — narrower, curated sources cost less <strong>and</strong> answer better.</li><li>Cache repeated work and cap output length where long answers add no value.</li><li>Never cut cost by removing logging, monitoring, or grounding. Those are controls, not overheads.</li></ul></section><section class="block" id="practice"><h2>Good practice vs. anti-pattern</h2><div class="compare">
+        <div class="do"><h4>Do</h4><ul><li>Include a do-nothing baseline in every business case.</li><li>Fund in stages against value checkpoints.</li><li>Quantify soft benefits explicitly rather than silently.</li><li>Use a model router and right-size per task.</li></ul></div>
+        <div class="dont"><h4>Avoid</h4><ul><li>Extrapolate pilot results without validating representativeness.</li><li>Express ROI in tokens, agents deployed, or model accuracy.</li><li>Treat operations and content upkeep as one-off costs.</li><li>Save money by disabling observability.</li></ul></div>
+      </div></section><section class="block" id="traps"><h2>Exam traps to watch for</h2><div class="note warn"><span class="lbl">Trap</span>The most under-estimated cost is <strong>ongoing operations</strong> — monitoring, evaluation, content maintenance, change management. Not licences, not hardware.</div><div class="note warn"><span class="lbl">Trap</span>ROI must be expressed as net benefit against TCO. Answers phrased as token counts, deployment counts, or accuracy percentages are distractors.</div><div class="note warn"><span class="lbl">Trap</span>The do-nothing baseline is <strong>always</strong> included, not only in regulated industries and not only on request.</div><div class="note warn"><span class="lbl">Trap</span>Opportunity cost still applies when the budget is fixed — arguably it matters most then, because capacity is the binding constraint.</div></section><section class="block" id="checklist"><h2>Readiness checklist</h2><p class="lead">You are ready to move on when you can do all of these without notes.</p>
+     <ul class="checklist"><li>Construct an ROI statement with benefit, TCO, period, and baseline.</li><li>Name four cost categories teams commonly omit.</li><li>Decide build, buy, or extend for a given capability and defend it.</li><li>Explain what a model router does and when it pays for itself.</li><li>Describe three ways to reduce cost that do not degrade quality or control.</li></ul></section></div>
+      <div class="pagenav">
+        <a class="btn" href="module-03.html">← Design overall AI strategy for business solutions</a>
+        <span class="spacer"></span>
+        <a class="btn btn-primary" href="../exam.html">Test this module →</a>
+        <a class="btn" href="module-05.html">Design AI agents for business solutions →</a>
+      </div>
+    </article>
+    <nav class="toc card pad">
+      <h3>On this page</h3>
+      <a href="#overview">Why this module matters</a><a href="#syllabus">What Microsoft Learn covers</a><a href="#concepts">Key concepts and definitions</a><a href="#guidance">Design guidance</a><a href="#practice">Good practice vs. anti-pattern</a><a href="#traps">Exam traps to watch for</a><a href="#checklist">Readiness checklist</a>
+      <h3 style="margin-top:18px">All modules</h3>
+      <a href="module-01.html">1. Agentic AI foundations</a><a href="module-02.html">2. Requirements analysis</a><a href="module-03.html">3. AI strategy</a><a href="module-04.html" style="color:var(--cp-accent);font-weight:600">4. Costs and ROI</a><a href="module-05.html">5. Agent design</a><a href="module-06.html">6. Extensibility</a><a href="module-07.html">7. Prebuilt agents</a><a href="module-08.html">8. Monitor and tune</a><a href="module-09.html">9. Testing</a><a href="module-10.html">10. ALM</a><a href="module-11.html">11. Responsible AI and security</a>
+    </nav>
+  </div>
+  <p class="footnote">
+  Unofficial study aid built from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
+  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+</p>
+</main>
+<script>
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>

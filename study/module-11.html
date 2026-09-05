@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Design responsible AI security, governance, risk management, and compliance — AB-100 Exam Prep</title>
+<meta name="description" content="Apply the Responsible AI principles, defend against prompt manipulation, and design access control, residency, and audit." />
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="../assets/theme.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Exam Prep</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </a>
+    <a class="navlink" href="../index.html">Study guide</a>
+    <a class="navlink" href="../cram-sheet.html">Cram sheet</a>
+    <a class="navlink" href="../exam.html">Mock exam</a>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
+  </div>
+</header>
+<main class="wrap">
+  <div class="study-grid">
+    <article class="card pad">
+      <div class="eyebrow">Module 11 of 11</div>
+      <h1 style="font-size:27px;margin:6px 0 10px">Design responsible AI security, governance, risk management, and compliance</h1>
+      <p class="lead">Apply the Responsible AI principles, defend against prompt manipulation, and design access control, residency, and audit.</p>
+      <p style="margin-top:14px">
+        <span class="pill">Exam questions Q101–Q110</span>
+        <span class="pill pill-muted">11 units on Learn</span>
+      </p>
+      <div style="margin-top:26px"><section class="block" id="overview"><h2>Why this module matters</h2><p>This module carries disproportionate exam weight because its content threads through every other module. You must know the six Responsible AI principles by name, recognise which one a scenario threatens, and design layered controls.</p><p>Prompt injection deserves particular attention: it is the signature AI-specific vulnerability, and the mitigation pattern is precise.</p><div class="note"><span class="lbl">The one big idea</span>Treat retrieved content as data, never as instructions — and enforce the user's own permissions at retrieval time. Those two rules prevent the majority of AI-specific incidents.</div></section><section class="block" id="syllabus"><h2>What Microsoft Learn covers</h2><p class="lead">Units in this module, as published on Microsoft Learn:</p><ul><li>Introduction</li><li>Design security agents for Microsoft clouds</li><li>Design governance models for AI agents</li><li>Design model security for responsible AI</li><li>Analyze AI vulnerabilities and mitigations for prompt manipulation</li><li>Review solution adherence to Responsible AI principles</li><li>Validate data residency and movement compliance</li><li>Design access controls for grounding data and model tuning</li><li>Design audit trails for changes to models and data</li><li>Module assessment</li><li>Summary</li></ul><p><a class="btn btn-sm" href="https://learn.microsoft.com/en-us/training/modules/design-responsible-ai-security-governance-risk-management-compliance/" target="_blank" rel="noopener">Open module on Microsoft Learn →</a></p></section><section class="block" id="concepts"><h2>Key concepts and definitions</h2><table class="deftable"><tbody><tr><td>Responsible AI principles</td><td><strong>Fairness · Reliability and safety · Privacy and security · Inclusiveness · Transparency · Accountability.</strong> Learn all six in order.</td></tr><tr><td>Fairness</td><td>Comparable quality of service across groups. Threatened when an agent performs measurably better for one demographic than another.</td></tr><tr><td>Transparency</td><td>Users know they are interacting with AI, understand its limitations and data use, and can reach a human.</td></tr><tr><td>Accountability</td><td>A named human owner is answerable for the system's behaviour and outcomes.</td></tr><tr><td>Impact assessment</td><td>Documented intended uses, stakeholders, potential harms, mitigations, and residual risk, with an accountable owner.</td></tr><tr><td>Prompt injection</td><td>Untrusted content smuggling instructions into the model's context to hijack behaviour. The defining AI-specific attack.</td></tr><tr><td>Permission trimming</td><td>Enforcing existing identity and permissions <strong>at retrieval time</strong>, so users only ever see content they are already entitled to.</td></tr><tr><td>Data Loss Prevention (DLP)</td><td>Power Platform policies restricting which connectors and data sources may be combined, preventing unsanctioned data flows.</td></tr><tr><td>Microsoft Purview</td><td>Supports compliance across Copilot interactions — eDiscovery, retention, audit, and information protection.</td></tr><tr><td>Microsoft Entra ID</td><td>Identity provider for authentication, conditional access, and least-privilege authorisation.</td></tr><tr><td>Data residency and movement</td><td>Where data is stored and processed, and the rules governing cross-border transfer.</td></tr><tr><td>Audit trail</td><td>A durable record of changes to models, prompts, knowledge, and data, and of consequential agent decisions.</td></tr><tr><td>Defence in depth</td><td>Layered controls: identity and least privilege; DLP and classification; content safety filters; monitoring and audit; incident response.</td></tr></tbody></table></section><section class="block" id="guidance"><h2>Design guidance</h2><h3>Mitigating prompt injection</h3><ul><li><strong>Treat retrieved content as data, never as instructions.</strong> This is the core of the answer.</li><li>Isolate system instructions from retrieved context so untrusted text cannot override them.</li><li>Validate tool inputs and constrain what actions the agent is permitted to take.</li><li>Apply least privilege so a successful injection has minimal reach.</li><li>Increasing token limits, removing citations, or trusting the source do nothing — they are distractors.</li></ul><h3>Access, residency, and audit</h3><ul><li>Enforce permissions at retrieval time through delegated access and permission trimming. A disclaimer in the response is not a control.</li><li>Design access controls for grounding data <strong>and</strong> for model tuning inputs — tuning data leaks just as readily as retrieval data.</li><li>Validate residency and cross-border movement against regional regulation before choosing a deployment topology.</li><li>Maintain audit trails for changes to models, prompts, knowledge, and data, plus logs of consequential decisions.</li></ul><h3>High-impact and regulated decisions</h3><ul><li>Require human review or approval, decision logging, explainability, and periodic audit.</li><li>Never rely solely on the model provider's assurances, and never remove logging in the name of privacy.</li><li>Disclose AI involvement, limitations, and the route to a human clearly and proactively — to all users, not only administrators and not only on request.</li></ul></section><section class="block" id="practice"><h2>Good practice vs. anti-pattern</h2><div class="compare">
+        <div class="do"><h4>Do</h4><ul><li>Enforce user permissions at retrieval time.</li><li>Isolate instructions from untrusted retrieved content.</li><li>Apply DLP policies and data classification.</li><li>Keep audit trails for model, prompt, and data changes.</li></ul></div>
+        <div class="dont"><h4>Avoid</h4><ul><li>Rely on a disclaimer instead of a permission control.</li><li>Let retrieved content dictate tool calls.</li><li>Hide that the user is talking to AI.</li><li>Disable logging to protect privacy.</li></ul></div>
+      </div></section><section class="block" id="traps"><h2>Exam traps to watch for</h2><div class="note warn"><span class="lbl">Trap</span>The six principles are fairness, reliability and safety, privacy and security, inclusiveness, transparency, accountability. <strong>Confidentiality/integrity/availability is the CIA triad, not Responsible AI.</strong></div><div class="note warn"><span class="lbl">Trap</span>Unequal performance across demographic groups is a <strong>fairness</strong> issue, not transparency or reliability.</div><div class="note warn"><span class="lbl">Trap</span>DLP restricts which <strong>connectors and data sources may be combined</strong>. It does not reduce token use, assign licences, or improve accuracy.</div><div class="note warn"><span class="lbl">Trap</span>The compliance capability for eDiscovery and retention over Copilot interactions is <strong>Microsoft Purview</strong> — not Power BI, Azure DevOps, or Fabric.</div><div class="note warn"><span class="lbl">Trap</span>Defence in depth means <strong>layers</strong>. A single content filter, a firewall alone, or passwords alone are all wrong answers.</div></section><section class="block" id="checklist"><h2>Readiness checklist</h2><p class="lead">You are ready to move on when you can do all of these without notes.</p>
+     <ul class="checklist"><li>Recite the six Responsible AI principles.</li><li>Match a scenario symptom to the principle it threatens.</li><li>Give the four-part mitigation for prompt injection.</li><li>Explain permission trimming and why a disclaimer is not equivalent.</li><li>List the layers of a defence-in-depth design for an enterprise agent.</li></ul></section></div>
+      <div class="pagenav">
+        <a class="btn" href="module-10.html">← Design ALM process for AI-powered business solutions</a>
+        <span class="spacer"></span>
+        <a class="btn btn-primary" href="../exam.html">Test this module →</a>
+        <a class="btn" href="../cram-sheet.html">Cram sheet →</a>
+      </div>
+    </article>
+    <nav class="toc card pad">
+      <h3>On this page</h3>
+      <a href="#overview">Why this module matters</a><a href="#syllabus">What Microsoft Learn covers</a><a href="#concepts">Key concepts and definitions</a><a href="#guidance">Design guidance</a><a href="#practice">Good practice vs. anti-pattern</a><a href="#traps">Exam traps to watch for</a><a href="#checklist">Readiness checklist</a>
+      <h3 style="margin-top:18px">All modules</h3>
+      <a href="module-01.html">1. Agentic AI foundations</a><a href="module-02.html">2. Requirements analysis</a><a href="module-03.html">3. AI strategy</a><a href="module-04.html">4. Costs and ROI</a><a href="module-05.html">5. Agent design</a><a href="module-06.html">6. Extensibility</a><a href="module-07.html">7. Prebuilt agents</a><a href="module-08.html">8. Monitor and tune</a><a href="module-09.html">9. Testing</a><a href="module-10.html">10. ALM</a><a href="module-11.html" style="color:var(--cp-accent);font-weight:600">11. Responsible AI and security</a>
+    </nav>
+  </div>
+  <p class="footnote">
+  Unofficial study aid built from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
+  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+</p>
+</main>
+<script>
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Orchestrate configuration of prebuilt agents and apps — AB-100 Exam Prep</title>
+<meta name="description" content="Enable, configure, and orchestrate the AI already shipped in Dynamics 365 and Microsoft 365 before building anything new." />
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="../assets/theme.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Exam Prep</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </a>
+    <a class="navlink" href="../index.html">Study guide</a>
+    <a class="navlink" href="../cram-sheet.html">Cram sheet</a>
+    <a class="navlink" href="../exam.html">Mock exam</a>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
+  </div>
+</header>
+<main class="wrap">
+  <div class="study-grid">
+    <article class="card pad">
+      <div class="eyebrow">Module 7 of 11</div>
+      <h1 style="font-size:27px;margin:6px 0 10px">Orchestrate configuration of prebuilt agents and apps</h1>
+      <p class="lead">Enable, configure, and orchestrate the AI already shipped in Dynamics 365 and Microsoft 365 before building anything new.</p>
+      <p style="margin-top:14px">
+        <span class="pill">Exam questions Q61–Q70</span>
+        <span class="pill pill-muted">10 units on Learn</span>
+      </p>
+      <div style="margin-top:26px"><section class="block" id="overview"><h2>Why this module matters</h2><p>This module is the practical counterpart to the strategy modules. A great deal of AI capability already exists inside Dynamics 365 and Microsoft 365; the architect's job is to know it exists, confirm the prerequisites, and orchestrate it coherently across apps.</p><p>Exam questions here reward restraint. The correct answer is usually to check whether the out-of-the-box capability meets the need before proposing anything custom.</p><div class="note"><span class="lbl">The one big idea</span>Configure before you extend, and extend before you build. Most "we need an agent" requests are satisfied by enabling something that already ships.</div></section><section class="block" id="syllabus"><h2>What Microsoft Learn covers</h2><p class="lead">Units in this module, as published on Microsoft Learn:</p><ul><li>Introduction</li><li>Orchestrate AI features in Dynamics 365 Finance and Supply Chain</li><li>Design AI solutions for Dynamics 365 Customer Service</li><li>Propose Microsoft 365 agents for business scenarios</li><li>Orchestrate and configure Microsoft 365 Copilot for sales and service</li><li>Propose Microsoft Power Platform AI features</li><li>Design interoperable agent experiences for Finance and Operations</li><li>Recommend process knowledge sources for in-app help in Dynamics 365</li><li>Module assessment</li><li>Summary</li></ul><p><a class="btn btn-sm" href="https://learn.microsoft.com/en-us/training/modules/orchestrate-configuration-prebuilt-agents-apps/" target="_blank" rel="noopener">Open module on Microsoft Learn →</a></p></section><section class="block" id="concepts"><h2>Key concepts and definitions</h2><table class="deftable"><tbody><tr><td>Prebuilt / OOB capability</td><td>AI shipped inside the product, enabled by an administrator and tuned through supported configuration.</td></tr><tr><td>Feature enablement gates</td><td>What determines whether a user sees a capability: <strong>licensing, admin feature enablement, security roles and privileges, and environment/region availability</strong>.</td></tr><tr><td>Process knowledge source</td><td>Curated procedural content powering in-app help and guidance inside Dynamics 365.</td></tr><tr><td>Interoperable agent experience</td><td>Agents that work coherently across Finance and Operations and Customer Experience apps rather than in isolation.</td></tr><tr><td>Power Platform AI features</td><td>AI capabilities available across Power Apps, Power Automate, and Copilot Studio that often satisfy a requirement without custom development.</td></tr><tr><td>Routing ambiguity</td><td>When several agents claim overlapping scope, users and orchestrators cannot tell which should answer. Fixed by curating scope, naming, and discovery.</td></tr><tr><td>Configuration baseline</td><td>The documented, intended configuration of a capability across environments, used to detect and correct drift.</td></tr><tr><td>Configuration drift</td><td>Environments diverging over time through manual, undocumented changes.</td></tr></tbody></table></section><section class="block" id="guidance"><h2>Design guidance</h2><h3>Rollout sequence</h3><ul><li>Validate prerequisites and licensing → enable in a <strong>non-production</strong> environment → configure and test → pilot with real users → broad rollout with training and comms.</li><li>Never enable broadly in production first and communicate afterwards.</li><li>Before broad enablement, complete a data-access review, confirm DLP policies, agree the environment strategy, and record a named owner.</li></ul><h3>Tailoring without building</h3><ul><li>Adapt answers to company terminology through <strong>grounding sources, custom instructions, and supported configuration</strong> — not by fine-tuning a base model.</li><li>Progression when a capability nearly fits: <strong>configure → extend → build custom</strong>, in that order.</li><li>For in-app help, recommend curated process knowledge sources rather than pointing at unstructured document dumps.</li></ul><h3>Orchestrating multiple agents</h3><ul><li>Curate the catalogue: distinct scopes, clear naming, and controlled discovery so users are not choosing blindly.</li><li>Manage configuration through documented baselines and automated deployment or validation where supported.</li><li>Validate success by adoption <strong>plus</strong> movement in the targeted business metric, supported by user feedback.</li></ul></section><section class="block" id="practice"><h2>Good practice vs. anti-pattern</h2><div class="compare">
+        <div class="do"><h4>Do</h4><ul><li>Check the out-of-the-box capability first.</li><li>Test in a non-production environment before pilot.</li><li>Review source permissions before broad enablement.</li><li>Curate agent scope and naming to avoid overlap.</li></ul></div>
+        <div class="dont"><h4>Avoid</h4><ul><li>Fine-tune a model to teach it company vocabulary.</li><li>Enable in production and figure out governance later.</li><li>Configure each environment by hand.</li><li>Measure success by licences assigned or settings changed.</li></ul></div>
+      </div></section><section class="block" id="traps"><h2>Exam traps to watch for</h2><div class="note warn"><span class="lbl">Trap</span>If a prebuilt agent surfaces data a user should not see, the cause is almost always <strong>overly broad source permissions</strong> that the agent faithfully honours — not hallucination and not model size.</div><div class="note warn"><span class="lbl">Trap</span>Visibility of a prebuilt feature is governed by licensing, admin enablement, security roles, and environment/region — not by browser, device, or display language.</div><div class="note warn"><span class="lbl">Trap</span>Prebuilt does <strong>not</strong> mean pre-governed. DLP, data-access review, environment strategy, and ownership still apply.</div><div class="note warn"><span class="lbl">Trap</span>The near-fit progression is configure → extend → build. Any option that jumps straight to custom development is wrong.</div></section><section class="block" id="checklist"><h2>Readiness checklist</h2><p class="lead">You are ready to move on when you can do all of these without notes.</p>
+     <ul class="checklist"><li>List the four gates that determine whether a user sees a prebuilt Copilot feature.</li><li>Give the correct rollout sequence for enabling a prebuilt capability.</li><li>Explain how to tailor terminology without touching the model.</li><li>Diagnose why an agent is exposing data it should not.</li><li>Describe how to prevent configuration drift across environments.</li></ul></section></div>
+      <div class="pagenav">
+        <a class="btn" href="module-06.html">← Design extensibility of AI solutions</a>
+        <span class="spacer"></span>
+        <a class="btn btn-primary" href="../exam.html">Test this module →</a>
+        <a class="btn" href="module-08.html">Monitor, analyze, and tune AI agents →</a>
+      </div>
+    </article>
+    <nav class="toc card pad">
+      <h3>On this page</h3>
+      <a href="#overview">Why this module matters</a><a href="#syllabus">What Microsoft Learn covers</a><a href="#concepts">Key concepts and definitions</a><a href="#guidance">Design guidance</a><a href="#practice">Good practice vs. anti-pattern</a><a href="#traps">Exam traps to watch for</a><a href="#checklist">Readiness checklist</a>
+      <h3 style="margin-top:18px">All modules</h3>
+      <a href="module-01.html">1. Agentic AI foundations</a><a href="module-02.html">2. Requirements analysis</a><a href="module-03.html">3. AI strategy</a><a href="module-04.html">4. Costs and ROI</a><a href="module-05.html">5. Agent design</a><a href="module-06.html">6. Extensibility</a><a href="module-07.html" style="color:var(--cp-accent);font-weight:600">7. Prebuilt agents</a><a href="module-08.html">8. Monitor and tune</a><a href="module-09.html">9. Testing</a><a href="module-10.html">10. ALM</a><a href="module-11.html">11. Responsible AI and security</a>
+    </nav>
+  </div>
+  <p class="footnote">
+  Unofficial study aid built from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
+  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+</p>
+</main>
+<script>
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>

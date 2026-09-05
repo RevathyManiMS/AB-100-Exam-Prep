@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Design overall AI strategy for business solutions — AB-100 Exam Prep</title>
+<meta name="description" content="Use the Cloud Adoption Framework to build an enterprise AI strategy, and decide when to extend Copilot versus build custom." />
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="../assets/theme.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Exam Prep</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </a>
+    <a class="navlink" href="../index.html">Study guide</a>
+    <a class="navlink" href="../cram-sheet.html">Cram sheet</a>
+    <a class="navlink" href="../exam.html">Mock exam</a>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
+  </div>
+</header>
+<main class="wrap">
+  <div class="study-grid">
+    <article class="card pad">
+      <div class="eyebrow">Module 3 of 11</div>
+      <h1 style="font-size:27px;margin:6px 0 10px">Design overall AI strategy for business solutions</h1>
+      <p class="lead">Use the Cloud Adoption Framework to build an enterprise AI strategy, and decide when to extend Copilot versus build custom.</p>
+      <p style="margin-top:14px">
+        <span class="pill">Exam questions Q21–Q30</span>
+        <span class="pill pill-muted">19 units on Learn</span>
+      </p>
+      <div style="margin-top:26px"><section class="block" id="overview"><h2>Why this module matters</h2><p>This is the largest module in the path — nineteen units — and it is the one most likely to be over-represented in the exam. It spans the Cloud Adoption Framework, multi-agent design, knowledge source selection, prompt libraries, small language models, the AI Center of Excellence, and regional data regulation.</p><p>The connective tissue is <strong>standardisation</strong>. Almost every correct answer favours a governed, reusable, centrally-supported approach over per-team improvisation.</p><div class="note"><span class="lbl">The one big idea</span>Strategy questions reward the answer that scales: shared governance, reusable patterns, a portfolio prioritised on value and risk, and a Center of Excellence that makes the good path the easy path.</div></section><section class="block" id="syllabus"><h2>What Microsoft Learn covers</h2><p class="lead">Units in this module, as published on Microsoft Learn:</p><ul><li>Introduction</li><li>Implement AI adoption process with Azure</li><li>Design AI agents for business solutions</li><li>Design a multi-agent solution</li><li>Develop use cases for prebuilt Microsoft 365 Copilot agents</li><li>Define solution rules and constraints for AI components</li><li>Determine generative AI knowledge sources for agents built in Copilot Studio</li><li>Determine when to build custom agents or extend Microsoft 365 Copilot</li><li>Determine when custom AI models should be created</li><li>Provide guidelines for creating a prompt library</li><li>Develop use cases for customized small language models</li><li>Provide prompt engineering guidelines and techniques</li><li>Identify key business user roles for AI workloads</li><li>Evaluate regional and local AI data regulation compliance requirements</li><li>Include elements in a Microsoft AI Center of Excellence</li><li>Design AI solutions using multiple Dynamics 365 apps</li><li>Design user prompt training for AI solution adoption</li><li>Module assessment</li><li>Summary</li></ul><p><a class="btn btn-sm" href="https://learn.microsoft.com/en-us/training/modules/design-overall-ai-strategy-business-solutions/" target="_blank" rel="noopener">Open module on Microsoft Learn →</a></p></section><section class="block" id="concepts"><h2>Key concepts and definitions</h2><table class="deftable"><tbody><tr><td>Cloud Adoption Framework (CAF)</td><td>Azure's adoption methodology. The stages you must recognise: <strong>Strategy</strong> (motivations, outcomes, justification), <strong>Plan</strong>, <strong>Ready</strong> (landing zones), <strong>Adopt</strong>, <strong>Govern</strong>, <strong>Secure</strong>, <strong>Manage</strong>.</td></tr><tr><td>Landing zone</td><td>A pre-configured, governed environment baseline — identity, network, policy, monitoring — that workloads deploy into so every team inherits the same controls.</td></tr><tr><td>AI agent lifecycle</td><td>Ideate → design → build → test → deploy → operate → improve or retire. Strategy must fund and govern all of it, not just the build.</td></tr><tr><td>Multi-agent solution</td><td>An orchestrator agent interprets the goal and delegates to specialised child agents, then composes the result. Split when scope, knowledge, permissions, or ownership genuinely diverge.</td></tr><tr><td>AI Center of Excellence</td><td>The cross-functional body owning standards, reusable patterns, review gates, enablement, and the shared backlog. Establish it <strong>before</strong> scaling.</td></tr><tr><td>Prompt library</td><td>A curated, versioned, owned collection of approved prompts and instructions, shared so teams do not each reinvent them.</td></tr><tr><td>Small language model (SLM)</td><td>A smaller, cheaper, faster model suited to narrow, well-defined, high-volume tasks — and to latency- or cost-sensitive scenarios.</td></tr><tr><td>Model router</td><td>Routes each request to the most suitable model for that task, balancing quality against cost and latency.</td></tr><tr><td>Shadow agent</td><td>An ungoverned agent built outside the standard path. Causes inconsistent data access, duplicated cost, and compliance exposure.</td></tr><tr><td>Solution rules and constraints</td><td>The explicit boundaries — what the AI component may and may not do, which data it may touch, which actions need approval.</td></tr></tbody></table></section><section class="block" id="guidance"><h2>Design guidance</h2><h3>Extend Microsoft 365 Copilot, or build custom?</h3><ul><li><strong>Extend</strong> when users already work in Microsoft 365, the need is knowledge or a modest action, and you want to inherit Copilot's orchestration, identity, and grounding.</li><li><strong>Build custom</strong> when you need bespoke orchestration logic, a specific or fine-tuned model, a non-Microsoft surface, or behaviour the host cannot express.</li><li>Custom models are a last resort. Prefer grounding, retrieval, and prompt engineering first — they are cheaper, faster, and easier to govern than training.</li></ul><h3>Portfolio and funding</h3><ul><li>Prioritise initiatives by scoring <strong>value, feasibility, risk, and strategic alignment</strong> — not by who asked first.</li><li>Fund in stages with go/no-go gates after pilot and after scaled rollout, rather than one large upfront request.</li><li>Consider opportunity cost explicitly: capacity spent on a low-value agent is capacity denied to a high-value one.</li></ul><h3>People and compliance</h3><ul><li>Define roles, upskilling paths, and a maker-enablement plan supported by pro-dev capability. Skills do not emerge on their own.</li><li>Invest in <strong>user prompt training</strong> — adoption failures are frequently prompt-literacy failures, not product failures.</li><li>Evaluate regional and local AI data regulation early: residency, cross-border movement, sector rules, and how they constrain architecture.</li></ul></section><section class="block" id="practice"><h2>Good practice vs. anti-pattern</h2><div class="compare">
+        <div class="do"><h4>Do</h4><ul><li>Standardise on a common platform and governance baseline.</li><li>Establish the Center of Excellence before proliferation.</li><li>Version and own prompts like code.</li><li>Right-size the model per task; consider SLMs and a model router.</li></ul></div>
+        <div class="dont"><h4>Avoid</h4><ul><li>Let each business unit pick its own stack and controls.</li><li>Jump to fine-tuning before exhausting grounding and prompting.</li><li>Treat strategy as a one-off document rather than a governed portfolio.</li><li>Ignore residency rules until deployment.</li></ul></div>
+      </div></section><section class="block" id="traps"><h2>Exam traps to watch for</h2><div class="note warn"><span class="lbl">Trap</span><strong>Strategy</strong> is the CAF stage about motivations, outcomes, and business justification. Do not confuse it with Plan, Govern, or Manage.</div><div class="note warn"><span class="lbl">Trap</span>"Always build" and "always buy" are both wrong. The expected answer is *build for differentiation, buy for commodity, decided case by case on total cost and time to value*.</div><div class="note warn"><span class="lbl">Trap</span>A landing zone is an environment baseline, not a physical place, a Dataverse table, or a project phase.</div><div class="note warn"><span class="lbl">Trap</span>When a question describes multiple teams each creating overlapping agents, the risk being tested is ungoverned proliferation — inconsistent access, duplicated cost, compliance exposure.</div></section><section class="block" id="checklist"><h2>Readiness checklist</h2><p class="lead">You are ready to move on when you can do all of these without notes.</p>
+     <ul class="checklist"><li>Name the CAF stage that owns business justification, and what the others own.</li><li>Give three concrete triggers for splitting one agent into a multi-agent design.</li><li>State when to extend Microsoft 365 Copilot and when to build custom.</li><li>Explain when a small language model beats a frontier model.</li><li>List four elements an AI Center of Excellence must provide.</li></ul></section></div>
+      <div class="pagenav">
+        <a class="btn" href="module-02.html">← Analyze requirements for AI-powered business solutions</a>
+        <span class="spacer"></span>
+        <a class="btn btn-primary" href="../exam.html">Test this module →</a>
+        <a class="btn" href="module-04.html">Evaluate costs and benefits of AI solutions →</a>
+      </div>
+    </article>
+    <nav class="toc card pad">
+      <h3>On this page</h3>
+      <a href="#overview">Why this module matters</a><a href="#syllabus">What Microsoft Learn covers</a><a href="#concepts">Key concepts and definitions</a><a href="#guidance">Design guidance</a><a href="#practice">Good practice vs. anti-pattern</a><a href="#traps">Exam traps to watch for</a><a href="#checklist">Readiness checklist</a>
+      <h3 style="margin-top:18px">All modules</h3>
+      <a href="module-01.html">1. Agentic AI foundations</a><a href="module-02.html">2. Requirements analysis</a><a href="module-03.html" style="color:var(--cp-accent);font-weight:600">3. AI strategy</a><a href="module-04.html">4. Costs and ROI</a><a href="module-05.html">5. Agent design</a><a href="module-06.html">6. Extensibility</a><a href="module-07.html">7. Prebuilt agents</a><a href="module-08.html">8. Monitor and tune</a><a href="module-09.html">9. Testing</a><a href="module-10.html">10. ALM</a><a href="module-11.html">11. Responsible AI and security</a>
+    </nav>
+  </div>
+  <p class="footnote">
+  Unofficial study aid built from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
+  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+</p>
+</main>
+<script>
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>

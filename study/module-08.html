@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Monitor, analyze, and tune AI agents — AB-100 Exam Prep</title>
+<meta name="description" content="Instrument agents, read the telemetry, and run a continuous improvement loop that keeps quality rising." />
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="../assets/theme.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Exam Prep</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </a>
+    <a class="navlink" href="../index.html">Study guide</a>
+    <a class="navlink" href="../cram-sheet.html">Cram sheet</a>
+    <a class="navlink" href="../exam.html">Mock exam</a>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
+  </div>
+</header>
+<main class="wrap">
+  <div class="study-grid">
+    <article class="card pad">
+      <div class="eyebrow">Module 8 of 11</div>
+      <h1 style="font-size:27px;margin:6px 0 10px">Monitor, analyze, and tune AI agents</h1>
+      <p class="lead">Instrument agents, read the telemetry, and run a continuous improvement loop that keeps quality rising.</p>
+      <p style="margin-top:14px">
+        <span class="pill">Exam questions Q71–Q80</span>
+        <span class="pill pill-muted">8 units on Learn</span>
+      </p>
+      <div style="margin-top:26px"><section class="block" id="overview"><h2>Why this module matters</h2><p>An agent is never finished. Content ages, models are updated beneath you, and user behaviour shifts. This module is about the operational loop that keeps quality from quietly eroding.</p><p>The exam focuses on metric interpretation: given a symptom, identify the likely cause and the correct corrective action. Learn to read the *pattern*, not just the number.</p><div class="note"><span class="lbl">The one big idea</span>Monitor → analyse failures → adjust knowledge, instructions, or tools → re-evaluate → release. Continuously. Tuning once at go-live is not an operating model.</div></section><section class="block" id="syllabus"><h2>What Microsoft Learn covers</h2><p class="lead">Units in this module, as published on Microsoft Learn:</p><ul><li>Introduction</li><li>Recommend process tools for monitoring agents</li><li>Analyze backlog and user feedback for AI agent usage</li><li>Apply AI-based tools to analyze, identify issues, and perform tuning</li><li>Monitor AI agent performance metrics</li><li>Interpret telemetry data to tune AI performance</li><li>Module assessment</li><li>Ensure reliable AI agent operations</li></ul><p><a class="btn btn-sm" href="https://learn.microsoft.com/en-us/training/modules/analyze-monitor-tune-ai-powered-business-solutions/" target="_blank" rel="noopener">Open module on Microsoft Learn →</a></p></section><section class="block" id="concepts"><h2>Key concepts and definitions</h2><table class="deftable"><tbody><tr><td>Containment / resolution rate</td><td>The share of interactions resolved without human escalation. The clearest single measure of whether the agent actually helps.</td></tr><tr><td>Engagement vs. resolution</td><td>High engagement with low resolution means people try the agent but leave unsatisfied — typically knowledge gaps or unclear instructions.</td></tr><tr><td>Groundedness</td><td>Whether responses are supported by retrieved sources. Confident answers with no citation support indicate hallucination.</td></tr><tr><td>Evaluation dataset</td><td>Representative inputs with expected outcomes, used to measure quality consistently over time. It tests the agent; it does not train the model.</td></tr><tr><td>Telemetry / tracing</td><td>Logged reasoning and tool-selection detail — inputs, chosen tool, parameters, outcome — the primary evidence for diagnosing wrong-tool behaviour.</td></tr><tr><td>Escalation / fallback rate</td><td>How often the agent gives up or hands off. A spike is an early warning of regression.</td></tr><tr><td>Agent scorecard</td><td>A balanced view across <strong>quality, adoption, efficiency (cost and latency), and safety/compliance</strong>. Any single metric can be gamed.</td></tr><tr><td>A/B testing</td><td>Running two variants — for example two instruction sets — to determine empirically which performs better before full rollout.</td></tr><tr><td>Content decay</td><td>The gradual staleness of grounding sources that silently degrades answer quality.</td></tr></tbody></table></section><section class="block" id="guidance"><h2>Design guidance</h2><h3>Reading the symptoms</h3><ul><li><strong>High engagement, low resolution</strong> → knowledge coverage gaps or ambiguous instructions.</li><li><strong>Confident answers without citations</strong> → grounding failure; tighten retrieval and require citation.</li><li><strong>Wrong tool chosen</strong> → inspect tracing logs, then improve tool descriptions and parameter schemas.</li><li><strong>Rising fallback rate after a release</strong> → regression; compare against your evaluation baseline.</li><li><strong>Good quality, poor adoption</strong> → discovery, training, or workflow-fit problem, not a model problem.</li></ul><h3>Improving retrieval</h3><ul><li>Curate, chunk, and maintain authoritative content with accurate metadata. Adding more unrelated documents makes retrieval worse, not better.</li><li>Retire superseded content actively.</li><li>Narrow retrieval scope where possible — it improves both accuracy and cost.</li></ul><h3>Alerting and cadence</h3><ul><li>Alert on <strong>spikes in fallback or escalation rate, error rate, latency, and content-filter triggers</strong> — not on ordinary successful responses.</li><li>Re-run the evaluation suite whenever the model version, instructions, knowledge, or tools change.</li><li>Feed user feedback and the backlog into a prioritised improvement queue rather than ad-hoc fixes.</li></ul></section><section class="block" id="practice"><h2>Good practice vs. anti-pattern</h2><div class="compare">
+        <div class="do"><h4>Do</h4><ul><li>Maintain a curated evaluation dataset with expected outcomes.</li><li>Trace tool selection so failures are diagnosable.</li><li>Score quality, adoption, efficiency, and safety together.</li><li>A/B test instruction changes before rolling out.</li></ul></div>
+        <div class="dont"><h4>Avoid</h4><ul><li>Judge success on session counts or token averages.</li><li>Add documents indiscriminately to fix accuracy.</li><li>Wait for loud complaints before tuning.</li><li>Alert on every successful interaction.</li></ul></div>
+      </div></section><section class="block" id="traps"><h2>Exam traps to watch for</h2><div class="note warn"><span class="lbl">Trap</span>An evaluation dataset <strong>measures</strong> the agent; it does not train the base model.</div><div class="note warn"><span class="lbl">Trap</span>More documents is not better grounding. Curation, chunking, and metadata are what improve retrieval.</div><div class="note warn"><span class="lbl">Trap</span>Tuning is a continuous loop, not a go-live activity and not an annual ritual.</div><div class="note warn"><span class="lbl">Trap</span>A balanced scorecard needs all four dimensions. Cost-only, latency-only, or satisfaction-only answers are distractors.</div></section><section class="block" id="checklist"><h2>Readiness checklist</h2><p class="lead">You are ready to move on when you can do all of these without notes.</p>
+     <ul class="checklist"><li>Map four common symptoms to their likely causes and fixes.</li><li>Explain the purpose of an evaluation dataset in one sentence.</li><li>Name the four dimensions of a balanced agent scorecard.</li><li>Say which telemetry you need to diagnose a wrong-tool error.</li><li>List the conditions that justify a production alert.</li></ul></section></div>
+      <div class="pagenav">
+        <a class="btn" href="module-07.html">← Orchestrate configuration of prebuilt agents and apps</a>
+        <span class="spacer"></span>
+        <a class="btn btn-primary" href="../exam.html">Test this module →</a>
+        <a class="btn" href="module-09.html">Manage testing AI-powered business solutions →</a>
+      </div>
+    </article>
+    <nav class="toc card pad">
+      <h3>On this page</h3>
+      <a href="#overview">Why this module matters</a><a href="#syllabus">What Microsoft Learn covers</a><a href="#concepts">Key concepts and definitions</a><a href="#guidance">Design guidance</a><a href="#practice">Good practice vs. anti-pattern</a><a href="#traps">Exam traps to watch for</a><a href="#checklist">Readiness checklist</a>
+      <h3 style="margin-top:18px">All modules</h3>
+      <a href="module-01.html">1. Agentic AI foundations</a><a href="module-02.html">2. Requirements analysis</a><a href="module-03.html">3. AI strategy</a><a href="module-04.html">4. Costs and ROI</a><a href="module-05.html">5. Agent design</a><a href="module-06.html">6. Extensibility</a><a href="module-07.html">7. Prebuilt agents</a><a href="module-08.html" style="color:var(--cp-accent);font-weight:600">8. Monitor and tune</a><a href="module-09.html">9. Testing</a><a href="module-10.html">10. ALM</a><a href="module-11.html">11. Responsible AI and security</a>
+    </nav>
+  </div>
+  <p class="footnote">
+  Unofficial study aid built from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
+  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+</p>
+</main>
+<script>
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>

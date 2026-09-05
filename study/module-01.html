@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Introduction to agentic AI business solutions — AB-100 Exam Prep</title>
+<meta name="description" content="Align AI solutions with business goals, know the Microsoft AI stack, and recognise which out-of-the-box agent already solves the problem." />
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="../assets/theme.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Exam Prep</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </a>
+    <a class="navlink" href="../index.html">Study guide</a>
+    <a class="navlink" href="../cram-sheet.html">Cram sheet</a>
+    <a class="navlink" href="../exam.html">Mock exam</a>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
+  </div>
+</header>
+<main class="wrap">
+  <div class="study-grid">
+    <article class="card pad">
+      <div class="eyebrow">Module 1 of 11</div>
+      <h1 style="font-size:27px;margin:6px 0 10px">Introduction to agentic AI business solutions</h1>
+      <p class="lead">Align AI solutions with business goals, know the Microsoft AI stack, and recognise which out-of-the-box agent already solves the problem.</p>
+      <p style="margin-top:14px">
+        <span class="pill">Exam questions Q1–Q10</span>
+        <span class="pill pill-muted">8 units on Learn</span>
+      </p>
+      <div style="margin-top:26px"><section class="block" id="overview"><h2>Why this module matters</h2><p>This module sets the vocabulary for everything that follows. The exam repeatedly asks you to place a requirement on the Microsoft AI stack — is this a Microsoft 365 Copilot job, a Copilot Studio job, a Dynamics 365 feature that just needs enabling, or genuine pro-code work in Microsoft Foundry?</p><p>It also establishes the architect's posture. You are not asked to be the person who builds the agent; you are the person who decides <strong>whether</strong> an agent is the right answer, <strong>which</strong> platform it belongs on, and <strong>what</strong> has to be true about data, governance, and process before it can work.</p><div class="note"><span class="lbl">The one big idea</span>An agent is worth building when a task is repetitive, judgement-light, well-grounded in trusted data, and has a clear owner and escalation path. If any of those four is missing, fix that first.</div></section><section class="block" id="syllabus"><h2>What Microsoft Learn covers</h2><p class="lead">Units in this module, as published on Microsoft Learn:</p><ul><li>Introduction</li><li>Drive AI transformation with architect strategies</li><li>Explore Microsoft AI technologies for business</li><li>Identify Microsoft AI technologies for business solutions</li><li>Identify out-of-box Microsoft AI agent resources for business solutions</li><li>Identify out-of-box Microsoft AI agents for business</li><li>Module assessment</li><li>Summary</li></ul><p><a class="btn btn-sm" href="https://learn.microsoft.com/en-us/training/modules/introduction-agentic-ai-business-solution-architecture/" target="_blank" rel="noopener">Open module on Microsoft Learn →</a></p></section><section class="block" id="concepts"><h2>Key concepts and definitions</h2><table class="deftable"><tbody><tr><td>Agentic AI</td><td>AI that reasons over a <strong>goal</strong>, plans multiple steps, and invokes tools or takes actions — as opposed to generative AI, which produces content in response to a single prompt.</td></tr><tr><td>Microsoft 365 Copilot</td><td>The AI experience embedded in Word, Excel, Outlook, Teams and the rest of Microsoft 365. Grounded in your tenant's Microsoft Graph data and enforces existing permissions.</td></tr><tr><td>Microsoft 365 Copilot Chat</td><td>The chat surface for Copilot, available more broadly than full Microsoft 365 Copilot. Useful as the delivery surface for declarative agents.</td></tr><tr><td>Microsoft Copilot Studio</td><td>The low-code environment for authoring, extending, and publishing agents — topics, knowledge, tools/actions, triggers, and agent flows.</td></tr><tr><td>Microsoft Foundry</td><td>The pro-code environment for custom models, custom orchestration, and Foundry tools. Reach for it when platform defaults are genuinely insufficient.</td></tr><tr><td>Microsoft Power Platform</td><td>Power Apps, Power Automate, Power Pages, and Dataverse — the application and automation fabric agents plug into.</td></tr><tr><td>Out-of-the-box (OOB) agent</td><td>A prebuilt agent shipped inside Dynamics 365 or Microsoft 365 that you enable and configure rather than build.</td></tr><tr><td>Grounding</td><td>Anchoring model output in trusted organisational data so responses are accurate, current, and attributable rather than invented.</td></tr><tr><td>Orchestration</td><td>Deciding which knowledge, tool, or child agent handles a given user goal, and composing the result.</td></tr><tr><td>Human in the loop</td><td>A defined checkpoint where a person reviews or approves an agent action before it takes effect.</td></tr></tbody></table></section><section class="block" id="guidance"><h2>Design guidance</h2><h3>Placing a requirement on the stack</h3><ul><li><strong>Already exists in Dynamics 365 or Microsoft 365?</strong> Enable and configure the OOB capability. This is the cheapest, fastest, most governed path and is very often the intended exam answer.</li><li><strong>Exists but needs your data or your terminology?</strong> Extend — add knowledge sources, Graph connectors, custom instructions, or a declarative agent.</li><li><strong>Needs bespoke orchestration, a specific model, or non-standard hosting?</strong> Only then build custom, in Copilot Studio for low-code or Microsoft Foundry for pro-code.</li><li>Ask *who owns the outcome* at every level. An agent without a named business owner will not survive contact with production.</li></ul><h3>Autonomy levels</h3><ul><li><strong>Assistive</strong> — the user prompts, the agent responds, the user acts. Lowest risk, fastest to approve.</li><li><strong>Semi-autonomous</strong> — the agent proposes an action and a human approves it. The right default for anything with financial, legal, or customer-facing consequence.</li><li><strong>Autonomous</strong> — an event triggers the agent and it acts without a prompt. Requires strong grounding, tight permissions, monitoring, and a rollback story.</li><li>Autonomy is a spectrum you move along as evidence accumulates, not a setting you choose on day one.</li></ul><h3>Scaling adoption</h3><ul><li>Stand up an <strong>AI Center of Excellence</strong> before proliferation, not after: standards, reusable patterns, review gates, and a shared backlog.</li><li>Measure adoption with <strong>active usage</strong> and <strong>task completion</strong>, not tokens consumed or number of agents deployed.</li><li>Treat prompts, instructions, and knowledge curation as maintained assets with owners — they decay just like code.</li></ul></section><section class="block" id="practice"><h2>Good practice vs. anti-pattern</h2><div class="compare">
+        <div class="do"><h4>Do</h4><ul><li>Start from the business process and its pain, then choose technology.</li><li>Prefer configuring an existing agent over building a new one.</li><li>Define escalation and fallback behaviour before go-live.</li><li>Name a business owner for every agent.</li></ul></div>
+        <div class="dont"><h4>Avoid</h4><ul><li>Choose a platform because it is new or interesting.</li><li>Assume a bigger model fixes a grounding or data-quality problem.</li><li>Let each team build its own overlapping agent unsupervised.</li><li>Give an agent autonomy over irreversible decisions on day one.</li></ul></div>
+      </div></section><section class="block" id="traps"><h2>Exam traps to watch for</h2><div class="note warn"><span class="lbl">Trap</span><strong>"Agentic" does not mean "large model."</strong> The distinguishing feature is goal-directed reasoning plus tool use and action-taking, not model size.</div><div class="note warn"><span class="lbl">Trap</span>When a question offers *build a custom agent* alongside *configure the existing capability*, and the existing capability plausibly fits, the configure answer is correct.</div><div class="note warn"><span class="lbl">Trap</span>Beware answers that measure success in technical units — tokens, models deployed, environments provisioned. Business-outcome metrics win.</div><div class="note warn"><span class="lbl">Trap</span>A scenario describing an irreversible, legally binding, or unreviewable decision is signalling that full autonomy is the <strong>wrong</strong> answer.</div></section><section class="block" id="checklist"><h2>Readiness checklist</h2><p class="lead">You are ready to move on when you can do all of these without notes.</p>
+     <ul class="checklist"><li>Name the four main Microsoft surfaces for AI work and say what each is for.</li><li>Given a requirement, choose between enable, configure, extend, and build — and justify it.</li><li>Explain the difference between generative AI and agentic AI to a non-technical sponsor.</li><li>Describe the three autonomy levels and the risk controls each one needs.</li><li>List two leading indicators of adoption success that a business sponsor would accept.</li></ul></section></div>
+      <div class="pagenav">
+        <a class="btn" href="../index.html">← Study guide</a>
+        <span class="spacer"></span>
+        <a class="btn btn-primary" href="../exam.html">Test this module →</a>
+        <a class="btn" href="module-02.html">Analyze requirements for AI-powered business solutions →</a>
+      </div>
+    </article>
+    <nav class="toc card pad">
+      <h3>On this page</h3>
+      <a href="#overview">Why this module matters</a><a href="#syllabus">What Microsoft Learn covers</a><a href="#concepts">Key concepts and definitions</a><a href="#guidance">Design guidance</a><a href="#practice">Good practice vs. anti-pattern</a><a href="#traps">Exam traps to watch for</a><a href="#checklist">Readiness checklist</a>
+      <h3 style="margin-top:18px">All modules</h3>
+      <a href="module-01.html" style="color:var(--cp-accent);font-weight:600">1. Agentic AI foundations</a><a href="module-02.html">2. Requirements analysis</a><a href="module-03.html">3. AI strategy</a><a href="module-04.html">4. Costs and ROI</a><a href="module-05.html">5. Agent design</a><a href="module-06.html">6. Extensibility</a><a href="module-07.html">7. Prebuilt agents</a><a href="module-08.html">8. Monitor and tune</a><a href="module-09.html">9. Testing</a><a href="module-10.html">10. ALM</a><a href="module-11.html">11. Responsible AI and security</a>
+    </nav>
+  </div>
+  <p class="footnote">
+  Unofficial study aid built from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
+  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+</p>
+</main>
+<script>
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>
