@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Design extensibility of AI solutions — AB-100 Exam Prep</title>
+<meta name="description" content="Extend Microsoft 365 Copilot and Copilot Studio with connectors, MCP, Computer Use, and Foundry custom models." />
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="../assets/theme.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Exam Prep</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </a>
+    <a class="navlink" href="../index.html">Study guide</a>
+    <a class="navlink" href="../cram-sheet.html">Cram sheet</a>
+    <a class="navlink" href="../exam.html">Mock exam</a>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
+  </div>
+</header>
+<main class="wrap">
+  <div class="study-grid">
+    <article class="card pad">
+      <div class="eyebrow">Module 6 of 11</div>
+      <h1 style="font-size:27px;margin:6px 0 10px">Design extensibility of AI solutions</h1>
+      <p class="lead">Extend Microsoft 365 Copilot and Copilot Studio with connectors, MCP, Computer Use, and Foundry custom models.</p>
+      <p style="margin-top:14px">
+        <span class="pill">Exam questions Q51–Q60</span>
+        <span class="pill pill-muted">10 units on Learn</span>
+      </p>
+      <div style="margin-top:26px"><section class="block" id="overview"><h2>Why this module matters</h2><p>Extensibility is about meeting users where they already work. Rather than building a separate destination, you extend Microsoft 365 Copilot so the agent inherits its orchestration, identity model, and grounding — and users need learn nothing new.</p><p>The key architectural distinction, tested repeatedly, is <strong>declarative agent versus custom engine agent</strong>. Learn what each gives you and what each costs you.</p><div class="note"><span class="lbl">The one big idea</span>Extend the host when you can; own the engine only when you must. Every capability you take over — orchestration, model hosting, identity — becomes yours to secure, monitor, and maintain.</div></section><section class="block" id="syllabus"><h2>What Microsoft Learn covers</h2><p class="lead">Units in this module, as published on Microsoft Learn:</p><ul><li>Introduction</li><li>Design AI solutions with custom models in Microsoft Foundry</li><li>Design agents in Microsoft 365 Copilot</li><li>Design extensible agents in Microsoft Copilot Studio</li><li>Design extensible agents using MCP in Copilot Studio</li><li>Design agents to automate tasks in apps and websites with Computer Use in Copilot Studio</li><li>Design agent behaviors in Copilot Studio</li><li>Optimize solution design for agents in Microsoft 365</li><li>Module assessment</li><li>Summary</li></ul><p><a class="btn btn-sm" href="https://learn.microsoft.com/en-us/training/modules/design-extensibility-ai-solutions/" target="_blank" rel="noopener">Open module on Microsoft Learn →</a></p></section><section class="block" id="concepts"><h2>Key concepts and definitions</h2><table class="deftable"><tbody><tr><td>Declarative agent</td><td>Runs on the <strong>host Copilot's orchestrator and model</strong>. You supply instructions, knowledge, and actions declaratively. Fast, governed, and the default choice.</td></tr><tr><td>Custom engine agent</td><td>You provide your own model and orchestration logic. Choose only for a specific model requirement, bespoke orchestration, or hosting constraints.</td></tr><tr><td>Graph connector</td><td>Indexes external content into Microsoft Graph so Microsoft 365 Copilot can ground on it with permissions honoured.</td></tr><tr><td>Model Context Protocol (MCP)</td><td>A standard way for agents to discover and call external tools and data sources, so integrations are reusable rather than bespoke per agent.</td></tr><tr><td>Computer Use</td><td>Copilot Studio capability that drives applications and websites through their user interface — for systems with no usable API.</td></tr><tr><td>Agent behaviours</td><td>Configurable characteristics such as reasoning depth and voice mode that shape how the agent operates.</td></tr><tr><td>Microsoft Foundry custom model</td><td>A model you select, tune, or host yourself when platform defaults genuinely cannot meet the requirement.</td></tr><tr><td>Loose coupling</td><td>Components interact through well-defined, versioned contracts, so they can be reused across agents and changed independently.</td></tr><tr><td>Token exchange / on-behalf-of</td><td>Passing the user's identity to a downstream API so least-privilege scopes and per-user authorisation are enforced.</td></tr><tr><td>Contract versioning</td><td>Publishing <code>/v1</code>, <code>/v2</code> style versions with a deprecation window and consumer communication, rather than changing an endpoint in place.</td></tr></tbody></table></section><section class="block" id="guidance"><h2>Design guidance</h2><h3>Choosing an extensibility route</h3><ul><li>External content that should be searchable and grounded in Microsoft 365 Copilot → <strong>Graph connector</strong>.</li><li>Reusable tool or data integration consumed by several agents → expose it over <strong>MCP</strong>.</li><li>Legacy system with an API → put a <strong>governed API layer</strong> in front (gateway or connector, authentication, throttling) and call it.</li><li>Legacy system with <strong>no</strong> usable API → <strong>Computer Use</strong> as a pragmatic last resort, accepting its fragility.</li><li>Requirement pins a specific model or bespoke orchestration → <strong>custom engine agent</strong> in Foundry.</li></ul><h3>Security of extensions</h3><ul><li>When calling downstream on a user's behalf, design <strong>token exchange, consent, least-privilege scopes, and per-user authorisation</strong> — not just the request format.</li><li>Never widen access to make an integration simpler. An extension must not become a permissions bypass.</li><li>Treat anything retrieved from an external system as untrusted data, never as instructions.</li></ul><h3>Designing for reuse and change</h3><ul><li>Aim for loose coupling with explicit contracts so one component serves many agents.</li><li>Version contracts and run a deprecation window; do not overwrite endpoints in place.</li><li>Design within host limits: response size, latency budgets, supported authentication types, throttling, and capability caps.</li></ul></section><section class="block" id="practice"><h2>Good practice vs. anti-pattern</h2><div class="compare">
+        <div class="do"><h4>Do</h4><ul><li>Default to declarative agents on the host platform.</li><li>Standardise integrations behind MCP or governed connectors.</li><li>Enforce per-user authorisation on every downstream call.</li><li>Version contracts and communicate deprecations.</li></ul></div>
+        <div class="dont"><h4>Avoid</h4><ul><li>Own an engine you do not need to own.</li><li>Expose a database directly to an agent.</li><li>Assume the host has unlimited response size or no throttling.</li><li>Duplicate the same integration logic inside every agent.</li></ul></div>
+      </div></section><section class="block" id="traps"><h2>Exam traps to watch for</h2><div class="note warn"><span class="lbl">Trap</span><strong>Declarative agent</strong> = host's orchestrator and model. If an option says it requires you to host your own model, that is a *custom engine* agent.</div><div class="note warn"><span class="lbl">Trap</span>Graph connectors are the answer for grounding Microsoft 365 Copilot in external data — not Power Automate, not Dataverse plug-ins.</div><div class="note warn"><span class="lbl">Trap</span>MCP is a <strong>tool and data-source integration standard</strong>, not a model training framework, billing meter, or UI library.</div><div class="note warn"><span class="lbl">Trap</span>Extensions do <strong>not</strong> bypass permissions. Host limits — latency, response size, auth types, throttling — always exist and must be designed around.</div></section><section class="block" id="checklist"><h2>Readiness checklist</h2><p class="lead">You are ready to move on when you can do all of these without notes.</p>
+     <ul class="checklist"><li>State the difference between a declarative and a custom engine agent, and when each is justified.</li><li>Choose the right extensibility mechanism for four different integration scenarios.</li><li>Explain what MCP standardises and why that reduces long-term cost.</li><li>Describe the auth design for a downstream call made on a user's behalf.</li><li>Name four host limits an extension must respect.</li></ul></section></div>
+      <div class="pagenav">
+        <a class="btn" href="module-05.html">← Design AI agents for business solutions</a>
+        <span class="spacer"></span>
+        <a class="btn btn-primary" href="../exam.html">Test this module →</a>
+        <a class="btn" href="module-07.html">Orchestrate configuration of prebuilt agents and apps →</a>
+      </div>
+    </article>
+    <nav class="toc card pad">
+      <h3>On this page</h3>
+      <a href="#overview">Why this module matters</a><a href="#syllabus">What Microsoft Learn covers</a><a href="#concepts">Key concepts and definitions</a><a href="#guidance">Design guidance</a><a href="#practice">Good practice vs. anti-pattern</a><a href="#traps">Exam traps to watch for</a><a href="#checklist">Readiness checklist</a>
+      <h3 style="margin-top:18px">All modules</h3>
+      <a href="module-01.html">1. Agentic AI foundations</a><a href="module-02.html">2. Requirements analysis</a><a href="module-03.html">3. AI strategy</a><a href="module-04.html">4. Costs and ROI</a><a href="module-05.html">5. Agent design</a><a href="module-06.html" style="color:var(--cp-accent);font-weight:600">6. Extensibility</a><a href="module-07.html">7. Prebuilt agents</a><a href="module-08.html">8. Monitor and tune</a><a href="module-09.html">9. Testing</a><a href="module-10.html">10. ALM</a><a href="module-11.html">11. Responsible AI and security</a>
+    </nav>
+  </div>
+  <p class="footnote">
+  Unofficial study aid built from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
+  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+</p>
+</main>
+<script>
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Design AI agents for business solutions — AB-100 Exam Prep</title>
+<meta name="description" content="Design task, autonomous, and prompt-driven agents in Copilot Studio, plus Copilot customisations across Dynamics 365." />
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="../assets/theme.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Exam Prep</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </a>
+    <a class="navlink" href="../index.html">Study guide</a>
+    <a class="navlink" href="../cram-sheet.html">Cram sheet</a>
+    <a class="navlink" href="../exam.html">Mock exam</a>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
+  </div>
+</header>
+<main class="wrap">
+  <div class="study-grid">
+    <article class="card pad">
+      <div class="eyebrow">Module 5 of 11</div>
+      <h1 style="font-size:27px;margin:6px 0 10px">Design AI agents for business solutions</h1>
+      <p class="lead">Design task, autonomous, and prompt-driven agents in Copilot Studio, plus Copilot customisations across Dynamics 365.</p>
+      <p style="margin-top:14px">
+        <span class="pill">Exam questions Q41–Q50</span>
+        <span class="pill pill-muted">21 units on Learn</span>
+      </p>
+      <div style="margin-top:26px"><section class="block" id="overview"><h2>Why this module matters</h2><p>Twenty-one units make this the second-heaviest module. It is where abstract architecture becomes concrete: instructions, knowledge, tools, triggers, topics, fallback, and agent flows.</p><p>The recurring exam skill is <strong>component selection</strong>. Given a requirement, you must say whether it calls for a knowledge source, a tool or action, a topic, a trigger, an agent flow, or a prompt action — and the distinctions are precise.</p><div class="note"><span class="lbl">The one big idea</span>Knowledge answers questions. Tools take actions. Topics handle known conversational paths. Triggers decide when the agent wakes up. Confusing these is the most common design error.</div></section><section class="block" id="syllabus"><h2>What Microsoft Learn covers</h2><p class="lead">Units in this module, as published on Microsoft Learn:</p><ul><li>Introduction</li><li>Define core tenets of responsible AI guidelines for AI business solutions</li><li>Design business terms for Copilot in Dynamics 365 Customer Service</li><li>Design customizations for Copilot in Dynamics 365 apps</li><li>Design connectors for Copilot in Dynamics 365 Sales</li><li>Design AI agents for Dynamics 365 Contact Center</li><li>Design task agents in Microsoft Copilot Studio</li><li>Design autonomous agents in Copilot Studio</li><li>Design prompt-driven agents using Copilot Studio</li><li>Propose Foundry tools given a requirement</li><li>Propose code first generative pages and agent feed applications</li><li>Design topics for Copilot Studio, including fallback</li><li>Design data processing workflows for grounded AI</li><li>Design business processes with AI in Power Apps canvas apps</li><li>Apply the Microsoft Power Platform Well-Architected Framework to intelligent application workloads</li><li>Determine the use of standard natural language processing</li><li>Design agents and agent flows with Copilot Studio</li><li>Design prompt actions in Copilot Studio</li><li>Define success criteria and adoption goals for AI business solutions</li><li>Module assessment</li><li>Summarize AI agent design for business solutions</li></ul><p><a class="btn btn-sm" href="https://learn.microsoft.com/en-us/training/modules/design-ai-agents-business-solutions/" target="_blank" rel="noopener">Open module on Microsoft Learn →</a></p></section><section class="block" id="concepts"><h2>Key concepts and definitions</h2><table class="deftable"><tbody><tr><td>Agent instructions</td><td>The system prompt defining role, scope, tone, and guardrails. This is what the agent is *for* and what constrains it.</td></tr><tr><td>Knowledge source</td><td>Content the agent retrieves from to answer questions accurately — SharePoint, Dataverse, public websites, Graph connectors, uploaded files.</td></tr><tr><td>Tool / action</td><td>A callable operation that does something outside the conversation — read an ERP order, create a case, send a message. Actions change state; knowledge does not.</td></tr><tr><td>Topic</td><td>A defined conversational path triggered by phrases or events, with explicit steps. Use for known, structured journeys.</td></tr><tr><td>Fallback topic</td><td>What happens when nothing matches. Must state the limitation and offer escalation or handoff — never silence or an empty reply.</td></tr><tr><td>Task agent</td><td>Performs a bounded, well-defined job on request. The safest starting shape.</td></tr><tr><td>Autonomous agent</td><td>Triggered by an event or schedule rather than a user prompt; acts without someone typing. Needs tight permissions and monitoring.</td></tr><tr><td>Prompt-driven agent</td><td>Behaviour shaped principally by natural-language instruction rather than authored topics.</td></tr><tr><td>Agent flow</td><td>Deterministic, orchestrated steps the agent invokes when reliability matters more than model improvisation.</td></tr><tr><td>Prompt action</td><td>A reusable, parameterised generative step — summarise, classify, extract — invoked as a building block.</td></tr><tr><td>Power Platform Well-Architected Framework</td><td>The pillars for evaluating workload quality: reliability, security, operational excellence, performance efficiency, and experience optimisation.</td></tr><tr><td>Delegated (user-context) authentication</td><td>The agent acts as the signed-in user, so existing permissions are enforced. Preferred over a shared service account.</td></tr></tbody></table></section><section class="block" id="guidance"><h2>Design guidance</h2><h3>Choosing the right component</h3><ul><li>Needs to <strong>answer from content</strong> → knowledge source. Never paste the content into the instructions.</li><li>Needs to <strong>fetch or change data in another system</strong> → a tool/action with a typed parameter schema.</li><li>Needs a <strong>known, repeatable conversational path</strong> → a topic.</li><li>Needs to <strong>start without a user</strong> → an event or schedule trigger.</li><li>Needs <strong>deterministic multi-step execution</strong> → an agent flow rather than free-form reasoning.</li></ul><h3>Making tool selection reliable</h3><ul><li>Give tools <strong>clear, distinct names and descriptions that state when to use them</strong>, plus precise parameter schemas. Vague descriptions are the main cause of wrong-tool errors.</li><li>Fewer, well-described tools beat many overlapping ones.</li><li>Validate tool inputs; never let retrieved content dictate which tool runs or with what arguments.</li></ul><h3>Splitting agents and adding safety</h3><ul><li>Split into multiple agents when <strong>scope, knowledge, permissions, or ownership diverge</strong> — not merely because the agent is large.</li><li>Require confirmation before any action that is <strong>irreversible or has financial, legal, or customer-facing impact</strong>.</li><li>Use delegated authentication so the user's own permissions apply; avoid broad shared service accounts.</li><li>Define success criteria and adoption goals as part of the design, not after launch.</li></ul></section><section class="block" id="practice"><h2>Good practice vs. anti-pattern</h2><div class="compare">
+        <div class="do"><h4>Do</h4><ul><li>Write tight, role-scoped instructions with explicit guardrails.</li><li>Design an explicit fallback with escalation.</li><li>Confirm before irreversible or high-impact actions.</li><li>Use user-context auth so permissions are enforced.</li></ul></div>
+        <div class="dont"><h4>Avoid</h4><ul><li>Embed bulk data in the system prompt instead of grounding it.</li><li>Register many similar tools with vague descriptions.</li><li>Let an out-of-scope question be answered from general model knowledge.</li><li>Run agents under a broad shared account for convenience.</li></ul></div>
+      </div></section><section class="block" id="traps"><h2>Exam traps to watch for</h2><div class="note warn"><span class="lbl">Trap</span>Looking up live data from an external system is a <strong>tool/action</strong>, not a knowledge source and not a bigger prompt.</div><div class="note warn"><span class="lbl">Trap</span>The right reason to split an agent is divergent scope, knowledge, permissions, or ownership — not token limits and not licensing.</div><div class="note warn"><span class="lbl">Trap</span>For an out-of-scope question, the correct behaviour is a <strong>defined fallback that states the limitation and offers escalation</strong> — not silent general-knowledge answering, not an empty response.</div><div class="note warn"><span class="lbl">Trap</span>Reliability of tool choice comes from better tool <strong>descriptions and schemas</strong>, not from more tools or a larger model.</div></section><section class="block" id="checklist"><h2>Readiness checklist</h2><p class="lead">You are ready to move on when you can do all of these without notes.</p>
+     <ul class="checklist"><li>Given five requirements, assign each to knowledge, tool, topic, trigger, or agent flow.</li><li>Write the criteria you would use to split one agent into several.</li><li>Describe what a good fallback does, in one sentence.</li><li>Explain why delegated authentication beats a service account for user-data scenarios.</li><li>Name the pillars of the Power Platform Well-Architected Framework.</li></ul></section></div>
+      <div class="pagenav">
+        <a class="btn" href="module-04.html">← Evaluate costs and benefits of AI solutions</a>
+        <span class="spacer"></span>
+        <a class="btn btn-primary" href="../exam.html">Test this module →</a>
+        <a class="btn" href="module-06.html">Design extensibility of AI solutions →</a>
+      </div>
+    </article>
+    <nav class="toc card pad">
+      <h3>On this page</h3>
+      <a href="#overview">Why this module matters</a><a href="#syllabus">What Microsoft Learn covers</a><a href="#concepts">Key concepts and definitions</a><a href="#guidance">Design guidance</a><a href="#practice">Good practice vs. anti-pattern</a><a href="#traps">Exam traps to watch for</a><a href="#checklist">Readiness checklist</a>
+      <h3 style="margin-top:18px">All modules</h3>
+      <a href="module-01.html">1. Agentic AI foundations</a><a href="module-02.html">2. Requirements analysis</a><a href="module-03.html">3. AI strategy</a><a href="module-04.html">4. Costs and ROI</a><a href="module-05.html" style="color:var(--cp-accent);font-weight:600">5. Agent design</a><a href="module-06.html">6. Extensibility</a><a href="module-07.html">7. Prebuilt agents</a><a href="module-08.html">8. Monitor and tune</a><a href="module-09.html">9. Testing</a><a href="module-10.html">10. ALM</a><a href="module-11.html">11. Responsible AI and security</a>
+    </nav>
+  </div>
+  <p class="footnote">
+  Unofficial study aid built from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
+  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+</p>
+</main>
+<script>
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>

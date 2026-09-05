@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Design ALM process for AI-powered business solutions — AB-100 Exam Prep</title>
+<meta name="description" content="Move agents, connectors, data, and models through environments safely, repeatably, and auditably." />
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="../assets/theme.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Exam Prep</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </a>
+    <a class="navlink" href="../index.html">Study guide</a>
+    <a class="navlink" href="../cram-sheet.html">Cram sheet</a>
+    <a class="navlink" href="../exam.html">Mock exam</a>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
+  </div>
+</header>
+<main class="wrap">
+  <div class="study-grid">
+    <article class="card pad">
+      <div class="eyebrow">Module 10 of 11</div>
+      <h1 style="font-size:27px;margin:6px 0 10px">Design ALM process for AI-powered business solutions</h1>
+      <p class="lead">Move agents, connectors, data, and models through environments safely, repeatably, and auditably.</p>
+      <p style="margin-top:14px">
+        <span class="pill">Exam questions Q91–Q100</span>
+        <span class="pill pill-muted">9 units on Learn</span>
+      </p>
+      <div style="margin-top:26px"><section class="block" id="overview"><h2>Why this module matters</h2><p>Classic Power Platform ALM applies to agents, with additions. Alongside solutions and environment variables you must now version <strong>prompts, instructions, knowledge configuration, and evaluation datasets</strong> — because those determine behaviour as much as any code.</p><p>Expect questions on managed versus unmanaged solutions, environment strategy, secret handling, and safe rollout.</p><div class="note"><span class="lbl">The one big idea</span>If a change can alter agent behaviour, it belongs in source control and must travel through the same governed pipeline as code. That includes prompts and knowledge configuration.</div></section><section class="block" id="syllabus"><h2>What Microsoft Learn covers</h2><p class="lead">Units in this module, as published on Microsoft Learn:</p><ul><li>Introduction</li><li>Design an ALM process for data used in AI models and agents</li><li>Design an ALM process for Copilot Studio agents, connectors, and actions</li><li>Design ALM processes for Microsoft Foundry agents</li><li>Design an ALM process for custom AI models</li><li>Design an ALM process for AI in Dynamics 365 Finance and Supply Chain</li><li>Design ALM processes for AI in Dynamics 365 apps</li><li>Module assessment</li><li>Summary</li></ul><p><a class="btn btn-sm" href="https://learn.microsoft.com/en-us/training/modules/design-alm-process-ai-powered-business-solutions/" target="_blank" rel="noopener">Open module on Microsoft Learn →</a></p></section><section class="block" id="concepts"><h2>Key concepts and definitions</h2><table class="deftable"><tbody><tr><td>Environment strategy</td><td>Separate development, test, and production environments with controlled promotion between them.</td></tr><tr><td>Managed solution</td><td>The production deployment format. Prevents uncontrolled in-place editing and supports clean upgrade and uninstall semantics.</td></tr><tr><td>Unmanaged solution</td><td>The development format, where components are authored and edited.</td></tr><tr><td>Environment variable</td><td>Parameterises environment-specific values — URLs, IDs, settings — so one solution artifact deploys everywhere unchanged.</td></tr><tr><td>Azure Key Vault</td><td>Where secrets and API keys belong, referenced securely by connections and environment variables. Never stored in the solution or in instructions.</td></tr><tr><td>Source control scope</td><td>Solution and agent definitions, prompts and instructions, configuration, evaluation datasets, and pipeline definitions.</td></tr><tr><td>Deployment pipeline</td><td>Automated, auditable promotion with consistent configuration and approval steps.</td></tr><tr><td>Progressive rollout</td><td>Ring-based or canary release with monitoring and predefined rollback criteria, to limit blast radius.</td></tr><tr><td>Rollback plan</td><td>Versioned releases plus the documented ability to restore the previously published version.</td></tr><tr><td>Maker governance</td><td>Governed maker environments, published standards, and a promotion path with review gates — enabling citizen developers without giving them production.</td></tr><tr><td>Data ALM</td><td>Lifecycle management of the datasets, knowledge sources, and prompts that ground models and agents.</td></tr></tbody></table></section><section class="block" id="guidance"><h2>Design guidance</h2><h3>Promotion mechanics</h3><ul><li>Package the agent in a <strong>solution</strong> and deploy it through the pipeline. Never rebuild it by hand in each environment.</li><li>Deploy <strong>managed</strong> solutions to production so nobody can edit components in place.</li><li>Parameterise every environment-specific value with environment variables so the artifact is identical across environments.</li><li>Keep secrets in Key Vault; a secret in a solution or a prompt is a finding, not a shortcut.</li></ul><h3>Release safety</h3><ul><li>Use progressive rollout — rings or canary — with monitoring and predefined rollback criteria for significant changes.</li><li>Maintain versioned releases so the previous published version can be restored, with rollback steps documented and rehearsed.</li><li>Never edit production directly, even to fix something quickly. That is how drift and untraceable behaviour begin.</li></ul><h3>Including makers</h3><ul><li>Give makers governed environments and clear standards, plus a promotion path with review gates.</li><li>Do not grant production access to makers, and do not block makers entirely — both extremes are wrong answers.</li><li>Apply the same discipline to data and prompts as to components: versioned, owned, reviewed.</li></ul></section><section class="block" id="practice"><h2>Good practice vs. anti-pattern</h2><div class="compare">
+        <div class="do"><h4>Do</h4><ul><li>Separate dev, test, and production environments.</li><li>Ship managed solutions to production.</li><li>Store secrets in Key Vault only.</li><li>Roll out progressively with defined rollback criteria.</li></ul></div>
+        <div class="dont"><h4>Avoid</h4><ul><li>Recreate agents manually per environment.</li><li>Hardcode URLs and IDs into the solution.</li><li>Edit production components in place.</li><li>Big-bang release a major change to everyone.</li></ul></div>
+      </div></section><section class="block" id="traps"><h2>Exam traps to watch for</h2><div class="note warn"><span class="lbl">Trap</span>Production takes <strong>managed</strong> solutions. The reason is preventing uncontrolled in-place edits and enabling clean upgrade/uninstall — not import speed or cost.</div><div class="note warn"><span class="lbl">Trap</span>Environment variables parameterise configuration. They are not for secrets, not for naming agents, and not for storing conversation history.</div><div class="note warn"><span class="lbl">Trap</span>Source control covers prompts, instructions, knowledge configuration, and evaluation datasets — not just code.</div><div class="note warn"><span class="lbl">Trap</span>The correct maker posture is <strong>governed enablement</strong>: neither production access for all, nor an outright block.</div></section><section class="block" id="checklist"><h2>Readiness checklist</h2><p class="lead">You are ready to move on when you can do all of these without notes.</p>
+     <ul class="checklist"><li>Describe the standard environment topology and promotion path.</li><li>Explain why production uses managed solutions.</li><li>List everything that belongs in source control for an agent solution.</li><li>Say where secrets live and how they are referenced.</li><li>Outline a progressive rollout with rollback criteria.</li></ul></section></div>
+      <div class="pagenav">
+        <a class="btn" href="module-09.html">← Manage testing AI-powered business solutions</a>
+        <span class="spacer"></span>
+        <a class="btn btn-primary" href="../exam.html">Test this module →</a>
+        <a class="btn" href="module-11.html">Design responsible AI security, governance, risk management, and compliance →</a>
+      </div>
+    </article>
+    <nav class="toc card pad">
+      <h3>On this page</h3>
+      <a href="#overview">Why this module matters</a><a href="#syllabus">What Microsoft Learn covers</a><a href="#concepts">Key concepts and definitions</a><a href="#guidance">Design guidance</a><a href="#practice">Good practice vs. anti-pattern</a><a href="#traps">Exam traps to watch for</a><a href="#checklist">Readiness checklist</a>
+      <h3 style="margin-top:18px">All modules</h3>
+      <a href="module-01.html">1. Agentic AI foundations</a><a href="module-02.html">2. Requirements analysis</a><a href="module-03.html">3. AI strategy</a><a href="module-04.html">4. Costs and ROI</a><a href="module-05.html">5. Agent design</a><a href="module-06.html">6. Extensibility</a><a href="module-07.html">7. Prebuilt agents</a><a href="module-08.html">8. Monitor and tune</a><a href="module-09.html">9. Testing</a><a href="module-10.html" style="color:var(--cp-accent);font-weight:600">10. ALM</a><a href="module-11.html">11. Responsible AI and security</a>
+    </nav>
+  </div>
+  <p class="footnote">
+  Unofficial study aid built from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
+  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+</p>
+</main>
+<script>
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>

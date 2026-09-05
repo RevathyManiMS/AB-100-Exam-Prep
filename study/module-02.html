@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Analyze requirements for AI-powered business solutions — AB-100 Exam Prep</title>
+<meta name="description" content="Decide where agents genuinely add value, then prove the underlying data is fit to ground them." />
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="../assets/theme.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Exam Prep</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </a>
+    <a class="navlink" href="../index.html">Study guide</a>
+    <a class="navlink" href="../cram-sheet.html">Cram sheet</a>
+    <a class="navlink" href="../exam.html">Mock exam</a>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
+  </div>
+</header>
+<main class="wrap">
+  <div class="study-grid">
+    <article class="card pad">
+      <div class="eyebrow">Module 2 of 11</div>
+      <h1 style="font-size:27px;margin:6px 0 10px">Analyze requirements for AI-powered business solutions</h1>
+      <p class="lead">Decide where agents genuinely add value, then prove the underlying data is fit to ground them.</p>
+      <p style="margin-top:14px">
+        <span class="pill">Exam questions Q11–Q20</span>
+        <span class="pill pill-muted">6 units on Learn</span>
+      </p>
+      <div style="margin-top:26px"><section class="block" id="overview"><h2>Why this module matters</h2><p>Two things dominate this module, and both appear heavily in the exam. First, classifying a candidate scenario as <strong>task automation</strong>, <strong>data analytics</strong>, or <strong>decision support</strong> — because each implies different grounding, different risk, and a different degree of human oversight.</p><p>Second, the five data-quality dimensions. Microsoft names them explicitly, and questions test them by describing a symptom and asking which dimension has failed. Learn them as a list you can recite.</p><div class="note"><span class="lbl">The one big idea</span>Most failed agent projects are data projects that were not recognised as data projects. Assess grounding data before you commit to a design.</div></section><section class="block" id="syllabus"><h2>What Microsoft Learn covers</h2><p class="lead">Units in this module, as published on Microsoft Learn:</p><ul><li>Introduction</li><li>Assess the use of agents in task automation, data analytics, and decision-making</li><li>Review data for grounding accuracy, relevance, timeliness, cleanliness, and availability</li><li>Organize business solution data for AI systems</li><li>Module assessment</li><li>Summary</li></ul><p><a class="btn btn-sm" href="https://learn.microsoft.com/en-us/training/modules/analyze-requirements-ai-powered-business-solutions/" target="_blank" rel="noopener">Open module on Microsoft Learn →</a></p></section><section class="block" id="concepts"><h2>Key concepts and definitions</h2><table class="deftable"><tbody><tr><td>Task automation</td><td>The agent performs repeatable, rules-light work — routing, drafting, summarising, data entry. Highest volume, lowest risk, usually the best first scenario.</td></tr><tr><td>Data analytics</td><td>The agent interprets and explains data, surfacing trends and anomalies. Value depends almost entirely on data quality and freshness.</td></tr><tr><td>Decision-making</td><td>The agent recommends or takes a consequential decision. Requires explainability, human oversight, and audit.</td></tr><tr><td>Accuracy</td><td>Is the grounding content factually correct and authoritative? Symptom of failure: confidently wrong answers traced to a wrong source.</td></tr><tr><td>Relevance</td><td>Does the content actually relate to the questions being asked? Symptom: correct-but-useless answers, or retrieval returning noise.</td></tr><tr><td>Timeliness</td><td>Is the content current? Symptom: the agent quotes a superseded policy or last quarter's price list.</td></tr><tr><td>Cleanliness</td><td>Is it deduplicated, consistently formatted, and free of contradiction? Symptom: two conflicting answers to the same question.</td></tr><tr><td>Availability</td><td>Can the agent actually reach it, at the right time, with the right permissions? Symptom: gaps, timeouts, or empty retrieval.</td></tr><tr><td>Functional requirement</td><td>What the solution must <strong>do</strong> — answer policy questions, create a case, send a summary.</td></tr><tr><td>Non-functional requirement</td><td>How well it must do it — latency, throughput, availability, accuracy thresholds, language support.</td></tr><tr><td>Authoritative source</td><td>The single system or document set designated as the truth for a topic, with a named owner accountable for its currency.</td></tr></tbody></table></section><section class="block" id="guidance"><h2>Design guidance</h2><h3>Running discovery</h3><ul><li>Map the process at task level with <strong>volume, time per task, and pain points</strong>. Value is volume × time saved × confidence, not enthusiasm.</li><li>Interview the <strong>frontline workers who do the task today</strong> — the most commonly overlooked and most informative stakeholder group.</li><li>For every knowledge requirement, ask: *which source is authoritative, who owns it, and how often does it change?*</li><li>Write scope boundaries explicitly, including what the agent should do when asked something out of scope.</li></ul><h3>Setting success criteria</h3><ul><li>Agree the <strong>baseline</strong> before build. Without a before-measurement you cannot claim an after-improvement.</li><li>Define target metrics, how each is measured, and how improvement will be attributed to the agent rather than to seasonality or other changes.</li><li>Include a quality bar (for example groundedness and task success) alongside adoption, so a popular but inaccurate agent cannot be declared a success.</li></ul><h3>Organising data for grounding</h3><ul><li>Consolidate to a small number of curated, authoritative sources rather than pointing the agent at everything.</li><li>Chunk long documents sensibly and attach metadata — owner, effective date, region, audience — so retrieval can filter.</li><li>Retire superseded content. Leaving it discoverable is a direct cause of contradictory answers.</li><li>Confirm permissions on the source are correct <strong>before</strong> connecting it: an agent inherits and amplifies whatever oversharing already exists.</li></ul></section><section class="block" id="practice"><h2>Good practice vs. anti-pattern</h2><div class="compare">
+        <div class="do"><h4>Do</h4><ul><li>Quantify current-state volume and effort during discovery.</li><li>Name an owner for every knowledge source.</li><li>Define out-of-scope behaviour and escalation.</li><li>Assess the five data-quality dimensions explicitly.</li></ul></div>
+        <div class="dont"><h4>Avoid</h4><ul><li>Accept "the agent should answer HR questions" as a requirement.</li><li>Point an agent at an entire SharePoint tenant and hope.</li><li>Defer success measurement until after go-live.</li><li>Treat regulated personal data as an implementation detail.</li></ul></div>
+      </div></section><section class="block" id="traps"><h2>Exam traps to watch for</h2><div class="note warn"><span class="lbl">Trap</span>A latency, throughput, or accuracy-threshold requirement is <strong>non-functional</strong>, even though it sounds technical and specific.</div><div class="note warn"><span class="lbl">Trap</span>When a stakeholder gives a one-line request, the best next step is almost always a clarifying question about <strong>authoritative sources and ownership</strong>, not a technology choice.</div><div class="note warn"><span class="lbl">Trap</span>Personal data of EU residents pulls in <strong>two</strong> things: data residency/processing location *and* lawful basis, purpose limitation, and data subject rights. Questions often expect both.</div><div class="note warn"><span class="lbl">Trap</span>"Users like it" and "the vendor's benchmark" are never acceptable success criteria.</div></section><section class="block" id="checklist"><h2>Readiness checklist</h2><p class="lead">You are ready to move on when you can do all of these without notes.</p>
+     <ul class="checklist"><li>Recite the five grounding data-quality dimensions and give a failure symptom for each.</li><li>Classify a scenario as task automation, analytics, or decision-making and say what oversight each needs.</li><li>Turn a vague stakeholder request into three sharp clarifying questions.</li><li>Distinguish functional from non-functional requirements in a mixed list.</li><li>Explain why source permissions must be reviewed before connecting a knowledge source.</li></ul></section></div>
+      <div class="pagenav">
+        <a class="btn" href="module-01.html">← Introduction to agentic AI business solutions</a>
+        <span class="spacer"></span>
+        <a class="btn btn-primary" href="../exam.html">Test this module →</a>
+        <a class="btn" href="module-03.html">Design overall AI strategy for business solutions →</a>
+      </div>
+    </article>
+    <nav class="toc card pad">
+      <h3>On this page</h3>
+      <a href="#overview">Why this module matters</a><a href="#syllabus">What Microsoft Learn covers</a><a href="#concepts">Key concepts and definitions</a><a href="#guidance">Design guidance</a><a href="#practice">Good practice vs. anti-pattern</a><a href="#traps">Exam traps to watch for</a><a href="#checklist">Readiness checklist</a>
+      <h3 style="margin-top:18px">All modules</h3>
+      <a href="module-01.html">1. Agentic AI foundations</a><a href="module-02.html" style="color:var(--cp-accent);font-weight:600">2. Requirements analysis</a><a href="module-03.html">3. AI strategy</a><a href="module-04.html">4. Costs and ROI</a><a href="module-05.html">5. Agent design</a><a href="module-06.html">6. Extensibility</a><a href="module-07.html">7. Prebuilt agents</a><a href="module-08.html">8. Monitor and tune</a><a href="module-09.html">9. Testing</a><a href="module-10.html">10. ALM</a><a href="module-11.html">11. Responsible AI and security</a>
+    </nav>
+  </div>
+  <p class="footnote">
+  Unofficial study aid built from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
+  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+</p>
+</main>
+<script>
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>

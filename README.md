@@ -4,14 +4,33 @@ Unofficial practice material for **AB-100: Architect AI solutions for business p
 
 ## Contents
 
-| File | What it is |
+| Path | What it is |
 |---|---|
-| `index.html` | Interactive self-scoring mock exam site. Open it directly in a browser — no build, no server, no dependencies. |
-| `AB-100-Mock-Exam.md` | Printable version of the same 110 questions with an answer key and score tracker. |
+| `index.html` | Home — study guide index and how to use the site |
+| `study/module-01..11.html` | One study page per module: key concepts, design guidance, exam traps, readiness checklist |
+| `cram-sheet.html` | Final-review page: golden rules, easily confused pairs, named frameworks, module recap (printable) |
+| `exam.html` | Interactive self-scoring 110-question mock exam |
+| `AB-100-Mock-Exam.md` | Printable exam with answer key |
+| `assets/theme.css` | Shared stylesheet |
+| `tools/` | Content source and static page generator |
 
-## Using the site
+Everything is static HTML — no build step needed to *view* it, no dependencies, no network calls.
 
-Open `index.html` in any modern browser.
+## Editing content
+
+Study page and cram sheet copy lives in `tools/modules-01-04.js`, `tools/modules-05-08.js`,
+`tools/modules-09-11.js`, and `tools/content.js`. After editing, regenerate the pages:
+
+```bash
+node tools/build.js
+```
+
+That rewrites `index.html`, `cram-sheet.html`, and `study/*.html`. Don't hand-edit those files —
+your changes will be overwritten on the next build.
+
+## Using the exam
+
+Open `exam.html` in any modern browser.
 
 - **Practice mode** — instant feedback and the correct answer after each question.
 - **Exam mode** — timed (150 minutes for the full set), feedback withheld until you submit.
@@ -25,7 +44,7 @@ Open `index.html` in any modern browser.
 
 ## Coverage
 
-10 questions per module, 110 total.
+Eleven study pages and 110 questions, 10 per module.
 
 | # | Module |
 |---|---|

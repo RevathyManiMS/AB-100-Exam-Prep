@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cram sheet — AB-100 Exam Prep</title>
+<meta name="description" content="The most important AB-100 concepts to review before the exam: golden rules, confused pairs, named frameworks, and a module-by-module recap." />
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="assets/theme.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Exam Prep</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </a>
+    <a class="navlink" href="index.html">Study guide</a>
+    <a class="navlink active" href="cram-sheet.html">Cram sheet</a>
+    <a class="navlink" href="exam.html">Mock exam</a>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
+  </div>
+</header>
+<main class="wrap">
+  <div class="stack">
+    <section class="card pad">
+      <div class="eyebrow">Final review</div>
+      <h1 style="font-size:29px;margin:8px 0 12px">Most important concepts to review before the exam</h1>
+      <p class="lead">Everything below is high-yield: the decision rules, distinctions, and named frameworks that
+      carry the most marks. If you only have an hour left, read this page. It prints cleanly on paper too.</p>
+      <p style="margin-top:12px"><button class="btn btn-sm" onclick="window.print()">Print this page</button></p>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">The ten rules that answer most questions</h2>
+      <p class="lead" style="margin-bottom:16px">When a question is ambiguous, these defaults are almost always the intended answer.</p>
+      <ol style="padding-left:22px">
+        <li style="margin-bottom:9px"><strong>Configure before you extend; extend before you build.</strong> When an out-of-the-box Dynamics 365 or Microsoft 365 capability plausibly fits, that is the answer.</li><li style="margin-bottom:9px"><strong>Business outcomes beat technical outputs.</strong> Adoption, task completion, and cycle time win over tokens consumed, models deployed, or environments provisioned.</li><li style="margin-bottom:9px"><strong>Grounding and prompt engineering come before fine-tuning.</strong> A custom or fine-tuned model is a last resort, not a first response.</li><li style="margin-bottom:9px"><strong>Agents inherit permissions, they do not create them.</strong> If an agent overshares, the source permissions were already wrong.</li><li style="margin-bottom:9px"><strong>Treat retrieved content as data, never as instructions.</strong> This single rule is the heart of prompt-injection defence.</li><li style="margin-bottom:9px"><strong>Anything irreversible, financial, legal, or customer-facing gets a human checkpoint.</strong> Full autonomy is rarely the right answer in an exam scenario.</li><li style="margin-bottom:9px"><strong>Standardise and govern centrally.</strong> The answer that scales — shared platform, CoE, reusable patterns, review gates — beats per-team improvisation.</li><li style="margin-bottom:9px"><strong>Never edit production directly.</strong> Managed solutions, environment variables, pipelines, and progressive rollout with rollback.</li><li style="margin-bottom:9px"><strong>Quality is measured against a curated evaluation dataset</strong>, continuously, and re-measured whenever the model version changes.</li><li style="margin-bottom:9px"><strong>When in doubt, ask the clarifying question about data.</strong> Which source is authoritative, who owns it, how current is it, and who may see it?</li>
+      </ol>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">Easily confused pairs</h2>
+      <p class="lead" style="margin-bottom:16px">Distinguishing these correctly is worth a surprising number of marks.</p>
+      <table>
+        <thead><tr><th style="width:26%">Term</th><th>Not to be confused with</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Generative AI</strong></td><td><strong>Agentic AI</strong> — agentic adds goal-directed reasoning, planning, tool use, and action. Model size is irrelevant to the distinction.</td></tr><tr><td><strong>Knowledge source</strong></td><td><strong>Tool / action</strong> — knowledge answers questions from content; a tool reads or changes state in another system. Live external lookup is always a tool.</td></tr><tr><td><strong>Declarative agent</strong></td><td><strong>Custom engine agent</strong> — declarative runs on the host's orchestrator and model; custom engine means you bring your own model and orchestration.</td></tr><tr><td><strong>Functional requirement</strong></td><td><strong>Non-functional requirement</strong> — latency, throughput, availability, and accuracy thresholds are non-functional however technical they sound.</td></tr><tr><td><strong>Managed solution</strong></td><td><strong>Unmanaged solution</strong> — managed goes to production and blocks in-place edits; unmanaged is the development format.</td></tr><tr><td><strong>Environment variable</strong></td><td><strong>Key Vault secret</strong> — variables parameterise configuration; secrets and API keys belong in Azure Key Vault.</td></tr><tr><td><strong>DLP policy</strong></td><td><strong>Permission trimming</strong> — DLP restricts which connectors and data sources may combine; permission trimming enforces user entitlement at retrieval time.</td></tr><tr><td><strong>Responsible AI principles</strong></td><td><strong>CIA triad</strong> — fairness, reliability and safety, privacy and security, inclusiveness, transparency, accountability. Not confidentiality/integrity/availability.</td></tr><tr><td><strong>Evaluation dataset</strong></td><td><strong>Training data</strong> — an evaluation dataset measures the agent; it does not train the model.</td></tr><tr><td><strong>Landing zone</strong></td><td><strong>Environment</strong> — a landing zone is the governed baseline (identity, network, policy, monitoring) that environments and workloads deploy into.</td></tr><tr><td><strong>Engagement</strong></td><td><strong>Resolution</strong> — high engagement with low resolution means users try the agent and leave unsatisfied: knowledge gaps or unclear instructions.</td></tr><tr><td><strong>Hallucination</strong></td><td><strong>Oversharing</strong> — confident uncited answers are a grounding failure; showing data a user should not see is a permissions failure.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">Named things you must recognise</h2>
+      <p class="lead" style="margin-bottom:16px">Frameworks, principles, and products that appear by name in questions.</p>
+      <table class="deftable">
+        <tbody><tr><td>Cloud Adoption Framework — Strategy</td><td>The stage owning motivations, outcomes, and business justification. Do not confuse with Plan, Ready, Govern, or Manage.</td></tr><tr><td>Landing zone</td><td>Pre-configured governed environment baseline: identity, network, policy, monitoring.</td></tr><tr><td>AI Center of Excellence</td><td>Cross-functional body owning standards, reusable patterns, review gates, enablement, and the shared backlog. Stand it up <strong>before</strong> scaling.</td></tr><tr><td>Power Platform Well-Architected Framework</td><td>Reliability, security, operational excellence, performance efficiency, experience optimisation.</td></tr><tr><td>Model Context Protocol (MCP)</td><td>Standardised discovery and invocation of external tools and data sources by agents.</td></tr><tr><td>Graph connector</td><td>Indexes external content into Microsoft Graph so Microsoft 365 Copilot can ground on it with permissions honoured.</td></tr><tr><td>Computer Use (Copilot Studio)</td><td>Drives apps and websites through their UI when no usable API exists.</td></tr><tr><td>Model router</td><td>Routes each request to the most suitable model, balancing quality against cost and latency.</td></tr><tr><td>Small language model (SLM)</td><td>Cheaper, faster model for narrow, high-volume, latency-sensitive tasks.</td></tr><tr><td>Microsoft Purview</td><td>eDiscovery, retention, audit, and information protection across Copilot interactions.</td></tr><tr><td>Microsoft Entra ID</td><td>Identity, conditional access, and least-privilege authorisation.</td></tr><tr><td>Microsoft Foundry</td><td>Pro-code custom models, custom orchestration, and Foundry tools.</td></tr><tr><td>Five data-quality dimensions</td><td>Accuracy, relevance, timeliness, cleanliness, availability.</td></tr><tr><td>Balanced agent scorecard</td><td>Quality, adoption, efficiency (cost and latency), safety and compliance.</td></tr></tbody>
+      </table>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">Module-by-module recap</h2>
+      <p class="lead" style="margin-bottom:18px">The few points from each module most likely to be tested.</p>
+      <div class="cram-grid">
+        <div class="cram">
+          <h3><span class="num">1</span> <a href="study/module-01.html">Agentic AI foundations</a></h3>
+          <ul><li>Agentic = <strong>goal + plan + tools + action</strong>. Not model size.</li><li>Decision order: <strong>enable → configure → extend → build</strong>.</li><li>Autonomy ladder: assistive → human-approved → event-triggered autonomous.</li><li>Success metrics are <strong>business</strong> metrics: adoption rate, task completion, cycle time.</li><li>Every agent needs a named owner, a fallback, and an escalation path.</li></ul>
+        </div><div class="cram">
+          <h3><span class="num">2</span> <a href="study/module-02.html">Requirements analysis</a></h3>
+          <ul><li>Data quality dimensions: <strong>accuracy, relevance, timeliness, cleanliness, availability</strong>.</li><li>Scenario types: task automation, data analytics, decision-making — rising risk, rising oversight.</li><li>Latency/accuracy targets = <strong>non-functional</strong> requirements.</li><li>Always identify the <strong>authoritative source and its owner</strong>.</li><li>Agents inherit oversharing. Fix source permissions first.</li></ul>
+        </div><div class="cram">
+          <h3><span class="num">3</span> <a href="study/module-03.html">AI strategy</a></h3>
+          <ul><li>CAF <strong>Strategy</strong> = motivations, outcomes, justification.</li><li>Landing zone = governed environment baseline (identity, network, policy, monitoring).</li><li>Extend Copilot by default; build custom for bespoke orchestration, specific models, or other surfaces.</li><li>Custom model = last resort, after grounding and prompt engineering.</li><li>CoE before scale. Prompt library is versioned and owned.</li><li>SLM + model router = cost/latency control for narrow, high-volume tasks.</li></ul>
+        </div><div class="cram">
+          <h3><span class="num">4</span> <a href="study/module-04.html">Costs and ROI</a></h3>
+          <ul><li>ROI = net benefit ÷ <strong>TCO</strong>, over a defined period, vs. a <strong>do-nothing baseline</strong>.</li><li>Most under-estimated cost: <strong>ongoing operations and content maintenance</strong>.</li><li>Build = differentiation · Buy = commodity · Extend = platform is close.</li><li>Variable cost = volume × tokens + tool calls; control with model routing, scope, caching.</li><li>Fund in stages with go/no-go gates. Validate pilots before extrapolating.</li></ul>
+        </div><div class="cram">
+          <h3><span class="num">5</span> <a href="study/module-05.html">Agent design</a></h3>
+          <ul><li><strong>Knowledge answers, tools act, topics script, triggers start.</strong></li><li>Live external lookup = <strong>tool/action</strong>.</li><li>Split agents on scope / knowledge / permissions / ownership.</li><li>Confirm before irreversible, financial, legal, or customer-facing actions.</li><li>Tool reliability = distinct names, clear "when to use" descriptions, typed parameters.</li><li>Fallback must state the limit and offer escalation.</li></ul>
+        </div><div class="cram">
+          <h3><span class="num">6</span> <a href="study/module-06.html">Extensibility</a></h3>
+          <ul><li><strong>Declarative</strong> = host orchestrator + host model. <strong>Custom engine</strong> = your model + your orchestration.</li><li>Ground Microsoft 365 Copilot in external content with <strong>Graph connectors</strong>.</li><li><strong>MCP</strong> = standard tool/data discovery and invocation.</li><li><strong>Computer Use</strong> = UI automation for systems with no API.</li><li>Downstream calls: token exchange, consent, least privilege, per-user authorisation.</li><li>Version contracts; respect latency, size, auth, and throttling limits.</li></ul>
+        </div><div class="cram">
+          <h3><span class="num">7</span> <a href="study/module-07.html">Prebuilt agents</a></h3>
+          <ul><li>Visibility gates: <strong>licensing · admin enablement · security roles · environment/region</strong>.</li><li>Rollout: prerequisites → non-prod → configure/test → pilot → broad + training.</li><li>Near fit? <strong>configure → extend → build</strong>.</li><li>Oversharing by an agent = <strong>source permissions</strong>, not hallucination.</li><li>Prebuilt ≠ pre-governed: DLP, access review, owner still required.</li></ul>
+        </div><div class="cram">
+          <h3><span class="num">8</span> <a href="study/module-08.html">Monitor and tune</a></h3>
+          <ul><li><strong>Containment/resolution rate</strong> = did the agent actually help.</li><li>High engagement + low resolution = <strong>knowledge gaps or unclear instructions</strong>.</li><li>Confident + uncited = <strong>hallucination / grounding failure</strong>.</li><li>Scorecard = quality + adoption + efficiency + safety.</li><li>Alert on fallback, error, latency, and content-filter spikes.</li><li>Loop: monitor → analyse → adjust → re-evaluate → release.</li></ul>
+        </div><div class="cram">
+          <h3><span class="num">9</span> <a href="study/module-09.html">Testing</a></h3>
+          <ul><li>Outputs are <strong>probabilistic</strong> → test quality ranges, never exact strings.</li><li>Grounded answers → <strong>groundedness + relevance</strong>.</li><li>Layers: component · quality evaluation · end-to-end scenario · adversarial/red-team.</li><li>Model version changed? <strong>Re-run evaluation and regression.</strong></li><li>Promote on <strong>quality gates</strong>, not zero defects.</li><li>Test data: masked or synthetic, protected like production.</li></ul>
+        </div><div class="cram">
+          <h3><span class="num">10</span> <a href="study/module-10.html">ALM</a></h3>
+          <ul><li><strong>Dev → test → prod</strong>, controlled promotion, never edit prod.</li><li><strong>Managed</strong> solutions to production.</li><li><strong>Environment variables</strong> for config; <strong>Key Vault</strong> for secrets.</li><li>Source control includes <strong>prompts, knowledge config, evaluation datasets</strong>.</li><li>Progressive/ring rollout + versioned releases + documented rollback.</li><li>Makers: governed environments and review gates — not production access, not a ban.</li></ul>
+        </div><div class="cram">
+          <h3><span class="num">11</span> <a href="study/module-11.html">Responsible AI and security</a></h3>
+          <ul><li>Six principles: <strong>fairness · reliability &amp; safety · privacy &amp; security · inclusiveness · transparency · accountability</strong>.</li><li>Unequal service across groups = <strong>fairness</strong>.</li><li>Prompt injection fix: content as <strong>data not instructions</strong>, isolate instructions, validate tool inputs, least privilege.</li><li><strong>Permission trimming</strong> at retrieval time — disclaimers are not controls.</li><li><strong>DLP</strong> = which connectors/data may combine. <strong>Purview</strong> = eDiscovery, retention, audit.</li><li>High-impact decisions: human approval + logging + explainability + audit.</li><li>Defence in depth = identity · DLP/classification · content safety · monitoring/audit · incident response.</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">Exam-day technique</h2>
+      <ul><li><strong>Read the last line of the scenario first.</strong> It tells you what is actually being asked, which often makes half the detail irrelevant.</li><li><strong>Eliminate absolutes.</strong> Options containing *always*, *never*, *all*, or *none* are usually wrong in architecture questions — except when they restate a hard governance rule such as never storing secrets in a solution.</li><li><strong>Prefer the governed, reversible, lower-blast-radius option.</strong> Exam scenarios reward caution over speed.</li><li><strong>Watch for the cheapest path that still meets the requirement.</strong> If configuring satisfies the need, building is wrong even though it would also work.</li><li><strong>Note who the stakeholder is.</strong> An answer aimed at an executive sponsor should be in business language; one aimed at an admin should be operational.</li><li><strong>On "choose two" questions, confirm the pair is complementary</strong>, not two phrasings of the same idea.</li><li><strong>Flag and move on.</strong> Do not lose four easy marks at the end defending one hard question.</li><li><strong>Budget your time</strong>: roughly 80 seconds per question leaves a review pass at the end.</li></ul>
+      <p style="margin-top:16px"><a class="btn btn-primary" href="exam.html">Do a final timed run →</a></p>
+    </section>
+  </div>
+  <p class="footnote">
+  Unofficial study aid built from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
+  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+</p>
+</main>
+<script>
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>

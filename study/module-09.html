@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Manage testing AI-powered business solutions — AB-100 Exam Prep</title>
+<meta name="description" content="Test probabilistic systems properly: evaluation metrics, validation criteria, adversarial testing, and quality gates." />
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<link rel="stylesheet" href="../assets/theme.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Exam Prep</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </a>
+    <a class="navlink" href="../index.html">Study guide</a>
+    <a class="navlink" href="../cram-sheet.html">Cram sheet</a>
+    <a class="navlink" href="../exam.html">Mock exam</a>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
+  </div>
+</header>
+<main class="wrap">
+  <div class="study-grid">
+    <article class="card pad">
+      <div class="eyebrow">Module 9 of 11</div>
+      <h1 style="font-size:27px;margin:6px 0 10px">Manage testing AI-powered business solutions</h1>
+      <p class="lead">Test probabilistic systems properly: evaluation metrics, validation criteria, adversarial testing, and quality gates.</p>
+      <p style="margin-top:14px">
+        <span class="pill">Exam questions Q81–Q90</span>
+        <span class="pill pill-muted">8 units on Learn</span>
+      </p>
+      <div style="margin-top:26px"><section class="block" id="overview"><h2>Why this module matters</h2><p>Testing generative systems breaks the habits of deterministic QA. The same input can produce different valid outputs, so assertions must target <strong>behaviour and quality ranges</strong> rather than exact strings.</p><p>The module also covers end-to-end scenario testing across multiple Dynamics 365 apps, and using Copilot itself to help generate test cases — with human review of what it produces.</p><div class="note"><span class="lbl">The one big idea</span>You cannot assert equality against a probabilistic output. You assert groundedness, relevance, task success, safety, and consistency — measured against a curated dataset with agreed thresholds.</div></section><section class="block" id="syllabus"><h2>What Microsoft Learn covers</h2><p class="lead">Units in this module, as published on Microsoft Learn:</p><ul><li>Introduction</li><li>Recommend process metrics for testing AI agents</li><li>Create validation criteria for custom AI models</li><li>Validate effective Copilot prompt best practices</li><li>Design end-to-end test scenarios for AI solutions using multiple Dynamics 365 apps</li><li>Build a strategy for creating test cases using Copilot</li><li>Module assessment</li><li>Summary</li></ul><p><a class="btn btn-sm" href="https://learn.microsoft.com/en-us/training/modules/manage-testing-ai-powered-business-solutions/" target="_blank" rel="noopener">Open module on Microsoft Learn →</a></p></section><section class="block" id="concepts"><h2>Key concepts and definitions</h2><table class="deftable"><tbody><tr><td>Probabilistic output</td><td>Valid responses vary between runs. Testing must therefore measure quality characteristics, not exact matches.</td></tr><tr><td>Groundedness</td><td>Is the answer supported by the retrieved sources? A primary metric for retrieval-grounded solutions.</td></tr><tr><td>Relevance</td><td>Does the answer actually address the question asked? The natural companion metric to groundedness.</td></tr><tr><td>Task success rate</td><td>Did the interaction achieve the user's goal end to end? The closest proxy for business value.</td></tr><tr><td>Regression testing</td><td>Re-running known-good cases to detect breakage after changes to prompts, knowledge, models, or tools.</td></tr><tr><td>Safety / red-team testing</td><td>Adversarial testing that the agent refuses harmful, out-of-policy, or manipulative requests, including prompt injection attempts.</td></tr><tr><td>Validation criteria</td><td>The agreed, measurable definition of "good enough" for a model or agent before it may be promoted.</td></tr><tr><td>Quality gate</td><td>A threshold — groundedness, task success, safety — that must be met for a release to proceed.</td></tr><tr><td>End-to-end scenario test</td><td>Following a complete business process across the agent, its tools, and downstream systems. The best evidence of real business value.</td></tr><tr><td>User acceptance testing</td><td>Representative end users and business process owners performing genuine tasks, not the delivery team clicking through.</td></tr><tr><td>Synthetic / masked test data</td><td>Test data that preserves realism without exposing personal information, protected to the same standard as production.</td></tr></tbody></table></section><section class="block" id="guidance"><h2>Design guidance</h2><h3>Building the test strategy</h3><ul><li>Assemble a curated evaluation dataset covering common paths, edge cases, and known past failures.</li><li>Layer the testing: component tests for tools and connectors, quality evaluation for generative behaviour, end-to-end scenario tests for business value, and adversarial tests for safety.</li><li>Use Copilot to help draft test cases, then have a human review them for coverage and correctness — generated cases are a starting point, not the final suite.</li></ul><h3>Gates and promotion</h3><ul><li>Define thresholds that must pass before promotion. "Zero defects" is not a workable gate for probabilistic systems; agreed thresholds are.</li><li>Re-run the evaluation suite whenever the <strong>platform updates the model version</strong> — behaviour can shift even with no change on your side.</li><li>Automate evaluation pipelines so the suite runs on every significant change; manual-only testing does not scale.</li></ul><h3>Data and participants</h3><ul><li>Use masked, synthetic, or minimised data in test environments, with production-grade protection.</li><li>Involve real users and process owners in UAT — they surface workflow mismatches no internal tester will.</li><li>Test the fallback and escalation paths deliberately; they are where poor agents are exposed.</li></ul></section><section class="block" id="practice"><h2>Good practice vs. anti-pattern</h2><div class="compare">
+        <div class="do"><h4>Do</h4><ul><li>Measure groundedness, relevance, task success, and safety.</li><li>Automate evaluation runs on every significant change.</li><li>Re-test after platform model updates.</li><li>Use masked or synthetic data with full protection.</li></ul></div>
+        <div class="dont"><h4>Avoid</h4><ul><li>Assert exact-string equality on generated text.</li><li>Treat UAT as a developer walkthrough.</li><li>Copy production personal data into test environments.</li><li>Assume a model update is behaviour-neutral.</li></ul></div>
+      </div></section><section class="block" id="traps"><h2>Exam traps to watch for</h2><div class="note warn"><span class="lbl">Trap</span>Deterministic testing fails here because outputs are <strong>probabilistic</strong> — not because tooling is unavailable or automation is impossible.</div><div class="note warn"><span class="lbl">Trap</span>For retrieval-grounded answers the metric pair is <strong>groundedness and relevance</strong>, not infrastructure metrics like CPU, storage, or uptime.</div><div class="note warn"><span class="lbl">Trap</span>A platform model update requires <strong>re-running evaluation and regression tests</strong>. Behaviour is not guaranteed identical, and rebuilding from scratch is not required either.</div><div class="note warn"><span class="lbl">Trap</span>Release decisions hinge on agreed <strong>quality gates</strong>, not on zero defects and not on a single maker's judgement.</div></section><section class="block" id="checklist"><h2>Readiness checklist</h2><p class="lead">You are ready to move on when you can do all of these without notes.</p>
+     <ul class="checklist"><li>Explain in one sentence why exact-match assertions fail for generative output.</li><li>Name the metric pair for retrieval-grounded answers.</li><li>Describe the four layers of an AI test strategy.</li><li>State what must happen when the platform updates the model version.</li><li>Define a quality gate and give two example thresholds.</li></ul></section></div>
+      <div class="pagenav">
+        <a class="btn" href="module-08.html">← Monitor, analyze, and tune AI agents</a>
+        <span class="spacer"></span>
+        <a class="btn btn-primary" href="../exam.html">Test this module →</a>
+        <a class="btn" href="module-10.html">Design ALM process for AI-powered business solutions →</a>
+      </div>
+    </article>
+    <nav class="toc card pad">
+      <h3>On this page</h3>
+      <a href="#overview">Why this module matters</a><a href="#syllabus">What Microsoft Learn covers</a><a href="#concepts">Key concepts and definitions</a><a href="#guidance">Design guidance</a><a href="#practice">Good practice vs. anti-pattern</a><a href="#traps">Exam traps to watch for</a><a href="#checklist">Readiness checklist</a>
+      <h3 style="margin-top:18px">All modules</h3>
+      <a href="module-01.html">1. Agentic AI foundations</a><a href="module-02.html">2. Requirements analysis</a><a href="module-03.html">3. AI strategy</a><a href="module-04.html">4. Costs and ROI</a><a href="module-05.html">5. Agent design</a><a href="module-06.html">6. Extensibility</a><a href="module-07.html">7. Prebuilt agents</a><a href="module-08.html">8. Monitor and tune</a><a href="module-09.html" style="color:var(--cp-accent);font-weight:600">9. Testing</a><a href="module-10.html">10. ALM</a><a href="module-11.html">11. Responsible AI and security</a>
+    </nav>
+  </div>
+  <p class="footnote">
+  Unofficial study aid built from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
+  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+</p>
+</main>
+<script>
+  document.getElementById("themeBtn").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+  });
+</script>
+</body>
+</html>
