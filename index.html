@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AB-100 Mock Exam — Architect AI solutions for business productivity</title>
+<script>
+  (() => {
+    const param = new URLSearchParams(window.location.search).get("scoutTheme");
+    const theme =
+      param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  })();
+</script>
+<style>
+:root {
+  color-scheme: light;
+  --cp-bg: #f7f4ef;
+  --cp-bg-elevated: #fcfbf8;
+  --cp-surface: #ffffff;
+  --cp-surface-soft: #f5f5f5;
+  --cp-border: #dedede;
+  --cp-border-strong: #919191;
+  --cp-text: #242424;
+  --cp-text-muted: #5c5c5c;
+  --cp-text-soft: #6f6f6f;
+  --cp-accent: #b11f4b;
+  --cp-accent-hover: #9a1a41;
+  --cp-accent-soft: rgba(177, 31, 75, 0.08);
+  --cp-accent-fg: #ffffff;
+  --cp-success: #16a34a;
+  --cp-danger: #dc2626;
+  --cp-warning: #f59e0b;
+  --cp-link: #0078d4;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.12);
+  --cp-overlay: rgba(255, 255, 255, 0.8);
+  --cp-panel: rgba(255, 255, 255, 0.86);
+  --cp-panel-strong: rgba(255, 255, 255, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.55);
+  --cp-highlight: rgba(177, 31, 75, 0.12);
+}
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --cp-bg: #3d3b3a;
+  --cp-bg-elevated: #343231;
+  --cp-surface: #292929;
+  --cp-surface-soft: #2e2e2e;
+  --cp-border: #474747;
+  --cp-border-strong: #5f5f5f;
+  --cp-text: #dedede;
+  --cp-text-muted: #919191;
+  --cp-text-soft: #b0b0b0;
+  --cp-accent: #fd8ea1;
+  --cp-accent-hover: #fb7b91;
+  --cp-accent-soft: rgba(253, 142, 161, 0.14);
+  --cp-accent-fg: #1a1a1a;
+  --cp-success: #4ade80;
+  --cp-danger: #f87171;
+  --cp-warning: #fbbf24;
+  --cp-link: #4da6ff;
+  --cp-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --cp-overlay: rgba(41, 41, 41, 0.88);
+  --cp-panel: rgba(41, 41, 41, 0.72);
+  --cp-panel-strong: rgba(41, 41, 41, 0.96);
+  --cp-sheen: rgba(255, 255, 255, 0.04);
+  --cp-highlight: rgba(253, 142, 161, 0.12);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--cp-bg);
+  color: var(--cp-text);
+  font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+button { font-family: inherit; font-size: inherit; cursor: pointer; }
+.hidden { display: none !important; }
+
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--cp-panel-strong);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--cp-border);
+}
+.topbar-inner {
+  max-width: 1180px; margin: 0 auto; padding: 12px 20px;
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 10px; margin-right: auto; min-width: 0; }
+.badge-dot {
+  width: 30px; height: 30px; border-radius: 0.625rem; flex: none;
+  background: var(--cp-accent); color: var(--cp-accent-fg);
+  display: grid; place-items: center; font-weight: 700; font-size: 12px;
+}
+.brand-title { font-weight: 600; font-size: 15px; white-space: nowrap; }
+.brand-sub { font-size: 12px; color: var(--cp-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.btn {
+  border: 1px solid var(--cp-border); background: var(--cp-surface); color: var(--cp-text);
+  border-radius: 0.625rem; padding: 8px 14px; font-weight: 500;
+  transition: background .15s, border-color .15s, color .15s;
+}
+.btn:hover { background: var(--cp-surface-soft); border-color: var(--cp-border-strong); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-primary { background: var(--cp-accent); border-color: var(--cp-accent); color: var(--cp-accent-fg); }
+.btn-primary:hover { background: var(--cp-accent-hover); border-color: var(--cp-accent-hover); }
+.btn-sm { padding: 6px 10px; font-size: 13px; }
+.btn-ghost { background: transparent; border-color: transparent; color: var(--cp-text-muted); }
+.btn-ghost:hover { background: var(--cp-surface-soft); color: var(--cp-text); }
+
+.wrap { max-width: 1180px; margin: 0 auto; padding: 24px 20px 72px; }
+.card {
+  background: var(--cp-surface); border: 1px solid var(--cp-border);
+  border-radius: 16px; box-shadow: 0 0 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.14);
+}
+.pad { padding: 24px; }
+
+/* Start screen */
+.hero { display: grid; gap: 20px; }
+.hero h1 { font-size: 30px; line-height: 1.2; }
+.hero p.lead { margin: 0; color: var(--cp-text-muted); max-width: 68ch; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.stat {
+  border: 1px solid var(--cp-border); border-radius: 0.625rem;
+  padding: 14px 16px; background: var(--cp-surface-soft);
+}
+.stat .k { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--cp-text-muted); }
+.stat .v { font-size: 20px; font-weight: 600; margin-top: 2px; }
+
+.opt-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
+.mode-card {
+  text-align: left; border: 1px solid var(--cp-border); background: var(--cp-surface);
+  border-radius: 0.625rem; padding: 16px; display: grid; gap: 6px; color: var(--cp-text);
+}
+.mode-card:hover { border-color: var(--cp-border-strong); background: var(--cp-surface-soft); }
+.mode-card[aria-pressed="true"] { border-color: var(--cp-accent); background: var(--cp-accent-soft); }
+.mode-card .t { font-weight: 600; }
+.mode-card .d { font-size: 13px; color: var(--cp-text-muted); }
+
+.field { display: grid; gap: 6px; }
+.field label { font-size: 13px; font-weight: 600; color: var(--cp-text-muted); }
+select, input[type="text"] {
+  font-family: inherit; font-size: 14px; color: var(--cp-text);
+  background: var(--cp-surface); border: 1px solid var(--cp-border);
+  border-radius: 0.625rem; padding: 9px 12px; width: 100%;
+}
+.row { display: flex; gap: 12px; flex-wrap: wrap; align-items: end; }
+.row > .field { flex: 1 1 220px; }
+
+/* Exam layout */
+.exam-grid { display: grid; grid-template-columns: 1fr 260px; gap: 20px; align-items: start; }
+@media (max-width: 900px) { .exam-grid { grid-template-columns: 1fr; } .side { order: -1; } }
+
+.qhead { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 6px; }
+.pill {
+  font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px;
+  background: var(--cp-accent-soft); color: var(--cp-accent); border: 1px solid var(--cp-accent-soft);
+}
+.pill-muted { background: var(--cp-surface-soft); color: var(--cp-text-muted); border-color: var(--cp-border); }
+.qtext { font-size: 17px; font-weight: 600; margin: 8px 0 18px; line-height: 1.45; }
+
+.answers { display: grid; gap: 10px; }
+.answer {
+  display: flex; gap: 12px; align-items: flex-start; text-align: left; width: 100%;
+  border: 1px solid var(--cp-border); background: var(--cp-surface);
+  border-radius: 0.625rem; padding: 12px 14px; color: var(--cp-text);
+  transition: border-color .15s, background .15s;
+}
+.answer:hover { border-color: var(--cp-border-strong); background: var(--cp-surface-soft); }
+.answer .let {
+  flex: none; width: 24px; height: 24px; border-radius: 6px;
+  border: 1px solid var(--cp-border-strong); display: grid; place-items: center;
+  font-size: 12px; font-weight: 700; color: var(--cp-text-muted);
+}
+.answer[aria-pressed="true"] { border-color: var(--cp-accent); background: var(--cp-accent-soft); }
+.answer[aria-pressed="true"] .let { background: var(--cp-accent); border-color: var(--cp-accent); color: var(--cp-accent-fg); }
+.answer.correct { border-color: var(--cp-success); background: color-mix(in srgb, var(--cp-success) 10%, transparent); }
+.answer.correct .let { background: var(--cp-success); border-color: var(--cp-success); color: var(--cp-accent-fg); }
+.answer.wrong { border-color: var(--cp-danger); background: color-mix(in srgb, var(--cp-danger) 10%, transparent); }
+.answer.wrong .let { background: var(--cp-danger); border-color: var(--cp-danger); color: var(--cp-accent-fg); }
+.answer.locked { cursor: default; }
+
+.feedback {
+  margin-top: 16px; border-radius: 0.625rem; padding: 12px 14px; font-size: 14px;
+  border: 1px solid var(--cp-border); background: var(--cp-surface-soft);
+}
+.feedback.ok { border-color: var(--cp-success); color: var(--cp-text); }
+.feedback.no { border-color: var(--cp-danger); color: var(--cp-text); }
+.feedback b { font-weight: 600; }
+
+.navrow { display: flex; gap: 10px; align-items: center; margin-top: 22px; flex-wrap: wrap; }
+.navrow .spacer { margin-left: auto; }
+
+/* Sidebar */
+.side { display: grid; gap: 16px; position: sticky; top: 78px; }
+.side h3 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--cp-text-muted); margin-bottom: 10px; }
+.timer { font-variant-numeric: tabular-nums; font-size: 24px; font-weight: 600; font-family: Consolas, "Courier New", Courier, monospace; }
+.timer.low { color: var(--cp-danger); }
+.progress { height: 6px; border-radius: 999px; background: var(--cp-surface-soft); overflow: hidden; border: 1px solid var(--cp-border); }
+.progress > i { display: block; height: 100%; background: var(--cp-accent); transition: width .2s; }
+.gridmap { display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px; }
+.gridmap button {
+  aspect-ratio: 1; border-radius: 6px; font-size: 11px; font-weight: 600;
+  border: 1px solid var(--cp-border); background: var(--cp-surface); color: var(--cp-text-muted); padding: 0;
+}
+.gridmap button:hover { border-color: var(--cp-border-strong); color: var(--cp-text); }
+.gridmap button.answered { background: var(--cp-accent-soft); border-color: var(--cp-accent); color: var(--cp-accent); }
+.gridmap button.flagged { border-color: var(--cp-warning); box-shadow: inset 0 0 0 1px var(--cp-warning); }
+.gridmap button.current { background: var(--cp-accent); border-color: var(--cp-accent); color: var(--cp-accent-fg); }
+.legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 12px; color: var(--cp-text-muted); margin-top: 10px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; border: 1px solid var(--cp-border); }
+
+/* Results */
+.score-ring { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.ring { width: 132px; height: 132px; border-radius: 50%; display: grid; place-items: center; flex: none; }
+.ring > div { width: 104px; height: 104px; border-radius: 50%; background: var(--cp-surface); display: grid; place-items: center; text-align: center; }
+.ring .pct { font-size: 26px; font-weight: 700; line-height: 1; }
+.ring .sub { font-size: 11px; color: var(--cp-text-muted); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--cp-border); }
+th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--cp-text-muted); font-weight: 600; }
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.bar { height: 6px; border-radius: 999px; background: var(--cp-surface-soft); overflow: hidden; min-width: 70px; border: 1px solid var(--cp-border); }
+.bar > i { display: block; height: 100%; }
+
+.review-item { border-top: 1px solid var(--cp-border); padding: 16px 0; }
+.review-item:first-child { border-top: none; }
+.tag { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; text-transform: uppercase; letter-spacing: .04em; }
+.tag.ok { background: color-mix(in srgb, var(--cp-success) 16%, transparent); color: var(--cp-success); }
+.tag.no { background: color-mix(in srgb, var(--cp-danger) 16%, transparent); color: var(--cp-danger); }
+.tag.skip { background: var(--cp-surface-soft); color: var(--cp-text-muted); }
+.ans-line { font-size: 14px; margin-top: 4px; }
+.ans-line .lbl { color: var(--cp-text-muted); }
+
+.footnote { font-size: 12px; color: var(--cp-text-soft); margin-top: 28px; text-align: center; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.chip {
+  border: 1px solid var(--cp-border); background: var(--cp-surface); color: var(--cp-text-muted);
+  border-radius: 999px; padding: 5px 12px; font-size: 13px;
+}
+.chip[aria-pressed="true"] { background: var(--cp-accent); border-color: var(--cp-accent); color: var(--cp-accent-fg); }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="badge-dot">AB</div>
+      <div style="min-width:0">
+        <div class="brand-title">AB-100 Mock Exam</div>
+        <div class="brand-sub">Architect AI solutions for business productivity</div>
+      </div>
+    </div>
+    <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle theme">Theme</button>
+    <button class="btn btn-sm btn-ghost hidden" id="restartBtn">Restart</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- START -->
+  <section id="startView">
+    <div class="card pad hero">
+      <div>
+        <h1>Practice exam: 110 questions</h1>
+        <p class="lead">Unofficial practice exam built from the 11 modules of the Microsoft Learn path
+          <em>Architect AI solutions for business productivity</em>. Options are shuffled, answers are explained,
+          and your score is broken down by module so you know exactly what to revise.</p>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat"><div class="k">Questions</div><div class="v" id="statQ">110</div></div>
+        <div class="stat"><div class="k">Modules</div><div class="v">11</div></div>
+        <div class="stat"><div class="k">Time limit</div><div class="v">150 min</div></div>
+        <div class="stat"><div class="k">Pass mark</div><div class="v">70%</div></div>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:10px">Choose a mode</h3>
+        <div class="opt-cards" id="modeCards">
+          <button class="mode-card" data-mode="practice" aria-pressed="true">
+            <span class="t">Practice mode</span>
+            <span class="d">Immediate feedback after each question. No timer. Best for learning.</span>
+          </button>
+          <button class="mode-card" data-mode="exam" aria-pressed="false">
+            <span class="t">Exam mode</span>
+            <span class="d">Timed, no feedback until you submit. Simulates the real test.</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field">
+          <label for="scopeSel">Module scope</label>
+          <select id="scopeSel"></select>
+        </div>
+        <div class="field">
+          <label for="countSel">Number of questions</label>
+          <select id="countSel"></select>
+        </div>
+        <div class="field">
+          <label for="orderSel">Question order</label>
+          <select id="orderSel">
+            <option value="seq">Sequential</option>
+            <option value="rand">Randomized</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="btn btn-primary" id="startBtn">Start exam</button>
+        <button class="btn hidden" id="resumeBtn">Resume last attempt</button>
+      </div>
+    </div>
+    <p class="footnote">Unofficial study aid. Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.</p>
+  </section>
+
+  <!-- EXAM -->
+  <section id="examView" class="hidden">
+    <div class="exam-grid">
+      <div class="card pad">
+        <div class="qhead">
+          <span class="pill" id="qCounter">Question 1 of 110</span>
+          <span class="pill pill-muted" id="qModule">Module</span>
+          <span class="pill pill-muted hidden" id="qMulti">Choose two</span>
+        </div>
+        <div class="qtext" id="qText"></div>
+        <div class="answers" id="answers"></div>
+        <div class="feedback hidden" id="feedback"></div>
+        <div class="navrow">
+          <button class="btn" id="prevBtn">← Previous</button>
+          <button class="btn" id="flagBtn">Flag for review</button>
+          <span class="spacer"></span>
+          <button class="btn" id="clearBtn">Clear answer</button>
+          <button class="btn btn-primary" id="nextBtn">Next →</button>
+        </div>
+      </div>
+
+      <aside class="side">
+        <div class="card pad" id="timerCard">
+          <h3>Time remaining</h3>
+          <div class="timer" id="timer">--:--</div>
+        </div>
+        <div class="card pad">
+          <h3>Progress</h3>
+          <div class="progress"><i id="progBar" style="width:0%"></i></div>
+          <div style="font-size:13px;color:var(--cp-text-muted);margin-top:8px" id="progText">0 answered</div>
+          <button class="btn btn-primary btn-sm" id="submitBtn" style="width:100%;margin-top:14px">Submit exam</button>
+        </div>
+        <div class="card pad">
+          <h3>Question map</h3>
+          <div class="gridmap" id="gridmap"></div>
+          <div class="legend">
+            <span><i style="background:var(--cp-accent-soft);border-color:var(--cp-accent)"></i>Answered</span>
+            <span><i style="border-color:var(--cp-warning);box-shadow:inset 0 0 0 1px var(--cp-warning)"></i>Flagged</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="resultView" class="hidden">
+    <div class="card pad" style="display:grid;gap:22px">
+      <div class="score-ring">
+        <div class="ring" id="ring"><div>
+          <div class="pct" id="scorePct">0%</div>
+          <div class="sub" id="scoreRaw">0 / 0</div>
+        </div></div>
+        <div>
+          <h1 id="verdict" style="font-size:24px">Result</h1>
+          <p class="lead" id="verdictText" style="color:var(--cp-text-muted);margin:6px 0 0"></p>
+          <div class="navrow" style="margin-top:16px">
+            <button class="btn btn-primary" id="againBtn">New attempt</button>
+            <button class="btn" id="retryWrongBtn">Retry incorrect only</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:10px">Score by module</h3>
+        <table>
+          <thead><tr><th>Module</th><th style="width:120px">Performance</th><th class="num" style="width:90px">Score</th></tr></thead>
+          <tbody id="sectionRows"></tbody>
+        </table>
+      </div>
+
+      <div>
+        <h3 style="font-size:14px;margin-bottom:10px">Review answers</h3>
+        <div class="filters" id="reviewFilters">
+          <button class="chip" data-f="all" aria-pressed="true">All</button>
+          <button class="chip" data-f="wrong" aria-pressed="false">Incorrect</button>
+          <button class="chip" data-f="skipped" aria-pressed="false">Skipped</button>
+          <button class="chip" data-f="correct" aria-pressed="false">Correct</button>
+        </div>
+        <div id="reviewList"></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+const QUESTIONS = /*__DATA__*/[{"n":1,"section":1,"sectionTitle":"Introduction to agentic AI business solutions","prompt":"What most clearly distinguishes an *agentic* AI solution from a traditional generative AI chat experience?","multi":false,"options":["It always runs on-premises","It uses a larger language model","It only responds to explicit user prompts with text","It can reason over a goal, plan steps, and take autonomous actions using tools"],"answers":[3]},{"n":2,"section":1,"sectionTitle":"Introduction to agentic AI business solutions","prompt":"A solution architect is asked to justify an agent program to an executive sponsor. Which artifact best demonstrates alignment with business goals?","multi":false,"options":["A list of Power Platform connectors used","A model card for the underlying LLM","A Dataverse entity relationship diagram","A business value map linking agent scenarios to measurable KPIs"],"answers":[3]},{"n":3,"section":1,"sectionTitle":"Introduction to agentic AI business solutions","prompt":"Which scenario is the *weakest* candidate for an autonomous agent?","multi":false,"options":["Summarizing weekly sales pipeline changes","Triaging and routing inbound support email","Drafting a first-pass response to an RFP question","Making a final legally binding decision on an insurance claim denial without review"],"answers":[3]},{"n":4,"section":1,"sectionTitle":"Introduction to agentic AI business solutions","prompt":"In the agent maturity progression, which order best reflects increasing autonomy?","multi":false,"options":["Assistive (human-prompted) → semi-autonomous (human-approved) → autonomous (event-triggered)","Orchestrated → assistive → autonomous","Autonomous → orchestrated → assistive","Autonomous → assistive → orchestrated"],"answers":[0]},{"n":5,"section":1,"sectionTitle":"Introduction to agentic AI business solutions","prompt":"Which statement best describes \"human in the loop\" in an agentic design?","multi":false,"options":["All agent output is logged for audit","The agent is disabled outside business hours","A person reviews or approves defined agent actions before they take effect","A person writes every prompt the agent uses"],"answers":[2]},{"n":6,"section":1,"sectionTitle":"Introduction to agentic AI business solutions","prompt":"An organization wants to scale from a few pilot agents to enterprise-wide adoption. What should be established *first*?","multi":false,"options":["A dedicated Azure landing zone per agent","A center of excellence with governance, standards, and reusable patterns","A production environment for each business unit","A custom model fine-tuned on company data"],"answers":[1]},{"n":7,"section":1,"sectionTitle":"Introduction to agentic AI business solutions","prompt":"Which combination best matches Microsoft technology to purpose?","multi":false,"options":["Copilot Studio for model training; Azure AI Foundry for chat UI only","Copilot Studio for low-code agent authoring; Azure AI Foundry for pro-code model and agent development","Power BI for agent orchestration; Dataverse for prompt engineering","Microsoft 365 Copilot for building custom models; Copilot Studio for licensing"],"answers":[1]},{"n":8,"section":1,"sectionTitle":"Introduction to agentic AI business solutions","prompt":"What is the primary purpose of grounding an agent in enterprise knowledge?","multi":false,"options":["To bypass content filters","To increase response accuracy and relevance by anchoring output in trusted organizational data","To eliminate the need for testing","To reduce token cost"],"answers":[1]},{"n":9,"section":1,"sectionTitle":"Introduction to agentic AI business solutions","prompt":"A stakeholder claims \"agents will replace the process.\" What is the best architect response?","multi":false,"options":["Position agents as augmenting and reshaping the process, with clear boundaries, ownership, and escalation paths","Delay the project until the process is fully automated","Refuse to deploy agents","Agree and remove the existing process"],"answers":[0]},{"n":10,"section":1,"sectionTitle":"Introduction to agentic AI business solutions","prompt":"Which metric is *most* appropriate as a leading indicator of early agent adoption success?","multi":false,"options":["Number of models deployed","Active usage rate and task completion rate among the target user population","Total tokens consumed","Number of environments provisioned"],"answers":[1]},{"n":11,"section":2,"sectionTitle":"Analyze requirements for AI-powered business solutions","prompt":"During discovery, which technique best identifies where an agent will add value in an existing business process?","multi":false,"options":["Reviewing the vendor price list","Counting the number of SharePoint sites","Benchmarking model latency","Process mapping with task-level time, volume, and pain-point analysis"],"answers":[3]},{"n":12,"section":2,"sectionTitle":"Analyze requirements for AI-powered business solutions","prompt":"Which requirement type captures \"the agent must respond within 3 seconds for 95% of requests\"?","multi":false,"options":["Business requirement","Functional requirement","Regulatory requirement","Non-functional requirement"],"answers":[3]},{"n":13,"section":2,"sectionTitle":"Analyze requirements for AI-powered business solutions","prompt":"A customer says \"the agent should answer HR policy questions.\" What is the most important clarifying question?","multi":false,"options":["Which authoritative policy sources are in scope, and who owns their accuracy and currency?","Which LLM should we use?","What color should the chat bubble be?","How many tokens per response?"],"answers":[0]},{"n":14,"section":2,"sectionTitle":"Analyze requirements for AI-powered business solutions","prompt":"Which of the following is a valid *data readiness* concern that could block an agent project?","multi":false,"options":["Content is unstructured, duplicated, out of date, and lacks access labeling","The team prefers agile delivery","The organization uses Microsoft Teams","The sponsor is a VP rather than a director"],"answers":[0]},{"n":15,"section":2,"sectionTitle":"Analyze requirements for AI-powered business solutions","prompt":"What is the best way to define success criteria for an agent before build starts?","multi":false,"options":["Use the vendor's published benchmarks","Define success as \"users like it\"","Agree on baseline metrics, target metrics, and how each will be measured and attributed","Wait until after go-live and measure whatever data exists"],"answers":[2]},{"n":16,"section":2,"sectionTitle":"Analyze requirements for AI-powered business solutions","prompt":"Which stakeholder group is most often overlooked but critical for agent requirements?","multi":false,"options":["The cloud infrastructure team","The procurement team","Frontline workers who perform the task today","The executive sponsor"],"answers":[2]},{"n":17,"section":2,"sectionTitle":"Analyze requirements for AI-powered business solutions","prompt":"A requirement states the agent must handle personal data of EU residents. What must the architecture explicitly address? (Choose two.)","multi":true,"options":["Lawful basis, purpose limitation, and data subject rights","Chat window branding","Data residency and processing location","Model temperature settings"],"answers":[0,2]},{"n":18,"section":2,"sectionTitle":"Analyze requirements for AI-powered business solutions","prompt":"What is the purpose of a feasibility assessment in requirements analysis?","multi":false,"options":["To choose a source control branching strategy","To assign license SKUs","To select a UI framework","To confirm the technology, data, skills, and budget can realistically deliver the intended outcome"],"answers":[3]},{"n":19,"section":2,"sectionTitle":"Analyze requirements for AI-powered business solutions","prompt":"Which output best documents scope boundaries for an agent?","multi":false,"options":["A backlog of user stories only","A network diagram","An explicit in-scope/out-of-scope list with fallback and escalation behavior for out-of-scope requests","A cost estimate"],"answers":[2]},{"n":20,"section":2,"sectionTitle":"Analyze requirements for AI-powered business solutions","prompt":"A business unit requests an agent that duplicates a capability already available in Microsoft 365 Copilot. What should the architect recommend first?","multi":false,"options":["Build the custom agent anyway to satisfy the request","Reject the request outright","Evaluate whether configuring or extending the existing capability meets the need before building new","Escalate to legal"],"answers":[2]},{"n":21,"section":3,"sectionTitle":"Design overall AI strategy for business solutions","prompt":"Which Cloud Adoption Framework stage focuses on defining motivations, outcomes, and business justification for AI?","multi":false,"options":["Migrate","Manage","Strategy","Secure"],"answers":[2]},{"n":22,"section":3,"sectionTitle":"Design overall AI strategy for business solutions","prompt":"An enterprise AI strategy should primarily be owned by:","multi":false,"options":["A cross-functional governance body with executive sponsorship","The external systems integrator","The individual project team","The security team alone"],"answers":[0]},{"n":23,"section":3,"sectionTitle":"Design overall AI strategy for business solutions","prompt":"Which phases best represent the AI agent lifecycle?","multi":false,"options":["Train → publish","Buy → install → forget","Prompt → respond","Ideate → design → build → test → deploy → operate → improve/retire"],"answers":[3]},{"n":24,"section":3,"sectionTitle":"Design overall AI strategy for business solutions","prompt":"What is the strongest argument for standardizing on a common agent platform across business units?","multi":false,"options":["It eliminates the need for a data strategy","It removes the need for testing","It guarantees a lower model cost","It enables reusable governance, security, ALM, and skills, reducing duplicated effort and risk"],"answers":[3]},{"n":25,"section":3,"sectionTitle":"Design overall AI strategy for business solutions","prompt":"Which is a key principle of operational excellence for AI workloads?","multi":false,"options":["Deploy directly to production to move faster","Avoid documenting prompts","Define observability, incident response, and continuous evaluation as first-class design concerns","Let each team choose its own logging approach"],"answers":[2]},{"n":26,"section":3,"sectionTitle":"Design overall AI strategy for business solutions","prompt":"Which strategic risk is created by uncontrolled \"shadow agent\" proliferation?","multi":false,"options":["Faster time to value with no downside","Higher user satisfaction","Reduced licensing spend","Inconsistent data access, ungoverned outputs, duplicated cost, and compliance exposure"],"answers":[3]},{"n":27,"section":3,"sectionTitle":"Design overall AI strategy for business solutions","prompt":"In an AI strategy, what is the role of a \"landing zone\" concept?","multi":false,"options":["A staging table in Dataverse","A pre-configured, governed environment baseline (identity, network, policy, monitoring) that AI workloads deploy into","A marketing campaign","A physical office for the AI team"],"answers":[1]},{"n":28,"section":3,"sectionTitle":"Design overall AI strategy for business solutions","prompt":"Which approach best aligns AI investment with business goals?","multi":false,"options":["Fund only the cheapest ideas","Fund every proposed idea equally","Fund whichever team asks first","Prioritize a portfolio using value, feasibility, risk, and strategic alignment scoring"],"answers":[3]},{"n":29,"section":3,"sectionTitle":"Design overall AI strategy for business solutions","prompt":"What should an AI strategy define regarding skills?","multi":false,"options":["Only certification counts","Nothing; skills emerge naturally","Role definitions, upskilling paths, and a plan for maker enablement plus pro-dev support","Hire only external consultants"],"answers":[2]},{"n":30,"section":3,"sectionTitle":"Design overall AI strategy for business solutions","prompt":"Which statement about the \"build, buy, or extend\" decision at the strategy level is correct?","multi":false,"options":["Always buy to reduce risk","Always build to retain control","The decision is purely a licensing matter","Always build for differentiation and always buy for commodity capabilities, evaluated case by case against total cost and time to value"],"answers":[3]},{"n":31,"section":4,"sectionTitle":"Evaluate costs and benefits of AI solutions","prompt":"Which cost category is most often underestimated in agent solutions?","multi":false,"options":["Ongoing operations: monitoring, evaluation, content maintenance, and change management","Initial license purchase","Domain registration","Laptop hardware"],"answers":[0]},{"n":32,"section":4,"sectionTitle":"Evaluate costs and benefits of AI solutions","prompt":"How is ROI for an AI solution best expressed?","multi":false,"options":["Net quantified benefit (time saved, revenue gained, cost avoided) relative to total cost of ownership over a defined period","Number of agents deployed","Tokens consumed per month","Model accuracy percentage"],"answers":[0]},{"n":33,"section":4,"sectionTitle":"Evaluate costs and benefits of AI solutions","prompt":"A team wants a capability that is core to competitive differentiation and unavailable off the shelf. Best recommendation?","multi":false,"options":["Buy an adjacent product and accept the gap","Build (or extend with significant custom logic), because differentiation justifies the investment","Postpone indefinitely","Use a manual process permanently"],"answers":[1]},{"n":34,"section":4,"sectionTitle":"Evaluate costs and benefits of AI solutions","prompt":"Which is a *soft* benefit that should still be captured in a business case?","multi":false,"options":["Lower storage spend","Improved employee experience and reduced cognitive load","Decommissioned servers","Reduced licensing cost"],"answers":[1]},{"n":35,"section":4,"sectionTitle":"Evaluate costs and benefits of AI solutions","prompt":"Which consumption factor most directly drives variable cost in a generative AI agent?","multi":false,"options":["Number of environments","Number of publishers","Volume of requests and tokens (input + output), plus tool/connector calls","Number of solution files"],"answers":[2]},{"n":36,"section":4,"sectionTitle":"Evaluate costs and benefits of AI solutions","prompt":"A pilot shows 20% time savings for 200 users. What is required before claiming enterprise ROI?","multi":false,"options":["Nothing; extrapolate directly","Only report user satisfaction","Validate that the pilot population, task mix, and measurement method are representative, then model adoption ramp","Double the savings for optimism"],"answers":[2]},{"n":37,"section":4,"sectionTitle":"Evaluate costs and benefits of AI solutions","prompt":"Which technique reduces cost while maintaining quality in a high-volume agent?","multi":false,"options":["Right-sizing the model per task, caching, and constraining retrieval scope","Increasing max output tokens for every response","Removing all grounding","Disabling logging"],"answers":[0]},{"n":38,"section":4,"sectionTitle":"Evaluate costs and benefits of AI solutions","prompt":"Which statement about opportunity cost is correct in AI portfolio planning?","multi":false,"options":["It is irrelevant when budget is fixed","It applies only to hardware","Choosing one initiative consumes scarce capacity that could deliver higher value elsewhere, so it must be considered","It equals the license cost"],"answers":[2]},{"n":39,"section":4,"sectionTitle":"Evaluate costs and benefits of AI solutions","prompt":"When should a \"do nothing\" baseline be included in the business case?","multi":false,"options":["Only if the sponsor requests it","Never","Always, to quantify the cost of the status quo against the proposed solution","Only for regulated industries"],"answers":[2]},{"n":40,"section":4,"sectionTitle":"Evaluate costs and benefits of AI solutions","prompt":"Which is the best approach to funding an agent program?","multi":false,"options":["Charge every cost to IT overhead","One large upfront capital request for all agents","Staged funding tied to value checkpoints, with go/no-go gates after pilot and scaled rollout","No formal funding; use discretionary spend"],"answers":[2]},{"n":41,"section":5,"sectionTitle":"Design AI agents for business solutions","prompt":"Which element defines *what an agent is for* and constrains its behavior?","multi":false,"options":["The connector list","The environment name","The agent instructions/system prompt, including role, scope, tone, and guardrails","The publisher prefix"],"answers":[2]},{"n":42,"section":5,"sectionTitle":"Design AI agents for business solutions","prompt":"An agent must look up order status from an external ERP. What is the correct design element?","multi":false,"options":["A knowledge source","A tool/action that calls the ERP API with the agent passing parameters","A larger system prompt containing all orders","A topic trigger phrase only"],"answers":[1]},{"n":43,"section":5,"sectionTitle":"Design AI agents for business solutions","prompt":"What is the primary purpose of a knowledge source in an agent?","multi":false,"options":["To define the agent's icon","To execute transactions","To store user credentials","To provide grounding content the agent retrieves from to answer questions accurately"],"answers":[3]},{"n":44,"section":5,"sectionTitle":"Design AI agents for business solutions","prompt":"Which trigger type suits an agent that must act when a new high-priority case is created in Dynamics 365?","multi":false,"options":["Scheduled monthly run","Event/record-based automatic trigger","User-typed chat message","Manual admin execution"],"answers":[1]},{"n":45,"section":5,"sectionTitle":"Design AI agents for business solutions","prompt":"When should you split one large agent into multiple specialized agents?","multi":false,"options":["Only when token limits are exceeded","Only if different teams pay for licenses","When scope, knowledge, permissions, or ownership diverge enough that a single agent becomes ambiguous and hard to govern","Never; one agent is always simpler"],"answers":[2]},{"n":46,"section":5,"sectionTitle":"Design AI agents for business solutions","prompt":"In multi-agent design, what does an orchestrator agent do?","multi":false,"options":["Stores conversation history","Handles licensing","Replaces the need for tools","Interprets the user goal and delegates to specialized child agents, then composes the result"],"answers":[3]},{"n":47,"section":5,"sectionTitle":"Design AI agents for business solutions","prompt":"Which is the best practice for handling an out-of-scope user question?","multi":false,"options":["Provide a defined fallback that states the limitation and offers escalation or handoff","End the session immediately without message","Let the model answer from general knowledge silently","Return an empty response"],"answers":[0]},{"n":48,"section":5,"sectionTitle":"Design AI agents for business solutions","prompt":"What identity model should an agent use when reading a user's own documents?","multi":false,"options":["Delegated/user-context authentication so existing permissions are enforced","Anonymous access","A shared service account with broad access","A hardcoded API key"],"answers":[0]},{"n":49,"section":5,"sectionTitle":"Design AI agents for business solutions","prompt":"Which design detail most improves the reliability of an agent's tool selection?","multi":false,"options":["Vague, generic tool descriptions","Clear, distinct tool names, descriptions, and parameter schemas that state when to use each tool","Removing all tool descriptions","Adding as many tools as possible"],"answers":[1]},{"n":50,"section":5,"sectionTitle":"Design AI agents for business solutions","prompt":"Which is a valid reason to include a confirmation step before an agent action?","multi":false,"options":["The action is read-only","The action is irreversible or has financial, legal, or customer-facing impact","The agent is in a test environment","The user is an administrator"],"answers":[1]},{"n":51,"section":6,"sectionTitle":"Design extensibility of AI solutions","prompt":"What is the primary purpose of extending Microsoft 365 Copilot rather than building a standalone agent?","multi":false,"options":["To meet users in their existing workflow and reuse Copilot's orchestration, identity, and grounding","To avoid governance","To avoid licensing","To reduce model quality"],"answers":[0]},{"n":52,"section":6,"sectionTitle":"Design extensibility of AI solutions","prompt":"Which extensibility option grounds Microsoft 365 Copilot in external data indexed into Microsoft Graph?","multi":false,"options":["Power Automate flows","Dataverse plug-ins","Azure Functions","Graph connectors"],"answers":[3]},{"n":53,"section":6,"sectionTitle":"Design extensibility of AI solutions","prompt":"What does the Model Context Protocol (MCP) provide in an extensibility architecture?","multi":false,"options":["A standardized way for agents to discover and call external tools and data sources","A model training framework","A UI component library","A billing meter"],"answers":[0]},{"n":54,"section":6,"sectionTitle":"Design extensibility of AI solutions","prompt":"A declarative agent differs from a custom engine agent primarily because it:","multi":false,"options":["Cannot be published","Uses the host Copilot's orchestrator and model, with configured instructions, knowledge, and actions","Requires you to host your own model and orchestration","Cannot use knowledge sources"],"answers":[1]},{"n":55,"section":6,"sectionTitle":"Design extensibility of AI solutions","prompt":"Which scenario justifies a custom engine agent?","multi":false,"options":["Adding a prompt starter","Simple FAQ grounding on SharePoint","Requirement for a specific model, custom orchestration logic, or non-Microsoft hosting constraints","Adding a few Graph connector sources"],"answers":[2]},{"n":56,"section":6,"sectionTitle":"Design extensibility of AI solutions","prompt":"When designing reusable extensibility components, what is the key architectural goal?","multi":false,"options":["Tight coupling to a single business unit","Loose coupling with well-defined contracts so components can be shared across agents and solutions","Duplicating logic per agent","Hardcoding environment URLs"],"answers":[1]},{"n":57,"section":6,"sectionTitle":"Design extensibility of AI solutions","prompt":"Which is the correct way to expose a legacy on-premises system to an agent?","multi":false,"options":["Open the database to the internet","Copy the database into the prompt","Email exports to users","Expose a governed API layer (with gateway/connector, authentication, and throttling) that the agent calls"],"answers":[3]},{"n":58,"section":6,"sectionTitle":"Design extensibility of AI solutions","prompt":"What must be considered when an extension calls a downstream API on the user's behalf?","multi":false,"options":["Only network latency","Only the API response format","Token exchange, consent, least privilege scopes, and per-user authorization enforcement","Only pricing"],"answers":[2]},{"n":59,"section":6,"sectionTitle":"Design extensibility of AI solutions","prompt":"Which practice best supports versioning of an extensibility component?","multi":false,"options":["Never change the component","Rename it each release","Version the contract (for example /v1, /v2), support a deprecation window, and communicate changes to consumers","Overwrite the existing endpoint in place"],"answers":[2]},{"n":60,"section":6,"sectionTitle":"Design extensibility of AI solutions","prompt":"Which is a valid limitation to design around when extending Copilot experiences?","multi":false,"options":["Extensions can perform any action without permission checks","Knowledge sources are unlimited in all cases","Response size, latency budgets, supported authentication types, and capability limits of the host surface","There are no throttling limits"],"answers":[2]},{"n":61,"section":7,"sectionTitle":"Orchestrate configuration of prebuilt agents and apps","prompt":"A business wants Dynamics 365 sales summarization quickly. What should the architect check first?","multi":false,"options":["How to build a custom agent from scratch","Whether the prebuilt/out-of-box Copilot capability can be enabled and configured to meet the need","Which Azure region to deploy to","Which model to fine-tune"],"answers":[1]},{"n":62,"section":7,"sectionTitle":"Orchestrate configuration of prebuilt agents and apps","prompt":"Which is a correct sequence for rolling out a prebuilt Copilot capability?","multi":false,"options":["Pilot → build custom replacement → enable","Validate prerequisites and licensing → enable in a non-production environment → configure and test → pilot → broad rollout with training","Enable in production → tell users → hope","Buy licenses → disable governance"],"answers":[1]},{"n":63,"section":7,"sectionTitle":"Orchestrate configuration of prebuilt agents and apps","prompt":"What typically controls whether a prebuilt Dynamics 365 Copilot feature is visible to a user?","multi":false,"options":["The user's browser","Licensing, admin feature enablement, security role/privileges, and environment/region availability","Their device type","Their display language only"],"answers":[1]},{"n":64,"section":7,"sectionTitle":"Orchestrate configuration of prebuilt agents and apps","prompt":"Which is the most appropriate way to tailor a prebuilt agent's answers to company terminology?","multi":false,"options":["Fine-tune the base model","Configure grounding sources, custom instructions, and supported customization settings","Rewrite the product code","Ask users to rephrase questions"],"answers":[1]},{"n":65,"section":7,"sectionTitle":"Orchestrate configuration of prebuilt agents and apps","prompt":"When a prebuilt capability *almost* meets requirements, what is the recommended progression?","multi":false,"options":["Build custom immediately","Extend → build custom → configure","Configure → extend → build custom, in that order","Build custom → configure → extend"],"answers":[2]},{"n":66,"section":7,"sectionTitle":"Orchestrate configuration of prebuilt agents and apps","prompt":"Which governance control should be applied before enabling a prebuilt agent broadly?","multi":false,"options":["Only a communications plan","Data access review, DLP policies, environment strategy, and a documented owner","Only a cost estimate","None; prebuilt agents are pre-governed"],"answers":[1]},{"n":67,"section":7,"sectionTitle":"Orchestrate configuration of prebuilt agents and apps","prompt":"A prebuilt agent surfaces data that some users should not see. What is the most likely root cause?","multi":false,"options":["The prompt was too short","The model hallucinated the data","Underlying source permissions are overly broad, and the agent honors those permissions","The agent needs a bigger model"],"answers":[2]},{"n":68,"section":7,"sectionTitle":"Orchestrate configuration of prebuilt agents and apps","prompt":"Which orchestration concern arises when multiple agents are available to the same user?","multi":false,"options":["Nothing; users always pick correctly","Reduced identity requirements","Overlapping scope causing routing ambiguity, so scope, naming, and discovery must be curated","Increased storage cost only"],"answers":[2]},{"n":69,"section":7,"sectionTitle":"Orchestrate configuration of prebuilt agents and apps","prompt":"What is the best approach to managing configuration drift across environments for prebuilt agent settings?","multi":false,"options":["Manual configuration in each environment","Configure only in production","Allow each admin to configure freely","Documented configuration baselines with automated deployment/validation where supported"],"answers":[3]},{"n":70,"section":7,"sectionTitle":"Orchestrate configuration of prebuilt agents and apps","prompt":"Which measure best validates a prebuilt agent rollout succeeded?","multi":false,"options":["Adoption plus measured improvement in the targeted business metric, with user feedback","Number of environments created","Number of admin settings changed","Number of licenses assigned"],"answers":[0]},{"n":71,"section":8,"sectionTitle":"Monitor, analyze, and tune AI agents","prompt":"Which metric best measures whether an agent resolved the user's need without human help?","multi":false,"options":["Containment/resolution rate","Session count","Number of topics published","Average tokens per response"],"answers":[0]},{"n":72,"section":8,"sectionTitle":"Monitor, analyze, and tune AI agents","prompt":"An agent shows high engagement but low resolution. What is the most likely issue?","multi":false,"options":["Too many licenses","Too few users","Network latency","Gaps in knowledge coverage or unclear instructions causing incomplete answers"],"answers":[3]},{"n":73,"section":8,"sectionTitle":"Monitor, analyze, and tune AI agents","prompt":"What is the purpose of an evaluation dataset for an agent?","multi":false,"options":["To provide representative test inputs with expected outcomes so quality can be measured consistently over time","To generate license reports","To train the base model","To store user PII"],"answers":[0]},{"n":74,"section":8,"sectionTitle":"Monitor, analyze, and tune AI agents","prompt":"Which signal indicates possible grounding failure (hallucination)?","multi":false,"options":["Responses with citations to approved sources","Responses that escalate to a human","Responses that are confident but unsupported by any retrieved citation","Responses that ask a clarifying question"],"answers":[2]},{"n":75,"section":8,"sectionTitle":"Monitor, analyze, and tune AI agents","prompt":"Which telemetry is most useful for diagnosing why an agent chose the wrong tool?","multi":false,"options":["Traced reasoning/tool-selection logs with inputs, chosen tool, parameters, and outcome","CPU utilization","License assignment logs","Browser version"],"answers":[0]},{"n":76,"section":8,"sectionTitle":"Monitor, analyze, and tune AI agents","prompt":"What is the recommended cadence approach for tuning an agent?","multi":false,"options":["Continuous improvement loop: monitor → analyze failures → adjust knowledge/instructions/tools → re-evaluate → release","Tune once at go-live","Tune annually regardless of data","Tune only when users complain loudly"],"answers":[0]},{"n":77,"section":8,"sectionTitle":"Monitor, analyze, and tune AI agents","prompt":"Which practice improves retrieval quality most directly?","multi":false,"options":["Adding more unrelated documents","Reducing logging","Increasing temperature","Curating, chunking, and maintaining authoritative content with accurate metadata"],"answers":[3]},{"n":78,"section":8,"sectionTitle":"Monitor, analyze, and tune AI agents","prompt":"Which combination forms a balanced agent scorecard?","multi":false,"options":["Quality, adoption, efficiency (cost/latency), and safety/compliance metrics","Cost only","Latency only","User satisfaction only"],"answers":[0]},{"n":79,"section":8,"sectionTitle":"Monitor, analyze, and tune AI agents","prompt":"A/B testing two sets of agent instructions is best used to:","multi":false,"options":["Replace monitoring","Empirically determine which variant produces better measured outcomes before full rollout","Reduce licensing","Avoid evaluation datasets"],"answers":[1]},{"n":80,"section":8,"sectionTitle":"Monitor, analyze, and tune AI agents","prompt":"Which alerting condition is appropriate for production agents?","multi":false,"options":["Daily license count","Every successful response","Any user message","Spikes in fallback/escalation rate, error rate, latency, or content-filter triggers"],"answers":[3]},{"n":81,"section":9,"sectionTitle":"Manage testing AI-powered business solutions","prompt":"Why is traditional deterministic testing insufficient for generative AI solutions?","multi":false,"options":["Outputs are probabilistic, so testing must assess quality ranges and behaviors, not exact string matches","There is no test tooling available","Tests cannot be automated at all","Models never change"],"answers":[0]},{"n":82,"section":9,"sectionTitle":"Manage testing AI-powered business solutions","prompt":"Which test type verifies the agent refuses harmful or out-of-policy requests?","multi":false,"options":["Load testing","Unit testing of connectors","Safety/red-team (adversarial) testing","Accessibility testing"],"answers":[2]},{"n":83,"section":9,"sectionTitle":"Manage testing AI-powered business solutions","prompt":"What does regression testing protect against in an agent solution?","multi":false,"options":["Network outages","Growth in user adoption","License expiry","Previously working behaviors breaking after prompt, knowledge, model, or tool changes"],"answers":[3]},{"n":84,"section":9,"sectionTitle":"Manage testing AI-powered business solutions","prompt":"Which metric pair is most relevant for evaluating retrieval-grounded answers?","multi":false,"options":["CPU and memory","Groundedness and relevance","Uptime and MTTR only","Storage and bandwidth"],"answers":[1]},{"n":85,"section":9,"sectionTitle":"Manage testing AI-powered business solutions","prompt":"Who should participate in user acceptance testing for a business agent?","multi":false,"options":["Only executives","Representative end users and business process owners performing real tasks","Only the security team","Only the development team"],"answers":[1]},{"n":86,"section":9,"sectionTitle":"Manage testing AI-powered business solutions","prompt":"What is the correct treatment of test data containing personal information?","multi":false,"options":["Store it in a public repository","Use production PII freely in test environments","Delete all test data before testing","Use masked, synthetic, or minimized data with the same protection controls as production"],"answers":[3]},{"n":87,"section":9,"sectionTitle":"Manage testing AI-powered business solutions","prompt":"Which testing activity best validates end-to-end business value?","multi":false,"options":["Prompt spell-check","Scenario-based testing that follows a complete business process across agent, tools, and downstream systems","Component unit tests","Icon review"],"answers":[1]},{"n":88,"section":9,"sectionTitle":"Manage testing AI-powered business solutions","prompt":"How should test results influence release decisions?","multi":false,"options":["Let the maker decide alone","Release regardless of results","Define quality gates with thresholds (for example groundedness, task success, safety) that must pass to promote","Release only if zero defects exist"],"answers":[2]},{"n":89,"section":9,"sectionTitle":"Manage testing AI-powered business solutions","prompt":"When a model version is updated by the platform, what should happen?","multi":false,"options":["Re-run the evaluation suite and regression tests to detect behavior changes before or immediately after adoption","Rebuild the agent from scratch","Nothing; behavior is guaranteed identical","Disable the agent permanently"],"answers":[0]},{"n":90,"section":9,"sectionTitle":"Manage testing AI-powered business solutions","prompt":"Which is the best way to scale testing effort sustainably?","multi":false,"options":["Manual testing only","Automated evaluation pipelines with curated datasets, run on each significant change","Rely on user complaints","Test only at year end"],"answers":[1]},{"n":91,"section":10,"sectionTitle":"Design ALM process for AI-powered business solutions","prompt":"Which environment strategy is recommended for Power Platform / Copilot Studio ALM?","multi":false,"options":["Development in production, test in development","Separate development, test, and production environments with controlled promotion","A single environment for everything","One environment per user"],"answers":[1]},{"n":92,"section":10,"sectionTitle":"Design ALM process for AI-powered business solutions","prompt":"What is the correct way to move a Copilot Studio agent between environments?","multi":false,"options":["Copy the URL","Recreate manually in each environment","Package the agent in a managed solution and deploy through the pipeline","Export chat transcripts"],"answers":[2]},{"n":93,"section":10,"sectionTitle":"Design ALM process for AI-powered business solutions","prompt":"Why should production deployments use *managed* solutions?","multi":false,"options":["They are faster to import","They skip validation","They cost less","They prevent uncontrolled in-place edits and support clean upgrade/uninstall semantics"],"answers":[3]},{"n":94,"section":10,"sectionTitle":"Design ALM process for AI-powered business solutions","prompt":"What should environment variables be used for?","multi":false,"options":["Storing secrets in plain text","Naming agents","Storing conversation history","Parameterizing environment-specific values (URLs, IDs, settings) so the same solution deploys everywhere"],"answers":[3]},{"n":95,"section":10,"sectionTitle":"Design ALM process for AI-powered business solutions","prompt":"Where should secrets and API keys used by agent connections be stored?","multi":false,"options":["In a shared spreadsheet","In the solution as plain text","In Azure Key Vault, referenced securely by environment variables/connections","In agent instructions"],"answers":[2]},{"n":96,"section":10,"sectionTitle":"Design ALM process for AI-powered business solutions","prompt":"Which artifacts should be under source control for an AI solution?","multi":false,"options":["Only documentation","Solution/agent definitions, prompts/instructions, configuration, evaluation datasets, and pipeline definitions","Nothing; the platform stores everything","Only C# code"],"answers":[1]},{"n":97,"section":10,"sectionTitle":"Design ALM process for AI-powered business solutions","prompt":"What is the primary benefit of automated deployment pipelines for agents?","multi":false,"options":["Eliminates the need for testing","Reduces license cost","Removes governance requirements","Repeatable, auditable, low-risk promotion with consistent configuration and approvals"],"answers":[3]},{"n":98,"section":10,"sectionTitle":"Design ALM process for AI-powered business solutions","prompt":"Which practice supports safe rollback of an agent release?","multi":false,"options":["Deleting the agent","No versioning","Versioned releases with the ability to restore the prior published version, plus documented rollback steps","Editing production directly"],"answers":[2]},{"n":99,"section":10,"sectionTitle":"Design ALM process for AI-powered business solutions","prompt":"How should makers (citizen developers) be integrated into ALM?","multi":false,"options":["Give all makers production access","Provide governed maker environments, standards, and a promotion path with review gates","Block makers entirely","Let makers deploy without review"],"answers":[1]},{"n":100,"section":10,"sectionTitle":"Design ALM process for AI-powered business solutions","prompt":"Which deployment approach reduces blast radius for a major agent change?","multi":false,"options":["Big-bang release to all users","Silent release with no monitoring","Release on Friday evening","Progressive rollout (ring-based/canary) with monitoring and defined rollback criteria"],"answers":[3]},{"n":101,"section":11,"sectionTitle":"Responsible AI, security, governance, risk, and compliance","prompt":"Which set correctly lists Microsoft's Responsible AI principles?","multi":false,"options":["Confidentiality; integrity; availability","Speed; cost; scale; accuracy","Availability; durability; latency; throughput","Fairness; reliability and safety; privacy and security; inclusiveness; transparency; accountability"],"answers":[3]},{"n":102,"section":11,"sectionTitle":"Responsible AI, security, governance, risk, and compliance","prompt":"Which principle is most directly at risk when an agent performs better for one demographic group than another?","multi":false,"options":["Transparency","Reliability","Fairness","Accountability"],"answers":[2]},{"n":103,"section":11,"sectionTitle":"Responsible AI, security, governance, risk, and compliance","prompt":"What is the primary purpose of a Data Loss Prevention (DLP) policy in Power Platform?","multi":false,"options":["To restrict which connectors and data sources can be combined, preventing unsanctioned data flows","To assign licenses","To improve model accuracy","To reduce token consumption"],"answers":[0]},{"n":104,"section":11,"sectionTitle":"Responsible AI, security, governance, risk, and compliance","prompt":"Which control ensures an agent cannot surface content a user is not entitled to see?","multi":false,"options":["A shorter prompt","Enforcing existing identity and permissions at retrieval time (permission trimming) via delegated access","Turning off logging","A disclaimer in the response"],"answers":[1]},{"n":105,"section":11,"sectionTitle":"Responsible AI, security, governance, risk, and compliance","prompt":"What does a Responsible AI impact assessment produce?","multi":false,"options":["Documented intended uses, stakeholders, potential harms, mitigations, and residual risk with an accountable owner","A license inventory","A cost model","A network topology"],"answers":[0]},{"n":106,"section":11,"sectionTitle":"Responsible AI, security, governance, risk, and compliance","prompt":"Which mitigation best addresses prompt injection from untrusted content?","multi":false,"options":["Trusting all retrieved content as instructions","Removing citations","Treating retrieved content as data, isolating instructions, validating tool inputs, and constraining action permissions","Increasing max tokens"],"answers":[2]},{"n":107,"section":11,"sectionTitle":"Responsible AI, security, governance, risk, and compliance","prompt":"Which capability supports compliance requirements such as eDiscovery and retention for Copilot interactions?","multi":false,"options":["Microsoft Purview","Microsoft Fabric","Azure DevOps","Power BI"],"answers":[0]},{"n":108,"section":11,"sectionTitle":"Responsible AI, security, governance, risk, and compliance","prompt":"What is the correct approach to transparency for users interacting with an agent?","multi":false,"options":["Hide that it is AI to increase trust","Disclose only to administrators","Disclose only if asked","Clearly disclose AI involvement, its limitations, data usage, and how to reach a human"],"answers":[3]},{"n":109,"section":11,"sectionTitle":"Responsible AI, security, governance, risk, and compliance","prompt":"Which is an appropriate risk response when an agent handles a high-impact regulated decision?","multi":false,"options":["Human review/approval, decision logging, explainability, and periodic audit","Remove logging to protect privacy","Rely on the model provider's assurances alone","Full autonomy with no oversight"],"answers":[0]},{"n":110,"section":11,"sectionTitle":"Responsible AI, security, governance, risk, and compliance","prompt":"Which combination best represents defense in depth for an enterprise agent?","multi":false,"options":["Network firewall only","Identity and least privilege; DLP and data classification; content safety filters; monitoring and audit; incident response","Strong passwords only","A single content filter"],"answers":[1]}]/*__END__*/;
+const LETTERS = ["A","B","C","D","E","F"];
+const STORE_KEY = "ab100-mock-attempt-v1";
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;" }[c]));
+
+const SECTIONS = [];
+QUESTIONS.forEach(q => {
+  if (!SECTIONS.some(s => s.num === q.section)) SECTIONS.push({ num: q.section, title: q.sectionTitle });
+});
+SECTIONS.sort((a,b) => a.num - b.num);
+
+let state = null;
+let tick = null;
+
+/* ---------- setup screen ---------- */
+$("statQ").textContent = QUESTIONS.length;
+
+const scopeSel = $("scopeSel");
+scopeSel.innerHTML = '<option value="all">All modules (full exam)</option>' +
+  SECTIONS.map(s => `<option value="${s.num}">${s.num}. ${esc(s.title)}</option>`).join("");
+
+function refreshCounts() {
+  const pool = poolFor(scopeSel.value).length;
+  const opts = [10, 20, 30, 55, 110].filter(n => n < pool);
+  opts.push(pool);
+  $("countSel").innerHTML = opts.map(n =>
+    `<option value="${n}"${n === pool ? " selected" : ""}>${n} question${n>1?"s":""}${n===pool?" (all)":""}</option>`).join("");
+}
+function poolFor(scope) {
+  return scope === "all" ? QUESTIONS.slice() : QUESTIONS.filter(q => String(q.section) === String(scope));
+}
+scopeSel.addEventListener("change", refreshCounts);
+refreshCounts();
+
+let mode = "practice";
+$("modeCards").addEventListener("click", e => {
+  const b = e.target.closest(".mode-card");
+  if (!b) return;
+  mode = b.dataset.mode;
+  [...$("modeCards").children].forEach(c => c.setAttribute("aria-pressed", String(c === b)));
+});
+
+$("themeBtn").addEventListener("click", () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  document.documentElement.setAttribute("data-theme", cur === "dark" ? "light" : "dark");
+});
+
+/* ---------- attempt lifecycle ---------- */
+function shuffled(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startAttempt(list, opts) {
+  state = {
+    mode: opts.mode,
+    ids: list.map(q => q.n),
+    i: 0,
+    picked: {},
+    flags: {},
+    revealed: {},
+    endsAt: opts.mode === "exam" ? Date.now() + minutesFor(list.length) * 60000 : null,
+    done: false
+  };
+  save();
+  show("exam");
+  buildMap();
+  render();
+  startTimer();
+}
+function minutesFor(n) { return Math.max(10, Math.round(n * 150 / 110)); }
+
+$("startBtn").addEventListener("click", () => {
+  let pool = poolFor(scopeSel.value);
+  const n = Math.min(+$("countSel").value, pool.length);
+  pool = $("orderSel").value === "rand" ? shuffled(pool) : pool;
+  pool = pool.slice(0, n);
+  if ($("orderSel").value !== "rand") pool.sort((a,b) => a.n - b.n);
+  startAttempt(pool, { mode });
+});
+
+$("restartBtn").addEventListener("click", () => {
+  if (state && !state.done && !confirm("Discard the current attempt?")) return;
+  clearInterval(tick);
+  localStorage.removeItem(STORE_KEY);
+  state = null;
+  show("start");
+});
+$("againBtn").addEventListener("click", () => { localStorage.removeItem(STORE_KEY); state = null; show("start"); });
+$("retryWrongBtn").addEventListener("click", () => {
+  const wrong = state.ids.map(byId).filter(q => !isCorrect(q));
+  if (!wrong.length) { alert("Nothing to retry — every question was correct."); return; }
+  startAttempt(wrong, { mode: state.mode });
+});
+
+function show(view) {
+  $("startView").classList.toggle("hidden", view !== "start");
+  $("examView").classList.toggle("hidden", view !== "exam");
+  $("resultView").classList.toggle("hidden", view !== "result");
+  $("restartBtn").classList.toggle("hidden", view === "start");
+  window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+}
+
+const byId = n => QUESTIONS.find(q => q.n === n);
+const cur = () => byId(state.ids[state.i]);
+
+function isCorrect(q) {
+  const p = (state.picked[q.n] || []).slice().sort().join(",");
+  return p !== "" && p === q.answers.slice().sort().join(",");
+}
+function isAnswered(q) { return (state.picked[q.n] || []).length > 0; }
+
+/* ---------- rendering ---------- */
+function render() {
+  const q = cur();
+  $("qCounter").textContent = `Question ${state.i + 1} of ${state.ids.length}`;
+  $("qModule").textContent = `Module ${q.section}: ${q.sectionTitle}`;
+  $("qMulti").classList.toggle("hidden", !q.multi);
+  $("qMulti").textContent = `Choose ${q.answers.length}`;
+  $("qText").innerHTML = esc(q.prompt).replace(/\n+/g, "<br>");
+
+  const revealed = state.mode === "practice" && state.revealed[q.n];
+  const picked = state.picked[q.n] || [];
+
+  $("answers").innerHTML = q.options.map((t, i) => {
+    const sel = picked.includes(i);
+    let cls = "answer";
+    if (revealed) {
+      cls += " locked";
+      if (q.answers.includes(i)) cls += " correct";
+      else if (sel) cls += " wrong";
+    }
+    return `<button class="${cls}" data-i="${i}" aria-pressed="${sel}">
+      <span class="let">${LETTERS[i]}</span><span>${esc(t)}</span></button>`;
+  }).join("");
+
+  const fb = $("feedback");
+  if (revealed) {
+    const ok = isCorrect(q);
+    fb.className = "feedback " + (ok ? "ok" : "no");
+    const right = q.answers.map(i => LETTERS[i]).join(" and ");
+    fb.innerHTML = ok
+      ? `<b>Correct.</b> ${esc(q.options[q.answers[0]])}`
+      : `<b>Not quite.</b> The correct answer is <b>${right}</b>: ${q.answers.map(i => esc(q.options[i])).join(" · ")}`;
+    fb.classList.remove("hidden");
+  } else {
+    fb.classList.add("hidden");
+  }
+
+  $("flagBtn").textContent = state.flags[q.n] ? "Unflag" : "Flag for review";
+  $("prevBtn").disabled = state.i === 0;
+  $("nextBtn").textContent = state.i === state.ids.length - 1 ? "Finish →" : "Next →";
+  $("timerCard").classList.toggle("hidden", state.mode !== "exam");
+
+  const answered = state.ids.filter(n => isAnswered(byId(n))).length;
+  $("progBar").style.width = (answered / state.ids.length * 100) + "%";
+  $("progText").textContent = `${answered} of ${state.ids.length} answered`;
+  updateMap();
+}
+
+$("answers").addEventListener("click", e => {
+  const b = e.target.closest(".answer");
+  if (!b) return;
+  const q = cur();
+  if (state.mode === "practice" && state.revealed[q.n]) return;
+  const i = +b.dataset.i;
+  let picked = state.picked[q.n] || [];
+  if (q.multi) {
+    picked = picked.includes(i) ? picked.filter(x => x !== i) : picked.concat(i);
+    if (picked.length > q.answers.length) picked.shift();
+  } else {
+    picked = picked.includes(i) ? [] : [i];
+  }
+  state.picked[q.n] = picked;
+  if (state.mode === "practice" && picked.length === q.answers.length) state.revealed[q.n] = true;
+  save();
+  render();
+});
+
+$("prevBtn").addEventListener("click", () => { if (state.i > 0) { state.i--; save(); render(); } });
+$("nextBtn").addEventListener("click", () => {
+  if (state.i === state.ids.length - 1) finish();
+  else { state.i++; save(); render(); }
+});
+$("clearBtn").addEventListener("click", () => {
+  const q = cur();
+  delete state.picked[q.n];
+  delete state.revealed[q.n];
+  save(); render();
+});
+$("flagBtn").addEventListener("click", () => {
+  const q = cur();
+  state.flags[q.n] = !state.flags[q.n];
+  save(); render();
+});
+$("submitBtn").addEventListener("click", () => {
+  const un = state.ids.filter(n => !isAnswered(byId(n))).length;
+  if (un && !confirm(`${un} question${un>1?"s are":" is"} unanswered. Submit anyway?`)) return;
+  finish();
+});
+
+document.addEventListener("keydown", e => {
+  if ($("examView").classList.contains("hidden")) return;
+  if (e.target.tagName === "SELECT" || e.target.tagName === "INPUT") return;
+  const k = e.key.toUpperCase();
+  const idx = LETTERS.indexOf(k);
+  if (idx >= 0 && idx < cur().options.length) {
+    $("answers").querySelector(`.answer[data-i="${idx}"]`)?.click();
+  } else if (e.key === "ArrowRight") $("nextBtn").click();
+  else if (e.key === "ArrowLeft") $("prevBtn").click();
+  else if (k === "F") $("flagBtn").click();
+});
+
+/* ---------- map ---------- */
+function buildMap() {
+  $("gridmap").innerHTML = state.ids.map((n, i) =>
+    `<button data-i="${i}" title="Question ${i+1}">${i+1}</button>`).join("");
+}
+function updateMap() {
+  [...$("gridmap").children].forEach((b, i) => {
+    const q = byId(state.ids[i]);
+    b.className = "";
+    if (isAnswered(q)) b.classList.add("answered");
+    if (state.flags[q.n]) b.classList.add("flagged");
+    if (i === state.i) b.classList.add("current");
+  });
+}
+$("gridmap").addEventListener("click", e => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  state.i = +b.dataset.i; save(); render();
+});
+
+/* ---------- timer ---------- */
+function startTimer() {
+  clearInterval(tick);
+  if (state.mode !== "exam") return;
+  const paint = () => {
+    const left = Math.max(0, state.endsAt - Date.now());
+    const m = Math.floor(left / 60000), s = Math.floor(left % 60000 / 1000);
+    const el = $("timer");
+    el.textContent = `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+    el.classList.toggle("low", left < 5 * 60000);
+    if (left <= 0) { clearInterval(tick); finish(true); }
+  };
+  paint();
+  tick = setInterval(paint, 1000);
+}
+
+/* ---------- results ---------- */
+function finish(timeUp) {
+  clearInterval(tick);
+  state.done = true;
+  save();
+  const total = state.ids.length;
+  const correct = state.ids.map(byId).filter(isCorrect).length;
+  const pct = Math.round(correct / total * 100);
+  const pass = pct >= 70;
+
+  $("scorePct").textContent = pct + "%";
+  $("scoreRaw").textContent = `${correct} / ${total} correct`;
+  const col = pass ? "var(--cp-success)" : "var(--cp-danger)";
+  $("ring").style.background = `conic-gradient(${col} ${pct}%, var(--cp-surface-soft) ${pct}% 100%)`;
+  $("verdict").textContent = pass ? "Pass" : "Not yet a pass";
+  $("verdict").style.color = col;
+  $("verdictText").textContent =
+    (timeUp ? "Time expired. " : "") +
+    (pass
+      ? pct >= 90 ? "Excellent — you are exam ready." : "Solid result. Tighten up the weakest modules below."
+      : "Below the 70% pass mark. Focus on the lowest-scoring modules below, then retry.");
+
+  const rows = SECTIONS.map(s => {
+    const qs = state.ids.map(byId).filter(q => q.section === s.num);
+    if (!qs.length) return "";
+    const c = qs.filter(isCorrect).length;
+    const p = Math.round(c / qs.length * 100);
+    const bc = p >= 70 ? "var(--cp-success)" : p >= 50 ? "var(--cp-warning)" : "var(--cp-danger)";
+    return `<tr><td>${s.num}. ${esc(s.title)}</td>
+      <td><div class="bar"><i style="width:${p}%;background:${bc}"></i></div></td>
+      <td class="num">${c}/${qs.length}</td></tr>`;
+  }).join("");
+  $("sectionRows").innerHTML = rows;
+
+  renderReview("all");
+  show("result");
+}
+
+let reviewFilter = "all";
+$("reviewFilters").addEventListener("click", e => {
+  const b = e.target.closest(".chip");
+  if (!b) return;
+  reviewFilter = b.dataset.f;
+  [...$("reviewFilters").children].forEach(c => c.setAttribute("aria-pressed", String(c === b)));
+  renderReview(reviewFilter);
+});
+
+function renderReview(filter) {
+  const items = state.ids.map(byId).filter(q => {
+    const ok = isCorrect(q), ans = isAnswered(q);
+    if (filter === "wrong") return ans && !ok;
+    if (filter === "correct") return ok;
+    if (filter === "skipped") return !ans;
+    return true;
+  });
+  if (!items.length) { $("reviewList").innerHTML = `<p style="color:var(--cp-text-muted)">Nothing in this category.</p>`; return; }
+  $("reviewList").innerHTML = items.map(q => {
+    const ok = isCorrect(q), ans = isAnswered(q);
+    const tag = !ans ? '<span class="tag skip">Skipped</span>'
+      : ok ? '<span class="tag ok">Correct</span>' : '<span class="tag no">Incorrect</span>';
+    const yours = (state.picked[q.n] || []).map(i => `${LETTERS[i]}. ${esc(q.options[i])}`).join(" · ") || "—";
+    const right = q.answers.map(i => `${LETTERS[i]}. ${esc(q.options[i])}`).join(" · ");
+    return `<div class="review-item">
+      <div class="qhead">${tag}<span class="pill pill-muted">Q${q.n}</span>
+        <span class="pill pill-muted">Module ${q.section}</span></div>
+      <div style="font-weight:600;margin:6px 0">${esc(q.prompt)}</div>
+      ${ok ? "" : `<div class="ans-line"><span class="lbl">Your answer:</span> ${yours}</div>`}
+      <div class="ans-line"><span class="lbl">Correct answer:</span> <b>${right}</b></div>
+    </div>`;
+  }).join("");
+}
+
+/* ---------- persistence ---------- */
+function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {} }
+(function restore() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const s = JSON.parse(raw);
+    if (!s || !s.ids || s.done) return;
+    $("resumeBtn").classList.remove("hidden");
+    $("resumeBtn").addEventListener("click", () => {
+      state = s;
+      if (state.mode === "exam" && state.endsAt < Date.now()) state.endsAt = Date.now() + 60000;
+      show("exam"); buildMap(); render(); startTimer();
+    });
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>
