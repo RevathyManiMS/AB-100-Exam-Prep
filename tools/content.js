@@ -56,13 +56,14 @@ const SITE = {
 
   examNotes: {
     format: {
-      summary: "Expect roughly a **50/50 split between single-answer multiple choice and multi-select (\"select all that apply\") questions**. Most are wrapped in a short business scenario, and several present a component list you must map onto a Dynamics 365 or Copilot Studio design.",
+      summary: "Microsoft's exams mix **single-answer multiple choice** with **multiple-response (\"select all that apply\")** questions, wrapped in short business scenarios. Prepare as though **half your marks depend on multi-select**, because that is the format most candidates under-practise.",
       points: [
         "Single-answer questions usually test a **decision rule** — configure vs. extend vs. build, managed vs. unmanaged, tool vs. knowledge source, autonomous vs. human-in-the-loop.",
-        "Multi-select questions usually test a **set** — the components of a design, the steps of a deployment, the metrics on a dashboard, the settings an admin must enable.",
-        "Several questions name a specific product surface (the Copilot Studio **Monitor** page, Power Platform admin center, Application Insights, Azure Key Vault). Knowing *where* a setting lives matters as much as knowing what it does.",
+        "Multiple-response questions usually test a **set** — the components of a design, the steps of a deployment, the metrics on a dashboard, the settings an admin must enable.",
+        "The skills outline is written in terms of product surfaces, so knowing **where a setting lives** (the Copilot Studio Monitor page, Power Platform admin center, Application Insights, Azure Key Vault) matters as much as knowing what it does.",
         "Scenario stems are long but the last sentence carries the requirement. Read it first, then scan the stem only for the constraint it names — cost, latency, compliance, region, or existing licences.",
-        "Product naming has shifted recently (**Copilot Credits** not messages, **Monitor** not Analytics, **customer service representative** not agent). Recognise both the old and the new term; the exam tends to use the current one."
+        "Product naming has shifted recently (**Copilot Credits** not messages, **Monitor** not Analytics, **customer service representative** not agent). Learn both the old and the current term; documentation and any current assessment will use the current one.",
+        "Check the official [skills measured document](https://learn.microsoft.com/en-us/credentials/certifications/agentic-ai-business-solutions-architect/) before you sit — it is versioned, and Microsoft publishes the change log when it is updated."
       ]
     },
 
@@ -70,17 +71,17 @@ const SITE = {
       "**Count the answers you are asked for.** \"Select two\" and \"select all that apply\" behave differently — the second gives no clue how many are correct.",
       "**Assume no partial credit.** Three right out of four scores zero, so an extra plausible-but-wrong tick is as costly as a missing one.",
       "**Test each option independently against the stem**, as a true/false question in its own right. Do not compare options with each other.",
-      "**Reject options that are true in general but not required by the scenario.** This is the single most common multi-select trap: a correct statement that does not answer the question asked.",
+      "**Reject options that are true in general but not required by the scenario.** This is the most common multiple-response trap: a correct statement that does not answer the question asked.",
       "**Watch for two options that say the same thing differently.** If both cannot be wrong and both cannot be right, one of them is worded to fail on a detail — usually a wrong product, wrong environment, or wrong lifecycle stage.",
       "**Prefer the complete, governed set.** If one option covers monitoring, one covers alerting and one covers dashboards, the intended answer is often all three, not the single most powerful one.",
-      "**On \"which components would you include\" questions**, include the security and lifecycle components. Candidates remember the agent and the data source and forget the connection reference, environment variable, or DLP policy."
+      "**On \"which components would you include\" questions**, include the security and lifecycle components. It is easy to remember the agent and the data source and forget the connection reference, environment variable, or DLP policy."
     ],
 
     hotspots: [
       {
         h: "Azure Monitor, Application Insights and Log Analytics",
         modules: [8],
-        why: "The most over-represented topic relative to its module weighting. Questions rarely ask you to write a query — they ask which service does what, and how telemetry gets out of Copilot Studio in the first place.",
+        why: "Three services with overlapping names that candidates routinely mix up. The useful knowledge is which service does what, and how telemetry gets out of Copilot Studio in the first place — not how to write a query.",
         facts: [
           "**Azure Monitor** is the umbrella observability platform (metrics, logs, traces, alerts, dashboards, workbooks). **Application Insights** is its application performance monitoring capability. A **Log Analytics workspace** is the underlying data store for log and trace tables. Queries are written in **Kusto Query Language (KQL)**.",
           "**Agent-level telemetry:** in Copilot Studio, `Settings → Advanced → Application Insights`, paste the Application Insights **connection string**. Optional toggles log messages and events, conversation details, sensitive activity properties and node execution. Test-pane traffic is included unless you filter on `designMode`.",
@@ -92,10 +93,10 @@ const SITE = {
         ],
         answer: [
           "\"Which service stores the logs?\" → the **Log Analytics workspace**. \"Which service do you configure in the agent?\" → **Application Insights** (via its connection string). \"Which platform raises the alert?\" → **Azure Monitor**.",
-          "If the scenario mentions a **Managed Environment** and tenant-wide reporting, the answer is the admin-center **data export**, not per-agent configuration.",
-          "If it mentions diagnosing one slow tool call, the answer is Application Insights **dependencies** / the activity map — not the Copilot Studio Monitor page."
+          "If a scenario mentions a **Managed Environment** and tenant-wide reporting, the fit is the admin-center **data export**, not per-agent configuration.",
+          "If it mentions diagnosing one slow tool call, the fit is Application Insights **dependencies** / the activity map — not the Copilot Studio Monitor page."
         ],
-        trap: "Application Insights is not an alternative to a Log Analytics workspace — modern Application Insights resources are **workspace-based** and store their data in one. Options that present them as competing choices are wrong.",
+        trap: "Application Insights is not an alternative to a Log Analytics workspace — modern Application Insights resources are **workspace-based** and store their data in one. Treating them as competing choices is wrong.",
         sources: [
           ["Azure Monitor overview", "https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/overview"],
           ["Log Analytics workspace", "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview"],
@@ -108,7 +109,7 @@ const SITE = {
       {
         h: "The Copilot Studio analytics surface — testing and evaluation",
         modules: [9, 8],
-        why: "Comes up repeatedly, and the naming has changed, so older study material will actively mislead you here.",
+        why: "Microsoft renamed and restructured this surface recently, so a lot of older study material is now actively wrong. Worth relearning from current documentation rather than memory.",
         facts: [
           "The page is now documented as **Monitor** (some UI still says Analytics). Its areas are **Summary, Overview, Savings, Custom metrics, Effectiveness and Use**.",
           "Current conversational metrics: **Average DAU/MAU**; **conversation outcomes** of `Resolved`, `Escalated`, `Abandoned` and `Unengaged` (with resolved split into confirmed and implied); **reactions** (thumbs up/down and comments); **Satisfaction score** as a CSAT average out of 5; **Sentiment** (preview); connected/child agent calls, success rate and status; **answer rate** and **answer quality** (Good/Poor); knowledge source use and errors.",
@@ -120,8 +121,8 @@ const SITE = {
         ],
         answer: [
           "Pre-deployment quality gate → **agent evaluations against a test set**. Post-deployment quality signal → **Monitor** outcomes, reactions and answer quality.",
-          "\"High engagement, low resolution\" scenarios → a knowledge gap or unclear instructions, diagnosed from unresolved outcomes and transcripts.",
-          "Anything asking you to prove savings to a sponsor → the **Savings** calculator plus adoption data, not raw session counts."
+          "\"High engagement, low resolution\" → a knowledge gap or unclear instructions, diagnosed from unresolved outcomes and transcripts.",
+          "Proving savings to a sponsor → the **Savings** calculator plus adoption data, not raw session counts."
         ],
         trap: "Do not assume the old card names — *total sessions, engagement rate, resolution rate, escalation rate, abandon rate* — are still what the product shows. And the test pane does not reproduce every published-channel behaviour, so it never replaces validation in the real channel.",
         sources: [
@@ -136,13 +137,13 @@ const SITE = {
       {
         h: "Connections and connection references after a production deployment",
         modules: [10],
-        why: "Almost guaranteed to appear, usually phrased as \"will this solution have connections, and will you need to reconfigure them after deploying to production?\"",
+        why: "A precise, factual distinction that is easy to get half-right. \"Does this solution have connections, and what has to be reconfigured in production?\" is a genuine architecture question, and the answer is more nuanced than most people expect.",
         facts: [
           "A **connection** stores the authentication credentials for a connector. It is **environment-specific** and is *not* a solution component.",
           "A **connection reference** *is* a solution component. It is the indirection layer that apps, flows and agents point at, so the artefact does not hard-code a credential.",
           "On export and import, the **connection reference metadata travels with the solution; the underlying connection does not**. Every connection reference must be bound to a valid connection that exists in the target environment.",
           "That binding can be supplied three ways: chosen **interactively** during import, supplied by a **Power Platform pipeline** stage, or prepopulated from a **deployment settings JSON file** (`ConnectionId` / `ConnectorId` values) in an automated pipeline.",
-          "So the precise answer is: **yes, connections must be configured for production — but not necessarily manually after the fact.** A properly automated deployment binds them during import, and an existing valid connection in the target can be reused.",
+          "So the precise position is: **yes, connections must be configured for production — but not necessarily manually after the fact.** A properly automated deployment binds them during import, and an existing valid connection in the target can be reused.",
           "**Environment variables** are a different mechanism: they parameterise configuration (URLs, IDs, JSON, data source parameters), not connector authentication. A solution normally needs both.",
           "**Secrets never go in the solution or the settings file.** Keep them in **Azure Key Vault** and use a secret-type environment variable that stores the vault and secret reference only."
         ],
@@ -163,7 +164,7 @@ const SITE = {
       {
         h: "ALM — managed solutions in production",
         modules: [10],
-        why: "The companion question to connection references. Usually \"will you use a managed solution in production?\" with distractors about convenience and hotfixes.",
+        why: "The companion topic to connection references, and the place where \"what would you actually do\" and \"what is technically possible\" diverge most sharply.",
         facts: [
           "**Unmanaged** is the development and source-control form. **Managed** is the build artefact you ship to test, UAT and production. The answer to \"managed in production?\" is **yes**.",
           "Inside a managed solution components cannot be edited directly, managed solutions cannot be exported, and uninstalling one **removes its customisations** — which is what makes clean rollback possible.",
@@ -177,7 +178,7 @@ const SITE = {
           "Enterprise with existing engineering practice and source control → **Azure DevOps or GitHub Actions** with the build tools.",
           "\"A maker fixed a bug directly in production\" → an **unmanaged layer** was created; remove it and redeploy from source."
         ],
-        trap: "Never accept an option that edits production directly, ships unmanaged to production, or treats production as the place to author. Also watch the distinction between an unmanaged *layer* and an unmanaged *solution* — the exam uses both.",
+        trap: "Never accept an option that edits production directly, ships unmanaged to production, or treats production as the place to author. Also keep the distinction between an unmanaged *layer* and an unmanaged *solution* clear — they are different things.",
         sources: [
           ["Solution concepts", "https://learn.microsoft.com/en-us/power-platform/alm/solution-concepts-alm"],
           ["Power Platform pipelines", "https://learn.microsoft.com/en-us/power-platform/alm/pipelines"],
@@ -189,24 +190,24 @@ const SITE = {
       {
         h: "Dynamics 365 design components — Field Service and Customer Service",
         modules: [7, 5],
-        why: "A whole cluster of questions asks you to pick the components of a Dynamics 365 design. These are usually multi-select, and the marks turn on knowing the real, current feature names.",
+        why: "Choosing the components of a Dynamics 365 design depends on knowing the real, current feature names — and this area has had a lot of renaming and several retirements, so half-remembered names will let you down.",
         facts: [
           "**Field Service Copilot** covers: natural-language questions in the web app via the **Copilot side pane**; **work order and booking summaries**; **AI-powered work order update** on mobile (preview); inspection template creation; form fill assistance; AI filtering and charting of views; row summaries; timeline highlights; and the **agent feed** (preview).",
           "Field Service side pane requires at least the **Field Service – Dispatcher** or **Field Service – Resource** role and is on by default unless disabled. Work order summaries need a **paid** environment — trials are not supported — and admins can replace the default summary with custom configurations.",
           "The named scheduling agent is the **Scheduling Operations Agent**. There is no current \"Work Order Agent\" in the Field Service Copilot overview.",
-          "**Retired — do not choose these:** the Field Service **Outlook add-in**, Field Service Teams app, Viva Connections and Planner integrations became unsupported after 30 October 2025, and the Field Service plugin for Copilot in Teams was removed in January 2025. Creating work orders from Outlook email via the add-in is no longer a current capability.",
+          "**Retired — no longer current capabilities:** the Field Service **Outlook add-in**, Field Service Teams app, Viva Connections and Planner integrations became unsupported after 30 October 2025, and the Field Service plugin for Copilot in Teams was removed in January 2025. Creating work orders from Outlook email via the add-in is therefore not a current option.",
           "**Customer Service** representative-facing Copilot: the help pane's **Ask a question**, **Write an email** and **Draft a response**, plus optional immersive Copilot (preview), translation, suggested prompts and enhanced case analysis. **Case summaries** draw on case and customer fields, emails, notes and prior conversation summaries; **conversation summaries** can fire on join, on end, or on demand.",
           "Named Customer Service / Contact Center agents: **Customer Support Agent** (representative-facing), **Case Management Agent** (Customer Service only — creates, updates, resolves and closes cases; needs pay-as-you-go), **Customer Knowledge Management Agent** (turns resolved cases into draft knowledge articles), **Customer Intent Agent** (builds an intent library from interactions), **Customer Assist Agent**, **Quality Assurance Agent**, **Service Operations Agent**, and the **Admin Management Agent** (preview).",
           "**Dynamics 365 Contact Center** supplies the omnichannel engagement layer — voice, chat, digital messaging, routing, workstreams, queues, supervision — standalone or embedded. **Customer Service** supplies the CRM case and knowledge management layer.",
           "Custom agents are built in **Copilot Studio**, connected to the omnichannel instance and added to a **push-based workstream/queue**. **One agent per workstream.** One agent serves multiple channels without channel-specific code, and transfers transcript plus collected variables on escalation.",
-          "Admin configuration is a recurring answer set: enable Copilot features in the **Power Platform admin center**, opt in per feature in the **Copilot Service admin center**, publish knowledge sources, assign **experience profiles**, grant Copilot table privileges to custom roles, and enable **cross-region data movement** where required."
+          "Admin configuration is a recurring set: enable Copilot features in the **Power Platform admin center**, opt in per feature in the **Copilot Service admin center**, publish knowledge sources, assign **experience profiles**, grant Copilot table privileges to custom roles, and enable **cross-region data movement** where required."
         ],
         answer: [
           "\"Which components make up the solution?\" → name the agent, the channel/workstream, the knowledge source, the connection reference, and the security role. Component questions reward completeness.",
           "\"Configure or build?\" → if a named prebuilt agent covers it (case management, knowledge drafting, intent), configure that. Build in Copilot Studio only when no prebuilt agent fits.",
-          "Watch for region wording: several Copilot features are GA in North America and preview elsewhere."
+          "Watch region wording: several Copilot features are GA in North America and preview elsewhere."
         ],
-        trap: "Distractors are often *retired* features (the Field Service Outlook add-in) or *renamed* ones. Microsoft now says **Copilot agent / AI agent** rather than \"Copilot Studio bot\", and **customer service representative** rather than \"human agent\".",
+        trap: "Retired features (the Field Service Outlook add-in) and superseded names are the easiest way to lose marks here. Microsoft now says **Copilot agent / AI agent** rather than \"Copilot Studio bot\", and **customer service representative** rather than \"human agent\".",
         sources: [
           ["Field Service Copilot overview", "https://learn.microsoft.com/en-us/dynamics365/field-service/copilot-overview"],
           ["Field Service deprecations", "https://learn.microsoft.com/en-us/dynamics365/field-service/deprecations-field-service"],
@@ -219,7 +220,7 @@ const SITE = {
       {
         h: "Voice in a Copilot Studio agent",
         modules: [5, 7],
-        why: "Voice showed up more than expected, and the questions are design questions — what changes when the channel is a phone call.",
+        why: "Voice is explicitly in scope and is genuinely a different design problem from text — the modality, the telephony stack and the conversation design all change. It is easy to skip while revising.",
         facts: [
           "A voice-enabled agent uses the **Speech & DTMF** modality, which is **mutually exclusive with Text**. It gains voice system topics for silence, unrecognised speech and unknown keypad input. Enabling voice authoring is not enough — you must also configure the **Telephony channel** and publish.",
           "Two documented voice agent types: a **basic voice agent** (classic, deterministic — speech-to-text → NLU → topic flow → text-to-speech) and a **real-time agent** (generative, context aware, low latency).",
@@ -233,12 +234,12 @@ const SITE = {
           "**Design guidance for voice:** short turns, one question at a time, deterministic confirmation before acting, tool-grounded facts, explicit escalation, standardised closing. On Error should transfer or end the call rather than leave the caller in silence."
         ],
         answer: [
-          "\"Customer has existing SIP trunks\" → **ACS Direct Routing** with a certified SBC, not porting numbers.",
-          "\"Callers keep interrupting the compliance disclosure\" → disable **barge-in** on that message only.",
-          "\"Long backend lookup\" → a **latency message**, plus a check on the tool's own timeout.",
-          "\"Caller must enter an account number\" → **DTMF** multi-digit collection with a termination key, not free speech."
+          "Existing SIP trunks → **ACS Direct Routing** with a certified SBC, rather than porting numbers.",
+          "Callers interrupting a compliance disclosure → disable **barge-in** on that message only.",
+          "Long backend lookup → a **latency message**, plus a check on the tool's own timeout.",
+          "Caller must enter an account number → **DTMF** multi-digit collection with a termination key, not free speech."
         ],
-        trap: "Speech & DTMF and Text are mutually exclusive — you do not get one agent that is simply \"both\". And an agent that authors fine in the test pane still fails on a call if the telephony channel and workstream are not configured.",
+        trap: "Speech & DTMF and Text are mutually exclusive — there is no single agent that is simply \"both\". And an agent that authors fine in the test pane still fails on a call if the telephony channel and workstream are not configured.",
         sources: [
           ["Voice overview", "https://learn.microsoft.com/en-us/microsoft-copilot-studio/voice-overview"],
           ["Voice configuration", "https://learn.microsoft.com/en-us/microsoft-copilot-studio/voice-configuration"],
@@ -251,7 +252,7 @@ const SITE = {
       {
         h: "ROI — which tool measures what",
         modules: [4],
-        why: "ROI questions are rarely about arithmetic. They ask which Microsoft surface you would use to produce a particular number for a particular audience.",
+        why: "ROI at architect level is rarely arithmetic. It is knowing which Microsoft surface produces which number, for which audience — and that is a mapping worth memorising.",
         facts: [
           "**Copilot Studio → Monitor → Savings**: estimated time or money saved per run or per tool, against a stated comparison method. Best for per-agent business cases.",
           "**Microsoft Copilot Dashboard in Viva Insights**: readiness, adoption, impact and sentiment, with benchmarks, surveys and group-level analysis. Best for organisation-wide value reporting to a sponsor.",
@@ -263,7 +264,7 @@ const SITE = {
         ],
         answer: [
           "Audience is an executive sponsor → **Copilot Dashboard** / business outcome language. Audience is an admin watching spend → **PPAC licensing and capacity**. Audience is the product owner of one agent → **Monitor → Savings**.",
-          "\"Costs are higher than forecast\" → check credit consumption by agent in PPAC, then look at what the agent is doing per turn (generative answers, graph grounding, tool calls)."
+          "\"Costs are higher than forecast\" → check credit consumption by agent in PPAC, then look at what the agent does per turn (generative answers, graph grounding, tool calls)."
         ],
         trap: "\"Messages\" is legacy terminology — the current unit is **Copilot Credits**, and they are metered per feature, so estimating cost by counting conversations alone is wrong.",
         sources: [
@@ -278,17 +279,17 @@ const SITE = {
       {
         h: "Model router",
         modules: [4, 6],
-        why: "Appears as the answer to cost-and-latency optimisation questions, and as a distractor elsewhere. Know precisely what it is.",
+        why: "A specific named Foundry capability that answers cost-and-latency optimisation questions — and that is easy to confuse with load balancing, failover or fine-tuning.",
         facts: [
           "A **model router** in Microsoft Foundry is itself a **deployed, trained model** that selects an eligible underlying model **per request**.",
           "Modes: **Balanced** weighs quality against cost; **Cost** accepts a wider quality band to reduce spend; **Quality** always selects the highest-rated model.",
           "It removes the need to hand-write routing logic, and can improve both cost and latency while holding quality roughly comparable — but Microsoft explicitly recommends **evaluating it against your own workload** rather than assuming the gain.",
-          "It is the right answer when a workload has a **mix of easy and hard requests**. It is the wrong answer when every request needs the same frontier-model quality, or when the real problem is grounding rather than model choice."
+          "It fits when a workload has a **mix of easy and hard requests**. It does not fit when every request needs the same frontier-model quality, or when the real problem is grounding rather than model choice."
         ],
         answer: [
-          "\"Mixed workload, cost pressure, quality must not regress\" → model router in **Balanced** mode, validated with an evaluation set.",
-          "\"High-volume, narrow, latency-sensitive task\" → a **small language model (SLM)** may be the intended answer instead.",
-          "\"Answers are wrong or uncited\" → this is grounding, not routing. Fix the knowledge source."
+          "Mixed workload, cost pressure, quality must not regress → model router in **Balanced** mode, validated with an evaluation set.",
+          "High-volume, narrow, latency-sensitive task → a **small language model (SLM)** is often the better fit.",
+          "Answers are wrong or uncited → that is grounding, not routing. Fix the knowledge source."
         ],
         trap: "A model router is not a load balancer, not a failover mechanism, and not a fine-tuning strategy. It also does not remove the need for evaluation — it makes evaluation more important, because the serving model can change per request.",
         sources: [
@@ -299,7 +300,7 @@ const SITE = {
       {
         h: "Semantic indexing",
         modules: [6],
-        why: "Tested as a grounding and permissions concept, and heavily confused with Azure AI Search semantic ranking.",
+        why: "A grounding and permissions concept that shares a word with a completely different Azure AI Search feature. The confusion is extremely common and worth deliberately clearing up.",
         facts: [
           "Semantic indexing builds a **conceptual, contextual representation** of Microsoft 365 and connected external content so retrieval can match on meaning and relationships rather than exact keywords.",
           "Copilot grounds by reaching organisational data through **Microsoft Graph in the signed-in user's context**. It only ever surfaces content that user is already authorised to see — indexing does **not** grant tenant-wide visibility.",
@@ -310,9 +311,9 @@ const SITE = {
         ],
         answer: [
           "\"An agent surfaced a document the user shouldn't see\" → a **permissions/ACL** failure at the source, not an indexing failure.",
-          "\"External system, content must be searchable by meaning inside Microsoft 365 Copilot\" → a **synced Copilot connector** with ACLs.",
-          "\"External system, data must always be live and must not be copied\" → a **federated connector** (no semantic index in Graph).",
-          "\"Improve relevance of results from an Azure AI Search index\" → **semantic ranker**, not the Microsoft 365 semantic index."
+          "External system, content must be searchable by meaning inside Microsoft 365 Copilot → a **synced Copilot connector** with ACLs.",
+          "External system, data must always be live and must not be copied → a **federated connector** (no semantic index in Graph).",
+          "Improve relevance of results from an Azure AI Search index → **semantic ranker**, not the Microsoft 365 semantic index."
         ],
         trap: "The Microsoft 365 semantic index and Azure AI Search semantic ranking share a word and nothing else. One is a permission-trimmed tenant-wide grounding layer you do not manage; the other is a query-time reranking feature on an index you own.",
         sources: [
@@ -325,7 +326,7 @@ const SITE = {
     ],
 
     revisionOrder: [
-      "**Connection references and environment variables** — what moves with a solution and what does not. Highest certainty of appearing, and the answer is precise rather than judgemental.",
+      "**Connection references and environment variables** — what moves with a solution and what does not. Precise, factual, and easy to half-learn.",
       "**Managed vs. unmanaged, and unmanaged layers.** Pair it with pipelines and the deployment settings file.",
       "**Azure Monitor vs. Application Insights vs. Log Analytics workspace**, and the two routes for getting Copilot Studio telemetry into them.",
       "**The Copilot Studio Monitor page and agent evaluations** — current metric names, and evaluation as a pre-deployment gate.",
@@ -334,7 +335,7 @@ const SITE = {
       "**Copilot Credits and the ROI toolset** — which surface answers which audience's question.",
       "**Semantic indexing vs. Azure AI Search semantic ranking**, and synced vs. federated connectors.",
       "**Model router modes**, and when an SLM is the better answer.",
-      "Finally, re-read the [cram sheet](cram-sheet.html) golden rules — they resolve most of the judgement-based questions the topics above do not cover."
+      "Finally, re-read the [cram sheet](cram-sheet.html) golden rules — they resolve most of the judgement-based scenarios the topics above do not cover."
     ]
   },
 

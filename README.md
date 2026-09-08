@@ -8,8 +8,7 @@ Unofficial practice material for **AB-100: Architect AI solutions for business p
 |---|---|
 | `index.html` | Home — study guide index and how to use the site |
 | `study/module-01..11.html` | One study page per module: key concepts, design guidance, exam traps, readiness checklist |
-| `exam-notes.html` | Field notes from a real sitting: question format and the nine highest-frequency topics |
-| `cram-sheet.html` | Final-review page: golden rules, easily confused pairs, named frameworks, module recap (printable) |
+| `focus-areas.html` | Nine commonly under-prepared topics from the skills outline, plus question-format guidance || `cram-sheet.html` | Final-review page: golden rules, easily confused pairs, named frameworks, module recap (printable) |
 | `exam.html` | Interactive self-scoring 110-question mock exam |
 | `AB-100-Mock-Exam.md` | Printable exam with answer key |
 | `assets/theme.css` | Shared stylesheet |
@@ -19,27 +18,32 @@ Everything is static HTML — no build step needed to *view* it, no dependencies
 
 ## Editing content
 
-Study page, exam notes and cram sheet copy lives in `tools/modules-01-04.js`, `tools/modules-05-08.js`,
+Study page, focus area and cram sheet copy lives in `tools/modules-01-04.js`, `tools/modules-05-08.js`,
 `tools/modules-09-11.js`, and `tools/content.js`. After editing, regenerate the pages:
 
 ```bash
 node tools/build.js
 ```
 
-That rewrites `index.html`, `exam-notes.html`, `cram-sheet.html`, and `study/*.html`. Don't hand-edit those files —
+That rewrites `index.html`, `focus-areas.html`, `cram-sheet.html`, and `study/*.html`. Don't hand-edit those files —
 your changes will be overwritten on the next build. (`exam.html` is the exception: it is hand-maintained.)
 
-## Exam notes
+## Focus areas
 
-`exam-notes.html` records what the real exam actually asked, without reproducing any item:
+`focus-areas.html` covers the parts of the skills outline that are easiest to under-prepare, drawn from the
+published learning path and current Microsoft product documentation:
 
-- The format is roughly **50% single-answer multiple choice and 50% multi-select**, so there is a section on
-  answering multi-select questions where most marks are lost.
-- Nine topics came up far more often than the module weighting suggests: Azure Monitor / Application Insights /
-  Log Analytics, the Copilot Studio Monitor page and agent evaluations, connection references after a production
-  deployment, managed solutions and ALM, Dynamics 365 Field Service and Customer Service design components,
-  voice agents, ROI measurement tooling, the Foundry model router, and semantic indexing.
-- Every topic links to the relevant study page and to current Microsoft Learn documentation.
+- Guidance on **single-answer vs. multiple-response** question formats, since multiple-response is the format
+  candidates practise least and lose most on.
+- Nine topics where the documentation has recently changed, two similar things are commonly confused, or the
+  correct answer is more nuanced than it first appears: Azure Monitor / Application Insights / Log Analytics,
+  the Copilot Studio Monitor page and agent evaluations, connection references after a production deployment,
+  managed solutions and ALM, Dynamics 365 Field Service and Customer Service design components, voice agents,
+  ROI measurement tooling, the Foundry model router, and semantic indexing.
+- Every topic links to the relevant study page and to current Microsoft Learn documentation, so anything that
+  goes stale can be checked against the source.
+
+> This page contains no exam content. It is written from public documentation only.
 
 ## Using the exam
 
@@ -77,4 +81,4 @@ Pass mark is set at 70%.
 
 ---
 
-> **Disclaimer:** This is an unofficial study aid written from the public learning path outline. It is not affiliated with, endorsed by, or sourced from Microsoft, and it does not reproduce real exam items.
+> **Disclaimer:** This is an unofficial study aid written from the public learning path, the published skills outline, and Microsoft product documentation. It is not affiliated with, endorsed by, or sourced from Microsoft, and it contains no exam content — no real exam items are reproduced, paraphrased, or recalled.

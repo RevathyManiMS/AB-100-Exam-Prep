@@ -206,7 +206,7 @@ module.exports = [
     "Summary"
   ],
   overview: [
-    "This is the largest module in the path — nineteen units — and it is the one most likely to be over-represented in the exam. It spans the Cloud Adoption Framework, multi-agent design, knowledge source selection, prompt libraries, small language models, the AI Center of Excellence, and regional data regulation.",
+    "This is the largest module in the path — nineteen units — and it carries proportionally more of the skills outline than any other. It spans the Cloud Adoption Framework, multi-agent design, knowledge source selection, prompt libraries, small language models, the AI Center of Excellence, and regional data regulation.",
     "The connective tissue is **standardisation**. Almost every correct answer favours a governed, reusable, centrally-supported approach over per-team improvisation."
   ],
   bigIdea: "Strategy questions reward the answer that scales: shared governance, reusable patterns, a portfolio prioritised on value and risk, and a Center of Excellence that makes the good path the easy path.",
