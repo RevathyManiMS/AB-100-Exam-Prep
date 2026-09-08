@@ -27,7 +27,7 @@
       </div>
     </a>
     <a class="navlink" href="index.html">Study guide</a>
-    <a class="navlink" href="exam-notes.html">Exam notes</a>
+    <a class="navlink" href="focus-areas.html">Focus areas</a>
     <a class="navlink active" href="cram-sheet.html">Cram sheet</a>
     <a class="navlink" href="exam.html">Mock exam</a>
     <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
@@ -112,36 +112,36 @@
     </section>
 
     <section class="card pad">
-      <h2 style="font-size:20px;margin-bottom:6px">Highest-frequency topics on the real exam</h2>
-      <p class="lead" style="margin-bottom:16px">Reported after an actual sitting. If any of these are shaky, fix them before anything else —
-      full detail is on the <a href="exam-notes.html">exam notes page</a>.</p>
+      <h2 style="font-size:20px;margin-bottom:6px">Focus areas worth a final look</h2>
+      <p class="lead" style="margin-bottom:16px">Commonly under-prepared or recently renamed. If any of these are shaky, fix them before anything else —
+      full detail is on the <a href="focus-areas.html">focus areas page</a>.</p>
       <div class="modcards">
         <div class="modcard">
-          <span class="t"><a href="exam-notes.html#hs-1">Azure Monitor, Application Insights and Log Analytics</a></span>
-          <span class="d">Application Insights is not an alternative to a Log Analytics workspace — modern Application Insights resources are <strong>workspace-based</strong> and store their data in one. Options that present them as competing choices are wrong.</span>
+          <span class="t"><a href="focus-areas.html#hs-1">Azure Monitor, Application Insights and Log Analytics</a></span>
+          <span class="d">Application Insights is not an alternative to a Log Analytics workspace — modern Application Insights resources are <strong>workspace-based</strong> and store their data in one. Treating them as competing choices is wrong.</span>
         </div><div class="modcard">
-          <span class="t"><a href="exam-notes.html#hs-2">The Copilot Studio analytics surface — testing and evaluation</a></span>
+          <span class="t"><a href="focus-areas.html#hs-2">The Copilot Studio analytics surface — testing and evaluation</a></span>
           <span class="d">Do not assume the old card names — *total sessions, engagement rate, resolution rate, escalation rate, abandon rate* — are still what the product shows. And the test pane does not reproduce every published-channel behaviour, so it never replaces validation in the real channel.</span>
         </div><div class="modcard">
-          <span class="t"><a href="exam-notes.html#hs-3">Connections and connection references after a production deployment</a></span>
+          <span class="t"><a href="focus-areas.html#hs-3">Connections and connection references after a production deployment</a></span>
           <span class="d">"Connections are included in the solution and deploy automatically" is wrong, and so is "connection references remove the need for connections". The reference still resolves to a real, environment-specific, credential-bearing connection.</span>
         </div><div class="modcard">
-          <span class="t"><a href="exam-notes.html#hs-4">ALM — managed solutions in production</a></span>
-          <span class="d">Never accept an option that edits production directly, ships unmanaged to production, or treats production as the place to author. Also watch the distinction between an unmanaged *layer* and an unmanaged *solution* — the exam uses both.</span>
+          <span class="t"><a href="focus-areas.html#hs-4">ALM — managed solutions in production</a></span>
+          <span class="d">Never accept an option that edits production directly, ships unmanaged to production, or treats production as the place to author. Also keep the distinction between an unmanaged *layer* and an unmanaged *solution* clear — they are different things.</span>
         </div><div class="modcard">
-          <span class="t"><a href="exam-notes.html#hs-5">Dynamics 365 design components — Field Service and Customer Service</a></span>
-          <span class="d">Distractors are often *retired* features (the Field Service Outlook add-in) or *renamed* ones. Microsoft now says <strong>Copilot agent / AI agent</strong> rather than "Copilot Studio bot", and <strong>customer service representative</strong> rather than "human agent".</span>
+          <span class="t"><a href="focus-areas.html#hs-5">Dynamics 365 design components — Field Service and Customer Service</a></span>
+          <span class="d">Retired features (the Field Service Outlook add-in) and superseded names are the easiest way to lose marks here. Microsoft now says <strong>Copilot agent / AI agent</strong> rather than "Copilot Studio bot", and <strong>customer service representative</strong> rather than "human agent".</span>
         </div><div class="modcard">
-          <span class="t"><a href="exam-notes.html#hs-6">Voice in a Copilot Studio agent</a></span>
-          <span class="d">Speech &amp; DTMF and Text are mutually exclusive — you do not get one agent that is simply "both". And an agent that authors fine in the test pane still fails on a call if the telephony channel and workstream are not configured.</span>
+          <span class="t"><a href="focus-areas.html#hs-6">Voice in a Copilot Studio agent</a></span>
+          <span class="d">Speech &amp; DTMF and Text are mutually exclusive — there is no single agent that is simply "both". And an agent that authors fine in the test pane still fails on a call if the telephony channel and workstream are not configured.</span>
         </div><div class="modcard">
-          <span class="t"><a href="exam-notes.html#hs-7">ROI — which tool measures what</a></span>
+          <span class="t"><a href="focus-areas.html#hs-7">ROI — which tool measures what</a></span>
           <span class="d">"Messages" is legacy terminology — the current unit is <strong>Copilot Credits</strong>, and they are metered per feature, so estimating cost by counting conversations alone is wrong.</span>
         </div><div class="modcard">
-          <span class="t"><a href="exam-notes.html#hs-8">Model router</a></span>
+          <span class="t"><a href="focus-areas.html#hs-8">Model router</a></span>
           <span class="d">A model router is not a load balancer, not a failover mechanism, and not a fine-tuning strategy. It also does not remove the need for evaluation — it makes evaluation more important, because the serving model can change per request.</span>
         </div><div class="modcard">
-          <span class="t"><a href="exam-notes.html#hs-9">Semantic indexing</a></span>
+          <span class="t"><a href="focus-areas.html#hs-9">Semantic indexing</a></span>
           <span class="d">The Microsoft 365 semantic index and Azure AI Search semantic ranking share a word and nothing else. One is a permission-trimmed tenant-wide grounding layer you do not manage; the other is a query-time reranking feature on an index you own.</span>
         </div>
       </div>
@@ -154,9 +154,10 @@
     </section>
   </div>
   <p class="footnote">
-  Unofficial study aid built from the public
-  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path outline</a>.
-  Not affiliated with or endorsed by Microsoft. No real exam items are reproduced.
+  Unofficial study aid written from the public
+  <a href="https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/">Microsoft Learn path</a>, the published skills outline, and Microsoft product documentation.
+  Not affiliated with or endorsed by Microsoft. Contains no exam content: no real exam items are reproduced,
+  paraphrased, or recalled.
 </p>
 </main>
 <script>
