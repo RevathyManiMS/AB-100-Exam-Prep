@@ -8,6 +8,7 @@ Unofficial practice material for **AB-100: Architect AI solutions for business p
 |---|---|
 | `index.html` | Home — study guide index and how to use the site |
 | `study/module-01..11.html` | One study page per module: key concepts, design guidance, exam traps, readiness checklist |
+| `exam-notes.html` | Field notes from a real sitting: question format and the nine highest-frequency topics |
 | `cram-sheet.html` | Final-review page: golden rules, easily confused pairs, named frameworks, module recap (printable) |
 | `exam.html` | Interactive self-scoring 110-question mock exam |
 | `AB-100-Mock-Exam.md` | Printable exam with answer key |
@@ -18,15 +19,27 @@ Everything is static HTML — no build step needed to *view* it, no dependencies
 
 ## Editing content
 
-Study page and cram sheet copy lives in `tools/modules-01-04.js`, `tools/modules-05-08.js`,
+Study page, exam notes and cram sheet copy lives in `tools/modules-01-04.js`, `tools/modules-05-08.js`,
 `tools/modules-09-11.js`, and `tools/content.js`. After editing, regenerate the pages:
 
 ```bash
 node tools/build.js
 ```
 
-That rewrites `index.html`, `cram-sheet.html`, and `study/*.html`. Don't hand-edit those files —
-your changes will be overwritten on the next build.
+That rewrites `index.html`, `exam-notes.html`, `cram-sheet.html`, and `study/*.html`. Don't hand-edit those files —
+your changes will be overwritten on the next build. (`exam.html` is the exception: it is hand-maintained.)
+
+## Exam notes
+
+`exam-notes.html` records what the real exam actually asked, without reproducing any item:
+
+- The format is roughly **50% single-answer multiple choice and 50% multi-select**, so there is a section on
+  answering multi-select questions where most marks are lost.
+- Nine topics came up far more often than the module weighting suggests: Azure Monitor / Application Insights /
+  Log Analytics, the Copilot Studio Monitor page and agent evaluations, connection references after a production
+  deployment, managed solutions and ALM, Dynamics 365 Field Service and Customer Service design components,
+  voice agents, ROI measurement tooling, the Foundry model router, and semantic indexing.
+- Every topic links to the relevant study page and to current Microsoft Learn documentation.
 
 ## Using the exam
 

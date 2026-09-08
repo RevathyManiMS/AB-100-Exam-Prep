@@ -56,6 +56,7 @@ ${extraHead}
       </div>
     </a>
     <a class="navlink${nav === "home" ? " active" : ""}" href="${base}index.html">Study guide</a>
+    <a class="navlink${nav === "notes" ? " active" : ""}" href="${base}exam-notes.html">Exam notes</a>
     <a class="navlink${nav === "cram" ? " active" : ""}" href="${base}cram-sheet.html">Cram sheet</a>
     <a class="navlink${nav === "exam" ? " active" : ""}" href="${base}exam.html">Mock exam</a>
     <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
@@ -127,6 +128,9 @@ function studyPage(m, prev, next) {
         <span class="pill">Exam questions Q${m.qFrom}–Q${m.qTo}</span>
         <span class="pill pill-muted">${m.units.length} units on Learn</span>
       </p>
+      <p style="margin-top:12px">
+        <a class="btn btn-sm" href="${m.learnUrl}" target="_blank" rel="noopener">Open module ${m.n} on Microsoft Learn ↗</a>
+      </p>
       <div style="margin-top:26px">${blocks.join("")}</div>
       <div class="pagenav">
         ${prev ? `<a class="btn" href="module-${String(prev.n).padStart(2, "0")}.html">← ${esc(prev.title)}</a>` : `<a class="btn" href="${base}index.html">← Study guide</a>`}
@@ -173,9 +177,20 @@ function homePage() {
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <a class="btn btn-primary" href="study/module-01.html">Start studying</a>
+        <a class="btn" href="exam-notes.html">Exam notes</a>
         <a class="btn" href="cram-sheet.html">Cram sheet</a>
         <a class="btn" href="exam.html">Take the mock exam</a>
+        <a class="btn btn-ghost" href="${SITE.pathUrl}" target="_blank" rel="noopener">Official Learn path ↗</a>
       </div>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">Notes from a real sitting</h2>
+      <p class="lead">Roughly <strong>half the questions are single-answer multiple choice and half are multi-select</strong>,
+      and a handful of topics come up far more often than the module weighting suggests — Azure Monitor and Log Analytics,
+      connection references after a production deployment, the Copilot Studio analytics tab, Dynamics 365 design components,
+      voice agents, managed solutions, and semantic indexing.</p>
+      <p style="margin-top:12px"><a class="btn btn-primary" href="exam-notes.html">Read the exam notes →</a></p>
     </section>
 
     <section class="card pad">
@@ -186,20 +201,29 @@ function homePage() {
         <tbody>
           <tr><td><strong>First</strong></td><td>Read all eleven study pages in order. Do not memorise — aim to recognise the vocabulary and the decision points.</td></tr>
           <tr><td><strong>Second</strong></td><td>Take the mock exam in <strong>practice mode</strong>, one module at a time. After each module, re-read the study page sections you got wrong.</td></tr>
-          <tr><td><strong>Third</strong></td><td>Take the full 110-question <strong>exam mode</strong> run under time. Anything below 70% in a module sends you back to that page. Read the cram sheet the morning of the exam.</td></tr>
+          <tr><td><strong>Third</strong></td><td>Take the full 110-question <strong>exam mode</strong> run under time. Anything below 70% in a module sends you back to that page. Read the <strong><a href="exam-notes.html">exam notes</a></strong> and the cram sheet the morning of the exam.</td></tr>
         </tbody>
       </table>
     </section>
 
     <section class="card pad">
       <h2 style="font-size:20px;margin-bottom:4px">Study guide by topic</h2>
-      <p class="lead" style="margin-bottom:18px">One page per module, each with key concepts, design guidance, exam traps, and a readiness checklist.</p>
+      <p class="lead" style="margin-bottom:18px">One page per module, each with key concepts, design guidance, exam traps, and a readiness checklist.
+      Every card also links straight to the matching module on
+      <a href="${SITE.pathUrl}" target="_blank" rel="noopener">Microsoft Learn</a> — read the official module first, then these notes.</p>
       <div class="modcards">
-        ${MODULES.map(m => `<a class="modcard" href="study/module-${String(m.n).padStart(2, "0")}.html">
+        ${MODULES.map(m => {
+          const slug = `study/module-${String(m.n).padStart(2, "0")}.html`;
+          return `<div class="modcard">
           <span class="n">MODULE ${m.n} · Q${m.qFrom}–Q${m.qTo}</span>
-          <span class="t">${esc(m.title)}</span>
+          <span class="t"><a href="${slug}">${esc(m.title)}</a></span>
           <span class="d">${esc(m.short)}</span>
-        </a>`).join("")}
+          <span class="modlinks">
+            <a href="${slug}">Study notes →</a>
+            <a class="muted" href="${m.learnUrl}" target="_blank" rel="noopener">Microsoft Learn module ↗</a>
+          </span>
+        </div>`;
+        }).join("")}
       </div>
     </section>
 
@@ -272,6 +296,18 @@ function cramPage() {
     </section>
 
     <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">Highest-frequency topics on the real exam</h2>
+      <p class="lead" style="margin-bottom:16px">Reported after an actual sitting. If any of these are shaky, fix them before anything else —
+      full detail is on the <a href="exam-notes.html">exam notes page</a>.</p>
+      <div class="modcards">
+        ${SITE.examNotes.hotspots.map((h, i) => `<div class="modcard">
+          <span class="t"><a href="exam-notes.html#hs-${i + 1}">${md(h.h)}</a></span>
+          <span class="d">${md(h.trap || "")}</span>
+        </div>`).join("")}
+      </div>
+    </section>
+
+    <section class="card pad">
       <h2 style="font-size:20px;margin-bottom:6px">Exam-day technique</h2>
       <ul>${SITE.technique.map(t => `<li>${md(t)}</li>`).join("")}</ul>
       <p style="margin-top:16px"><a class="btn btn-primary" href="exam.html">Do a final timed run →</a></p>
@@ -287,6 +323,76 @@ function cramPage() {
   });
 }
 
+/* ---------------- exam notes ---------------- */
+function notesPage() {
+  const base = "";
+  const N = SITE.examNotes;
+  const modLink = n => {
+    const m = MODULES.find(x => x.n === n);
+    return m ? `<a href="study/module-${String(n).padStart(2, "0")}.html">Module ${n} · ${esc(m.navTitle || m.title)}</a>` : "";
+  };
+
+  const hotspots = N.hotspots.map((h, i) => `<div class="hotspot" id="hs-${i + 1}">
+    <h3>${md(h.h)}</h3>
+    <div class="whence">Studied on ${h.modules.map(modLink).join(" · ")}</div>
+    ${h.why ? `<p style="font-size:14px">${md(h.why)}</p>` : ""}
+    <h4>What you actually need to know</h4>
+    <ul>${h.facts.map(f => `<li>${md(f)}</li>`).join("")}</ul>
+    ${h.answer && h.answer.length ? `<h4>How it is asked</h4><ul>${h.answer.map(a => `<li>${md(a)}</li>`).join("")}</ul>` : ""}
+    ${h.trap ? `<div class="note warn"><span class="lbl">Trap</span>${md(h.trap)}</div>` : ""}
+    ${h.sources && h.sources.length ? `<div class="srclinks">${h.sources.map(([l, u]) => `<a href="${u}" target="_blank" rel="noopener">${esc(l)} ↗</a>`).join("")}</div>` : ""}
+  </div>`).join("");
+
+  const body = `<main class="wrap">
+  <div class="stack">
+    <section class="card pad">
+      <div class="eyebrow">Field notes</div>
+      <h1 style="font-size:29px;margin:8px 0 12px">What the real exam actually asks</h1>
+      <p class="lead">These notes come from someone who sat and passed AB-100. They do not reproduce any exam item —
+      they record the <strong>question format</strong> and the <strong>topics that came up far more often than the
+      module weighting suggests</strong>. Use them to decide where to spend your last few days of revision.</p>
+      <div class="note"><span class="lbl">Format</span>${md(N.format.summary)}</div>
+      <div class="splitbar">
+        <span class="one">≈50% single answer</span>
+        <span class="many">≈50% select all that apply</span>
+      </div>
+      <ul style="font-size:14px;margin-top:12px">${N.format.points.map(p => `<li>${md(p)}</li>`).join("")}</ul>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">Answering multi-select questions</h2>
+      <p class="lead" style="margin-bottom:16px">Half your marks sit here, and multi-select is where most people lose them.
+      There is normally no partial credit, so a near-miss scores the same as a blank.</p>
+      <ul style="font-size:14px">${N.multiSelect.map(p => `<li>${md(p)}</li>`).join("")}</ul>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">High-frequency topics</h2>
+      <p class="lead" style="margin-bottom:18px">Nine areas that carried noticeably more questions than expected.
+      Each links to the study page that covers it and to the official Microsoft documentation.</p>
+      ${hotspots}
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">Last-week revision order</h2>
+      <p class="lead" style="margin-bottom:16px">If time is short, work down this list rather than re-reading all eleven modules.</p>
+      <ol style="padding-left:22px;font-size:14px">${N.revisionOrder.map(r => `<li style="margin-bottom:8px">${md(r)}</li>`).join("")}</ol>
+      <p style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="exam.html">Practise on the mock exam →</a>
+        <a class="btn" href="cram-sheet.html">Cram sheet</a>
+      </p>
+    </section>
+  </div>
+  ${FOOT(base)}
+</main>`;
+
+  return shell({
+    title: "Exam notes — AB-100 Exam Prep",
+    desc: "Question format and the highest-frequency AB-100 topics, recorded after a real sitting: Azure Monitor, connection references, Copilot Studio analytics, Dynamics 365 design components, voice agents, ALM, ROI, and semantic indexing.",
+    base, nav: "notes", body
+  });
+}
+
 /* ---------------- write ---------------- */
 fs.mkdirSync(path.join(ROOT, "study"), { recursive: true });
 let count = 0;
@@ -296,5 +402,6 @@ MODULES.forEach((m, i) => {
   count++;
 });
 fs.writeFileSync(path.join(ROOT, "index.html"), homePage());
+fs.writeFileSync(path.join(ROOT, "exam-notes.html"), notesPage());
 fs.writeFileSync(path.join(ROOT, "cram-sheet.html"), cramPage());
-console.log(`built ${count} study pages + index.html + cram-sheet.html`);
+console.log(`built ${count} study pages + index.html + exam-notes.html + cram-sheet.html`);
