@@ -56,7 +56,7 @@ ${extraHead}
       </div>
     </a>
     <a class="navlink${nav === "home" ? " active" : ""}" href="${base}index.html">Study guide</a>
-    <a class="navlink${nav === "notes" ? " active" : ""}" href="${base}focus-areas.html">Focus areas</a>
+    <a class="navlink${nav === "notes" ? " active" : ""}" href="${base}topic-information.html">Topic information</a>
     <a class="navlink${nav === "cram" ? " active" : ""}" href="${base}cram-sheet.html">Cram sheet</a>
     <a class="navlink${nav === "exam" ? " active" : ""}" href="${base}exam.html">Mock exam</a>
     <button class="btn btn-sm btn-ghost" id="themeBtn" title="Toggle light/dark theme">Theme</button>
@@ -178,7 +178,7 @@ function homePage() {
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <a class="btn btn-primary" href="study/module-01.html">Start studying</a>
-        <a class="btn" href="focus-areas.html">Focus areas</a>
+        <a class="btn" href="topic-information.html">Topic information</a>
         <a class="btn" href="cram-sheet.html">Cram sheet</a>
         <a class="btn" href="exam.html">Take the mock exam</a>
         <a class="btn btn-ghost" href="${SITE.pathUrl}" target="_blank" rel="noopener">Official Learn path ↗</a>
@@ -186,12 +186,12 @@ function homePage() {
     </section>
 
     <section class="card pad">
-      <h2 style="font-size:20px;margin-bottom:6px">Where to focus your revision</h2>
+      <h2 style="font-size:20px;margin-bottom:6px">Topic information</h2>
       <p class="lead">Nine areas from the skills outline are easy to under-prepare — Azure Monitor and Log Analytics,
       connection references after a production deployment, the Copilot Studio analytics surface, Dynamics 365 design
       components, voice agents, managed solutions, ROI tooling, the model router, and semantic indexing. Several have
       been renamed recently, so older study material gets them wrong.</p>
-      <p style="margin-top:12px"><a class="btn btn-primary" href="focus-areas.html">Read the focus areas →</a></p>
+      <p style="margin-top:12px"><a class="btn btn-primary" href="topic-information.html">Read the topic information →</a></p>
     </section>
 
     <section class="card pad">
@@ -202,7 +202,7 @@ function homePage() {
         <tbody>
           <tr><td><strong>First</strong></td><td>Read all eleven study pages in order. Do not memorise — aim to recognise the vocabulary and the decision points.</td></tr>
           <tr><td><strong>Second</strong></td><td>Take the mock exam in <strong>practice mode</strong>, one module at a time. After each module, re-read the study page sections you got wrong.</td></tr>
-          <tr><td><strong>Third</strong></td><td>Take the full 110-question <strong>exam mode</strong> run under time. Anything below 70% in a module sends you back to that page. Read the <strong><a href="focus-areas.html">focus areas</a></strong> and the cram sheet the morning of the exam.</td></tr>
+          <tr><td><strong>Third</strong></td><td>Take the full 110-question <strong>exam mode</strong> run under time. Anything below 70% in a module sends you back to that page. Read the <strong><a href="topic-information.html">topic information</a></strong> and the cram sheet the morning of the exam.</td></tr>
         </tbody>
       </table>
     </section>
@@ -297,12 +297,12 @@ function cramPage() {
     </section>
 
     <section class="card pad">
-      <h2 style="font-size:20px;margin-bottom:6px">Focus areas worth a final look</h2>
+      <h2 style="font-size:20px;margin-bottom:6px">Topics worth a final look</h2>
       <p class="lead" style="margin-bottom:16px">Commonly under-prepared or recently renamed. If any of these are shaky, fix them before anything else —
-      full detail is on the <a href="focus-areas.html">focus areas page</a>.</p>
+      full detail is on the <a href="topic-information.html">topic information page</a>.</p>
       <div class="modcards">
         ${SITE.examNotes.hotspots.map((h, i) => `<div class="modcard">
-          <span class="t"><a href="focus-areas.html#hs-${i + 1}">${md(h.h)}</a></span>
+          <span class="t"><a href="topic-information.html#hs-${i + 1}">${md(h.h)}</a></span>
           <span class="d">${md(h.trap || "")}</span>
         </div>`).join("")}
       </div>
@@ -324,7 +324,7 @@ function cramPage() {
   });
 }
 
-/* ---------------- focus areas ---------------- */
+/* ---------------- topic information ---------------- */
 function notesPage() {
   const base = "";
   const N = SITE.examNotes;
@@ -348,7 +348,7 @@ function notesPage() {
   <div class="stack">
     <section class="card pad">
       <div class="eyebrow">Revision priorities</div>
-      <h1 style="font-size:29px;margin:8px 0 12px">Focus areas and question formats</h1>
+      <h1 style="font-size:29px;margin:8px 0 12px">Topic information and question formats</h1>
       <p class="lead">Nine areas from the skills outline that are easy to under-prepare — either because Microsoft has
       recently renamed the product surface, because two similarly named services get confused, or because the correct
       answer is more nuanced than it first appears. Everything here is drawn from the published
@@ -370,7 +370,7 @@ function notesPage() {
     </section>
 
     <section class="card pad">
-      <h2 style="font-size:20px;margin-bottom:6px">The nine focus areas</h2>
+      <h2 style="font-size:20px;margin-bottom:6px">The nine topics</h2>
       <p class="lead" style="margin-bottom:18px">Each links to the study page that covers it and to the official
       Microsoft documentation, so you can verify anything that looks out of date.</p>
       ${hotspots}
@@ -390,8 +390,8 @@ function notesPage() {
 </main>`;
 
   return shell({
-    title: "Focus areas — AB-100 Exam Prep",
-    desc: "Nine AB-100 focus areas drawn from the skills outline and current Microsoft documentation: Azure Monitor, connection references, Copilot Studio analytics, Dynamics 365 design components, voice agents, ALM, ROI tooling, model router, and semantic indexing.",
+    title: "Topic information — AB-100 Exam Prep",
+    desc: "Nine AB-100 topics drawn from the skills outline and current Microsoft documentation: Azure Monitor, connection references, Copilot Studio analytics, Dynamics 365 design components, voice agents, ALM, ROI tooling, model router, and semantic indexing.",
     base, nav: "notes", body
   });
 }
@@ -405,19 +405,21 @@ MODULES.forEach((m, i) => {
   count++;
 });
 fs.writeFileSync(path.join(ROOT, "index.html"), homePage());
-fs.writeFileSync(path.join(ROOT, "focus-areas.html"), notesPage());
-fs.writeFileSync(path.join(ROOT, "exam-notes.html"), `<!doctype html>
+fs.writeFileSync(path.join(ROOT, "topic-information.html"), notesPage());
+["exam-notes.html", "focus-areas.html"].forEach(old => {
+  fs.writeFileSync(path.join(ROOT, old), `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <title>Moved — AB-100 Exam Prep</title>
-<link rel="canonical" href="focus-areas.html" />
-<meta http-equiv="refresh" content="0; url=focus-areas.html" />
+<link rel="canonical" href="topic-information.html" />
+<meta http-equiv="refresh" content="0; url=topic-information.html" />
 </head>
 <body>
-<p>This page is now <a href="focus-areas.html">Focus areas</a>.</p>
+<p>This page is now <a href="topic-information.html">Topic information</a>.</p>
 </body>
 </html>
 `);
+});
 fs.writeFileSync(path.join(ROOT, "cram-sheet.html"), cramPage());
-console.log(`built ${count} study pages + index.html + focus-areas.html + cram-sheet.html`);
+console.log(`built ${count} study pages + index.html + topic-information.html + cram-sheet.html`);

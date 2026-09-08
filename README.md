@@ -8,7 +8,8 @@ Unofficial practice material for **AB-100: Architect AI solutions for business p
 |---|---|
 | `index.html` | Home — study guide index and how to use the site |
 | `study/module-01..11.html` | One study page per module: key concepts, design guidance, exam traps, readiness checklist |
-| `focus-areas.html` | Nine commonly under-prepared topics from the skills outline, plus question-format guidance || `cram-sheet.html` | Final-review page: golden rules, easily confused pairs, named frameworks, module recap (printable) |
+| `topic-information.html` | Nine commonly under-prepared topics from the skills outline, plus question-format guidance |
+| `cram-sheet.html` | Final-review page: golden rules, easily confused pairs, named frameworks, module recap (printable) |
 | `exam.html` | Interactive self-scoring 110-question mock exam |
 | `AB-100-Mock-Exam.md` | Printable exam with answer key |
 | `assets/theme.css` | Shared stylesheet |
@@ -18,19 +19,19 @@ Everything is static HTML — no build step needed to *view* it, no dependencies
 
 ## Editing content
 
-Study page, focus area and cram sheet copy lives in `tools/modules-01-04.js`, `tools/modules-05-08.js`,
+Study page, topic information and cram sheet copy lives in `tools/modules-01-04.js`, `tools/modules-05-08.js`,
 `tools/modules-09-11.js`, and `tools/content.js`. After editing, regenerate the pages:
 
 ```bash
 node tools/build.js
 ```
 
-That rewrites `index.html`, `focus-areas.html`, `cram-sheet.html`, and `study/*.html`. Don't hand-edit those files —
+That rewrites `index.html`, `topic-information.html`, `cram-sheet.html`, and `study/*.html`. Don't hand-edit those files —
 your changes will be overwritten on the next build. (`exam.html` is the exception: it is hand-maintained.)
 
-## Focus areas
+## Topic information
 
-`focus-areas.html` covers the parts of the skills outline that are easiest to under-prepare, drawn from the
+`topic-information.html` covers the parts of the skills outline that are easiest to under-prepare, drawn from the
 published learning path and current Microsoft product documentation:
 
 - Guidance on **single-answer vs. multiple-response** question formats, since multiple-response is the format
