@@ -208,7 +208,46 @@ section.block li > strong { color: var(--cp-text); }
 .modcard:hover { border-color: var(--cp-accent); background: var(--cp-accent-soft); text-decoration: none; transform: translateY(-1px); }
 .modcard .n { font-size: 12px; font-weight: 700; color: var(--cp-accent); letter-spacing: .04em; }
 .modcard .t { font-weight: 600; font-size: 15.5px; line-height: 1.35; }
+.modcard .t a { color: inherit; text-decoration: none; }
+.modcard .t a:hover { color: var(--cp-accent); }
 .modcard .d { font-size: 13.5px; color: var(--cp-text-muted); line-height: 1.5; }
+
+.modlinks {
+  display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 4px;
+  padding-top: 10px; border-top: 1px solid var(--cp-border);
+  font-size: 13px; font-weight: 600;
+}
+.modlinks a { color: var(--cp-accent); text-decoration: none; }
+.modlinks a:hover { text-decoration: underline; }
+.modlinks a.muted { color: var(--cp-text-muted); font-weight: 500; }
+
+/* ---------- exam notes page ---------- */
+.hotspot {
+  border: 1px solid var(--cp-border); border-radius: 0.625rem;
+  background: var(--cp-surface); padding: 18px 20px; margin-bottom: 14px;
+}
+.hotspot > h3 { font-size: 16.5px; margin-bottom: 4px; }
+.hotspot .whence { font-size: 12.5px; color: var(--cp-text-muted); margin-bottom: 12px; }
+.hotspot h4 {
+  font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--cp-text-muted); margin: 16px 0 7px;
+}
+.hotspot ul { margin: 0; padding-left: 19px; font-size: 14px; }
+.hotspot li { margin-bottom: 6px; }
+.srclinks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.srclinks a {
+  font-size: 12.5px; font-weight: 600; text-decoration: none;
+  border: 1px solid var(--cp-border); border-radius: 999px; padding: 4px 11px;
+  color: var(--cp-text-muted); background: var(--cp-surface-soft);
+}
+.srclinks a:hover { border-color: var(--cp-accent); color: var(--cp-accent); text-decoration: none; }
+.splitbar {
+  display: flex; height: 34px; border-radius: 0.625rem; overflow: hidden;
+  border: 1px solid var(--cp-border); margin: 14px 0 10px; font-size: 12.5px; font-weight: 600;
+}
+.splitbar span { display: grid; place-items: center; }
+.splitbar .one { flex: 1; background: var(--cp-accent); color: var(--cp-accent-fg); }
+.splitbar .many { flex: 1; background: var(--cp-surface-soft); color: var(--cp-text); }
 
 .pagenav { display: flex; gap: 12px; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--cp-border); flex-wrap: wrap; }
 .pagenav .spacer { margin-left: auto; }
