@@ -6,6 +6,38 @@ const MODULES = [
   ...require("./modules-09-11.js")
 ];
 
+/* Official Microsoft Learn video course for AB-100, published on the Microsoft Learn
+   YouTube channel. Titles, durations, and channel confirmed against each video. */
+const VIDEOS = {
+  playlistId: "PLWkuMDqdJEw4",
+  playlistUrl: "https://www.youtube.com/playlist?list=PLWkuMDqdJEw4",
+  shortUrl: "https://aka.ms/AB-100onYouTube",
+  channel: "Microsoft Learn",
+  channelUrl: "https://www.youtube.com/@MicrosoftLearn",
+  runtime: "9 hours 27 minutes",
+  items: [
+    { id: "PXrv_8v65hk", ep: null, title: "Course Preview", secs: 335, module: null,
+      blurb: "Five minutes on who the exam is for and how the course is structured. Watch this first to decide whether the full series is worth your time." },
+    { id: "xHIu7S9uhcY", ep: 1, title: "Course Introduction", secs: 404, module: null,
+      blurb: "How the eleven modules map to the skills measured, and how the instructors suggest pacing the series." },
+    { id: "vroI1gWHNFE", ep: 2, title: "Introduction to agentic AI business solutions", secs: 1242, module: 1 },
+    { id: "G5xFHBU3478", ep: 3, title: "Analyze requirements for AI-powered business solutions", secs: 1823, module: 2 },
+    { id: "1EOrrWRZRLo", ep: 4, title: "Design overall AI strategy for business solutions, part 1", secs: 2935, module: 3 },
+    { id: "ACqD5EcApn8", ep: 5, title: "Design overall AI strategy for business solutions, part 2", secs: 2668, module: 3 },
+    { id: "qFBj_83epp4", ep: 6, title: "Evaluate costs and benefits of AI solutions", secs: 2780, module: 4 },
+    { id: "hiwsDBujqoE", ep: 7, title: "Design AI agents for business solutions, part 1", secs: 3088, module: 5 },
+    { id: "LUmzpAMpBLo", ep: 8, title: "Design AI agents for business solutions, part 2", secs: 3037, module: 5 },
+    { id: "DLFusBnEAZ0", ep: 9, title: "Design extensibility of AI solutions", secs: 2968, module: 6 },
+    { id: "252woHA8Jf4", ep: 10, title: "Orchestrate configuration of prebuilt agents and apps", secs: 3143, module: 7 },
+    { id: "JR6C87ZEtws", ep: 11, title: "Monitor, analyze, and tune AI agents", secs: 2383, module: 8 },
+    { id: "a5BJ6b41obk", ep: 12, title: "Manage testing AI-powered business solutions", secs: 1927, module: 9 },
+    { id: "bcKJaKNRT1c", ep: 13, title: "Design ALM process for AI-powered business solutions", secs: 2503, module: 10 },
+    { id: "yG_Rq-VNJaU", ep: 14, title: "Design responsible AI security, governance, risk management, and compliance", secs: 2464, module: 11 },
+    { id: "V6UsWLkoHoI", ep: 15, title: "Course Closing", secs: 326, module: null,
+      blurb: "Closing summary and the instructors' suggestions for what to do between finishing the course and booking the exam." }
+  ]
+};
+
 const SITE = {
   pathUrl: "https://learn.microsoft.com/en-us/training/paths/architect-agentic-ai-business-solutions/",
 
@@ -351,4 +383,4 @@ const SITE = {
   ]
 };
 
-module.exports = { MODULES, SITE };
+module.exports = { MODULES, SITE, VIDEOS };

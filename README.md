@@ -9,6 +9,7 @@ Unofficial practice material for **AB-100: Architect AI solutions for business p
 | `index.html` | Home — study guide index and how to use the site |
 | `study/module-01..11.html` | One study page per module: key concepts, design guidance, exam traps, readiness checklist |
 | `topic-information.html` | Nine commonly under-prepared topics from the skills outline, plus question-format guidance |
+| `video-course.html` | Index of the official 16-part Microsoft Learn video course, mapped episode-by-episode to the modules |
 | `cram-sheet.html` | Final-review page: golden rules, easily confused pairs, named frameworks, module recap (printable) |
 | `exam.html` | Interactive self-scoring 110-question mock exam |
 | `AB-100-Mock-Exam.md` | Printable exam with answer key |
@@ -26,7 +27,7 @@ Study page, topic information and cram sheet copy lives in `tools/modules-01-04.
 node tools/build.js
 ```
 
-That rewrites `index.html`, `topic-information.html`, `cram-sheet.html`, and `study/*.html`. Don't hand-edit those files —
+That rewrites `index.html`, `topic-information.html`, `video-course.html`, `cram-sheet.html`, and `study/*.html`. Don't hand-edit those files —
 your changes will be overwritten on the next build. (`exam.html` is the exception: it is hand-maintained.)
 
 ## Topic information

@@ -4,7 +4,7 @@
 
 const fs = require("fs");
 const path = require("path");
-const { MODULES, SITE } = require("./content.js");
+const { MODULES, SITE, VIDEOS } = require("./content.js");
 
 const ROOT = path.join(__dirname, "..");
 const esc = s => String(s).replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
@@ -15,6 +15,26 @@ function md(s) {
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
     .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     .replace(/`([^`]+)`/g, "<code>$1</code>");
+}
+
+/* ---------------- video course helpers ---------------- */
+const PL = `&amp;list=${VIDEOS.playlistId}`;
+const vidUrl = v => `https://www.youtube.com/watch?v=${v.id}${PL}`;
+const mins = s => `${Math.round(s / 60)} min`;
+const vidLabel = v => (v.ep === null ? "Course preview" : `Episode ${v.ep}`);
+const videosFor = n => VIDEOS.items.filter(v => v.module === n);
+
+function videoRow(v, base = "", hideModuleLink = false) {
+  const mod = !hideModuleLink && v.module ? MODULES.find(m => m.n === v.module) : null;
+  return `<div class="vidrow">
+    <span class="vidnum">${esc(vidLabel(v))}</span>
+    <span class="vidmain">
+      <a class="vidtitle" href="${vidUrl(v)}" target="_blank" rel="noopener">${esc(v.title)} ↗</a>
+      ${v.blurb ? `<span class="viddesc">${esc(v.blurb)}</span>` : ""}
+      ${mod ? `<span class="viddesc">Pairs with <a href="${base}study/module-${String(mod.n).padStart(2, "0")}.html">module ${mod.n} study notes</a>.</span>` : ""}
+    </span>
+    <span class="viddur">${esc(mins(v.secs))}</span>
+  </div>`;
 }
 
 const THEME_SCRIPT = `<script>
@@ -56,6 +76,7 @@ ${extraHead}
       </div>
     </a>
     <a class="navlink${nav === "home" ? " active" : ""}" href="${base}index.html">Study guide</a>
+    <a class="navlink${nav === "video" ? " active" : ""}" href="${base}video-course.html">Video course</a>
     <a class="navlink${nav === "notes" ? " active" : ""}" href="${base}topic-information.html">Topic information</a>
     <a class="navlink${nav === "cram" ? " active" : ""}" href="${base}cram-sheet.html">Cram sheet</a>
     <a class="navlink${nav === "exam" ? " active" : ""}" href="${base}exam.html">Mock exam</a>
@@ -72,8 +93,9 @@ ${THEME_TOGGLE}
 const FOOT = base => `<p class="footnote">
   Unofficial study aid written from the public
   <a href="${SITE.pathUrl}">Microsoft Learn path</a>, the published skills outline, and Microsoft product documentation.
-  Not affiliated with or endorsed by Microsoft. Contains no exam content: no real exam items are reproduced,
-  paraphrased, or recalled.
+  Not affiliated with or endorsed by Microsoft — though the Learn modules and the
+  <a href="${base}video-course.html">video course</a> it links out to are official Microsoft material.
+  Contains no exam content: no real exam items are reproduced, paraphrased, or recalled.
 </p>`;
 
 /* ---------------- study page ---------------- */
@@ -91,6 +113,18 @@ function studyPage(m, prev, next) {
     `<p class="lead">Units in this module, as published on Microsoft Learn:</p><ul>` +
     m.units.map(u => `<li>${esc(u)}</li>`).join("") + `</ul>` +
     `<p><a class="btn btn-sm" href="${m.learnUrl}" target="_blank" rel="noopener">Open module on Microsoft Learn →</a></p>`);
+
+  const vids = videosFor(m.n);
+  if (vids.length) {
+    add("video", "Watch this module",
+      `<p class="lead">Microsoft Learn publishes a free video course for AB-100 on YouTube. ${
+        vids.length > 1
+          ? `This module is covered across two episodes, ${mins(vids[0].secs)} and ${mins(vids[1].secs)}.`
+          : `This module is covered by one ${mins(vids[0].secs)} episode.`
+      } An instructor walking through the module is often faster than reading it twice.</p>
+      <div class="vidlist">${vids.map(v => videoRow(v, base, true)).join("")}</div>
+      <p style="margin-top:14px"><a class="btn btn-sm btn-ghost" href="${base}video-course.html">See all ${VIDEOS.items.length} episodes →</a></p>`);
+  }
 
   add("concepts", "Key concepts and definitions",
     `<table class="deftable"><tbody>` +
@@ -131,6 +165,7 @@ function studyPage(m, prev, next) {
       </p>
       <p style="margin-top:12px">
         <a class="btn btn-sm" href="${m.learnUrl}" target="_blank" rel="noopener">Open module ${m.n} on Microsoft Learn ↗</a>
+        ${vids.length ? `<a class="btn btn-sm btn-ghost" href="#video">Watch ${vids.length > 1 ? "the episodes" : "the episode"} (${mins(vids.reduce((a, v) => a + v.secs, 0))})</a>` : ""}
       </p>
       <div style="margin-top:26px">${blocks.join("")}</div>
       <div class="pagenav">
@@ -178,11 +213,27 @@ function homePage() {
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <a class="btn btn-primary" href="study/module-01.html">Start studying</a>
+        <a class="btn" href="video-course.html">Video course</a>
         <a class="btn" href="topic-information.html">Topic information</a>
         <a class="btn" href="cram-sheet.html">Cram sheet</a>
         <a class="btn" href="exam.html">Take the mock exam</a>
         <a class="btn btn-ghost" href="${SITE.pathUrl}" target="_blank" rel="noopener">Official Learn path ↗</a>
       </div>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">Watch the official video course</h2>
+      <p class="lead">Microsoft Learn publishes a free ${esc(VIDEOS.items.length)}-part video course for AB-100 on its
+      <a href="${VIDEOS.channelUrl}" target="_blank" rel="noopener">YouTube channel</a> — ${esc(VIDEOS.runtime)} of instructor-led
+      walkthroughs, with one or two episodes per module of the Learn path. It is genuine Microsoft training content, unlike
+      everything else on this site, so treat it as the primary source and these notes as the revision layer on top.</p>
+      <div class="vidlist" style="margin-top:16px">
+        ${VIDEOS.items.filter(v => v.ep === null || v.ep === 1).map(v => videoRow(v, base)).join("")}
+      </div>
+      <p style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="video-course.html">All ${esc(VIDEOS.items.length)} episodes, mapped to modules →</a>
+        <a class="btn btn-ghost" href="${VIDEOS.playlistUrl}" target="_blank" rel="noopener">Open the playlist on YouTube ↗</a>
+      </p>
     </section>
 
     <section class="card pad">
@@ -200,14 +251,14 @@ function homePage() {
       <table>
         <thead><tr><th style="width:90px">Pass</th><th>What to do</th></tr></thead>
         <tbody>
-          <tr><td><strong>First</strong></td><td>Read all eleven study pages in order. Do not memorise — aim to recognise the vocabulary and the decision points.</td></tr>
+          <tr><td><strong>First</strong></td><td>Work through the eleven modules in order. Watch the matching <a href="video-course.html">video episode</a> or read the Learn module, then read the study page here. Do not memorise — aim to recognise the vocabulary and the decision points.</td></tr>
           <tr><td><strong>Second</strong></td><td>Take the mock exam in <strong>practice mode</strong>, one module at a time. After each module, re-read the study page sections you got wrong.</td></tr>
           <tr><td><strong>Third</strong></td><td>Take the full 110-question <strong>exam mode</strong> run under time. Anything below 70% in a module sends you back to that page. Read the <strong><a href="topic-information.html">topic information</a></strong> and the cram sheet the morning of the exam.</td></tr>
         </tbody>
       </table>
     </section>
 
-    <section class="card pad">
+    <section class="card pad" id="modules">
       <h2 style="font-size:20px;margin-bottom:4px">Study guide by topic</h2>
       <p class="lead" style="margin-bottom:18px">One page per module, each with key concepts, design guidance, exam traps, and a readiness checklist.
       Every card also links straight to the matching module on
@@ -215,6 +266,7 @@ function homePage() {
       <div class="modcards">
         ${MODULES.map(m => {
           const slug = `study/module-${String(m.n).padStart(2, "0")}.html`;
+          const vids = videosFor(m.n);
           return `<div class="modcard">
           <span class="n">MODULE ${m.n} · Q${m.qFrom}–Q${m.qTo}</span>
           <span class="t"><a href="${slug}">${esc(m.title)}</a></span>
@@ -222,6 +274,7 @@ function homePage() {
           <span class="modlinks">
             <a href="${slug}">Study notes →</a>
             <a class="muted" href="${m.learnUrl}" target="_blank" rel="noopener">Microsoft Learn module ↗</a>
+            ${vids.map(v => `<a class="muted" href="${vidUrl(v)}" target="_blank" rel="noopener">${esc(vidLabel(v))}${vids.length > 1 ? `, part ${v === vids[0] ? "1" : "2"}` : ""} · ${esc(mins(v.secs))} ↗</a>`).join("")}
           </span>
         </div>`;
         }).join("")}
@@ -396,6 +449,112 @@ function notesPage() {
   });
 }
 
+/* ---------------- video course ---------------- */
+function videoPage() {
+  const base = "";
+  const totalSecs = VIDEOS.items.reduce((a, v) => a + v.secs, 0);
+  const framing = VIDEOS.items.filter(v => v.module === null);
+
+  const body = `<main class="wrap">
+  <div class="stack">
+    <section class="card pad">
+      <div class="eyebrow">Official Microsoft training</div>
+      <h1 style="font-size:29px;margin:8px 0 12px">The AB-100 video course</h1>
+      <p class="lead">Microsoft Learn publishes a free, instructor-led video course for AB-100 on its
+      <a href="${VIDEOS.channelUrl}" target="_blank" rel="noopener">YouTube channel</a>. It is
+      ${esc(VIDEOS.items.length)} episodes and ${esc(VIDEOS.runtime)} in total, and it follows the eleven modules of the
+      Learn path in order — so it lines up one-to-one with the study pages on this site.</p>
+      <p class="lead" style="margin-top:12px">This is the one part of this site that is genuine Microsoft material. Everything
+      else here is an unofficial revision aid. If you only have time for one source, use this one.</p>
+      <div class="stat-grid" style="margin-top:18px">
+        <div class="stat"><div class="k">Episodes</div><div class="v">${esc(VIDEOS.items.length)}</div></div>
+        <div class="stat"><div class="k">Total runtime</div><div class="v">${Math.floor(totalSecs / 3600)} h ${Math.round((totalSecs % 3600) / 60)} m</div></div>
+        <div class="stat"><div class="k">Modules covered</div><div class="v">${MODULES.length} of ${MODULES.length}</div></div>
+        <div class="stat"><div class="k">Cost</div><div class="v">Free</div></div>
+      </div>
+      <p style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="${VIDEOS.playlistUrl}" target="_blank" rel="noopener">Open the full playlist ↗</a>
+        <a class="btn" href="${VIDEOS.shortUrl}" target="_blank" rel="noopener">aka.ms/AB-100onYouTube ↗</a>
+        <a class="btn btn-ghost" href="${SITE.pathUrl}" target="_blank" rel="noopener">Matching Learn path ↗</a>
+      </p>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">How to combine the video course with this site</h2>
+      <p class="lead" style="margin-bottom:16px">The episodes explain; the study pages compress; the mock exam tests. Used in that
+      order they take roughly a week.</p>
+      <table>
+        <thead><tr><th style="width:120px">Step</th><th>What to do</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Watch</strong></td><td>One module's episodes per sitting — most are around 45 minutes. Start with the ${esc(mins(framing[0].secs))} course preview to see whether the pacing suits you.</td></tr>
+          <tr><td><strong>Compress</strong></td><td>Immediately afterwards, read that module's <a href="index.html#modules">study page</a>. It restates the same material as concepts, design guidance, and traps — which is what turns a watched video into a recallable one.</td></tr>
+          <tr><td><strong>Test</strong></td><td>Run that module's questions in the <a href="exam.html">mock exam</a> in practice mode. Anything you miss points you back at a specific section.</td></tr>
+          <tr><td><strong>Revise</strong></td><td>In the final days, skip the videos and use the <a href="cram-sheet.html">cram sheet</a> and <a href="topic-information.html">topic information</a> instead. Re-watching nine hours is not revision.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">Start and finish here</h2>
+      <p class="lead" style="margin-bottom:16px">Three episodes frame the course rather than teach a module.</p>
+      <div class="vidlist">${framing.map(v => videoRow(v, base)).join("")}</div>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">Episodes by module</h2>
+      <p class="lead" style="margin-bottom:18px">Every module of the Learn path has at least one episode. Two of the longer
+      modules — overall AI strategy, and designing AI agents — are split across two parts.</p>
+      <div class="vidmods">
+        ${MODULES.map(m => {
+          const vids = videosFor(m.n);
+          const slug = `study/module-${String(m.n).padStart(2, "0")}.html`;
+          const secs = vids.reduce((a, v) => a + v.secs, 0);
+          return `<div class="vidmod">
+            <div class="vidmod-head">
+              <span class="n">MODULE ${m.n} · ${esc(mins(secs))}${vids.length > 1 ? " across 2 parts" : ""}</span>
+              <span class="t">${esc(m.title)}</span>
+            </div>
+            <div class="vidlist">${vids.map(v => videoRow(v, base, true)).join("")}</div>
+            <div class="modlinks" style="margin-top:10px">
+              <a href="${slug}">Study notes for module ${m.n} →</a>
+              <a class="muted" href="${m.learnUrl}" target="_blank" rel="noopener">Learn module ↗</a>
+              <a class="muted" href="exam.html">Questions Q${m.qFrom}–Q${m.qTo} →</a>
+            </div>
+          </div>`;
+        }).join("")}
+      </div>
+    </section>
+
+    <section class="card pad">
+      <h2 style="font-size:20px;margin-bottom:6px">Every episode in order</h2>
+      <p class="lead" style="margin-bottom:16px">The full playlist, in the order Microsoft published it.</p>
+      <table>
+        <thead><tr><th style="width:110px">Episode</th><th>Title</th><th style="width:130px">Module</th><th style="width:80px">Length</th></tr></thead>
+        <tbody>
+          ${VIDEOS.items.map(v => `<tr>
+            <td>${esc(vidLabel(v))}</td>
+            <td><a href="${vidUrl(v)}" target="_blank" rel="noopener">${esc(v.title)} ↗</a></td>
+            <td>${v.module ? `<a href="study/module-${String(v.module).padStart(2, "0")}.html">Module ${v.module}</a>` : `<span class="muted">—</span>`}</td>
+            <td>${esc(mins(v.secs))}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>
+      <p style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="${VIDEOS.playlistUrl}" target="_blank" rel="noopener">Watch on YouTube ↗</a>
+        <a class="btn" href="exam.html">Take the mock exam →</a>
+      </p>
+    </section>
+  </div>
+  ${FOOT(base)}
+</main>`;
+
+  return shell({
+    title: "AB-100 video course — AB-100 Exam Prep",
+    desc: `The official ${VIDEOS.items.length}-part Microsoft Learn video course for AB-100, mapped episode by episode to the eleven modules of the Learn path and to the study notes and mock exam on this site.`,
+    base, nav: "video", body
+  });
+}
+
 /* ---------------- write ---------------- */
 fs.mkdirSync(path.join(ROOT, "study"), { recursive: true });
 let count = 0;
@@ -406,6 +565,7 @@ MODULES.forEach((m, i) => {
 });
 fs.writeFileSync(path.join(ROOT, "index.html"), homePage());
 fs.writeFileSync(path.join(ROOT, "topic-information.html"), notesPage());
+fs.writeFileSync(path.join(ROOT, "video-course.html"), videoPage());
 ["exam-notes.html", "focus-areas.html"].forEach(old => {
   fs.writeFileSync(path.join(ROOT, old), `<!doctype html>
 <html lang="en">
@@ -422,4 +582,4 @@ fs.writeFileSync(path.join(ROOT, "topic-information.html"), notesPage());
 `);
 });
 fs.writeFileSync(path.join(ROOT, "cram-sheet.html"), cramPage());
-console.log(`built ${count} study pages + index.html + topic-information.html + cram-sheet.html`);
+console.log(`built ${count} study pages + index.html + topic-information.html + video-course.html + cram-sheet.html`);
