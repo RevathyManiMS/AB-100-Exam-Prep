@@ -276,3 +276,36 @@ section.block li > strong { color: var(--cp-text); }
   .card { box-shadow: none; border: none; }
   .study-grid { grid-template-columns: 1fr; }
 }
+
+/* ---------- video course ---------- */
+.vidlist { display: flex; flex-direction: column; gap: 10px; }
+.vidrow {
+  display: grid; grid-template-columns: 104px 1fr auto; gap: 14px; align-items: start;
+  border: 1px solid var(--cp-border); border-radius: 0.625rem;
+  padding: 12px 14px; background: var(--cp-surface-soft);
+}
+.vidrow:hover { border-color: var(--cp-accent); background: var(--cp-accent-soft); }
+.vidnum {
+  font-size: 11.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--cp-accent); padding-top: 2px;
+}
+.vidmain { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.vidtitle { font-weight: 600; font-size: 14.5px; line-height: 1.4; color: var(--cp-text); text-decoration: none; }
+.vidtitle:hover { color: var(--cp-accent); text-decoration: underline; }
+.viddesc { font-size: 13px; color: var(--cp-text-muted); line-height: 1.5; }
+.viddesc a { color: var(--cp-accent); text-decoration: none; }
+.viddesc a:hover { text-decoration: underline; }
+.viddur {
+  font-size: 12.5px; color: var(--cp-text-muted); white-space: nowrap;
+  font-variant-numeric: tabular-nums; padding-top: 2px;
+}
+.vidmods { display: flex; flex-direction: column; gap: 18px; }
+.vidmod { border-top: 1px solid var(--cp-border); padding-top: 16px; }
+.vidmod:first-child { border-top: 0; padding-top: 0; }
+.vidmod-head { margin-bottom: 10px; }
+.vidmod-head .n { display: block; font-size: 12px; font-weight: 700; color: var(--cp-accent); letter-spacing: .04em; }
+.vidmod-head .t { display: block; font-weight: 600; font-size: 16px; margin-top: 2px; }
+@media (max-width: 560px) {
+  .vidrow { grid-template-columns: 1fr auto; }
+  .vidnum { grid-column: 1 / -1; }
+}
